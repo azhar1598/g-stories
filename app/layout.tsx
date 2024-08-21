@@ -16,6 +16,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script async src="https://cdn.ampproject.org/v0.js"></script>
+        <script
+          async
+          custom-element="amp-story"
+          src="https://cdn.ampproject.org/v0/amp-story-1.0.js"
+        ></script>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
