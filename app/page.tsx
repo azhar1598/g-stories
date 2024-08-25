@@ -26,12 +26,14 @@ import StoryList from "@/components/home/StoryList";
 import { useDisclosure, useSetState } from "@mantine/hooks";
 import PromptToStory from "@/components/home/Modals/PromptToStory";
 import ScriptToStory from "@/components/home/Modals/ScriptToStory";
+import ShowFullScript from "@/components/home/Modals/ShowFullScript";
 
 const MainSection: FC = () => {
   const [opened, { close, open }] = useDisclosure(false);
   const [state, setState] = useSetState({
     openScriptModal: false,
     openFileModal: false,
+    showFullScript: false,
   });
   return (
     <Center className="py-10" h={"100vh"}>
@@ -112,6 +114,7 @@ const MainSection: FC = () => {
       </div>
       <PromptToStory opened={opened} close={close} />
       <ScriptToStory state={state} setState={setState} />
+      <ShowFullScript state={state} setState={setState} />
     </Center>
   );
 };

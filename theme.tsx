@@ -8,7 +8,11 @@ import {
   TextInput,
 } from "@mantine/core";
 import classes from "@/styles/default.module.css";
-import { IconArrowDown } from "@tabler/icons-react";
+import {
+  IconArrowDown,
+  IconCaretDown,
+  IconCaretDownFilled,
+} from "@tabler/icons-react";
 
 export const theme = createTheme({
   colors: {
@@ -51,7 +55,7 @@ export const theme = createTheme({
         options: classes.select_options,
       },
       defaultProps: {
-        rightSection: <IconArrowDown stroke={2} width={20} height={20} />,
+        rightSection: <IconCaretDownFilled stroke={2} width={20} height={20} />,
         withCheckIcon: false,
         withScrollArea: false,
         maxDropdownHeight: 200,
