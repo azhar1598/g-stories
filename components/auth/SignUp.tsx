@@ -21,8 +21,7 @@ import callApi from "@/services/apiService";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRoxaNotification } from "@/hooks/useNotifications";
-import WoxaLogo from "../../../public/assets/logo/woxa.png";
-import Google from "../../../public/assets/images/google.webp";
+import Google from "../../public/assets/auth/google.webp";
 
 interface PropTypes {
   isMobile: boolean;
@@ -52,26 +51,22 @@ const SignUp = ({ isMobile, signup }: PropTypes) => {
   return (
     <Stack
       w={400}
-      className={`relative items-center p-1 ${
-        !isMobile
-          ? "bg-gradient-to-r from-purple-500 via-pink-500 to-red-500"
-          : ""
-      } rounded-lg`}
+      className={`relative items-center p-1  shadow-xl bg-white rounded-md h-[100vh] md:h-auto`}
     >
-      <Stack className={`${!isMobile && "bg-black"} text-white p-6 rounded-lg`}>
+      <Stack className={`text-white p-6 rounded-lg`}>
         <Stack h={150} align="center" justify="center">
           <Group className=" relative w-full h-12">
-            <Image
+            {/* <Image
               src={WoxaLogo}
               alt="Logo"
               layout="fill"
               objectFit="contain"
               unoptimized
-            />
+            /> */}
           </Group>
           <Text>Video creation at its Best</Text>
         </Stack>
-        {/* <Button
+        <Button
           type="button"
           onClick={() => signIn("google")}
           variant="default"
@@ -90,7 +85,7 @@ const SignUp = ({ isMobile, signup }: PropTypes) => {
 
         <Text className="text-center font-montMedium" style={{ color: "gray" }}>
           or
-        </Text> */}
+        </Text>
         <form
           onSubmit={form.onSubmit(() => {
             signup.mutate(form);
@@ -132,11 +127,7 @@ const SignUp = ({ isMobile, signup }: PropTypes) => {
               style={{ color: "gray" }}
             >
               Already have an account?
-              <Link
-                href="/login"
-                className="mx-2"
-                style={{ color: "pink", textDecoration: "underline" }}
-              >
+              <Link href="/login" className="link-global-style">
                 Login
               </Link>
             </Text>

@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import Image from "next/image";
 import { useMediaQuery } from "@mantine/hooks";
-import DisplayImage from "../../../../public/assets/images/wolf.png";
+import DisplayImage from "../../../public/assets/auth/login.jpeg";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";

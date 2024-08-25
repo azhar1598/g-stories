@@ -1,85 +1,84 @@
-import Head from "next/head";
+import { FC } from "react";
+import {
+  Card,
+  Button,
+  Group,
+  Text,
+  Container,
+  Image,
+  Center,
+} from "@mantine/core";
+import { IconPrompt, IconFileText, IconVideo } from "@tabler/icons-react";
+import StoryList from "@/components/home/StoryList";
 
-export const config = { amp: true };
-
-function MyAmpPage() {
+const MainSection: FC = () => {
   return (
-    <>
-      <amp-story
-        standalone
-        publisher=""
-        title=""
-        publisher-logo-src="https://codzify.com/dash/imgs/main_icons/codzfy_without_border.png"
-        poster-portrait-src="https://codzify.com/assets/images/stories/tellMeAboutYourself/poster.jpg"
-      >
-        <amp-story-page id="my-first-page" auto-advance-after="5s">
-          <amp-grid-layer template="fill">
-            <amp-img
-              src="https://codzify.com/assets/images/stories/tellMeAboutYourself/1.jpg"
-              width="900"
-              height="1600"
-              alt="This is my First Image"
-            ></amp-img>
-          </amp-grid-layer>
-        </amp-story-page>
+    <Center className="py-10" h={"100vh"}>
+      {/* Main Button Section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <Card
+          shadow="sm"
+          padding="lg"
+          className="flex flex-col text-center"
+          radius="md"
+        >
+          <Group justify="center" className="mb-4">
+            <div className="bg-blue-100 text-blue-600 p-3 rounded-full">
+              <IconPrompt size={40} stroke={1.5} />
+            </div>
+          </Group>
+          <Text className="text-lg font-semibold mb-1">Prompt to Story</Text>
+          <Text color="dimmed" size="xs" className="mb-3">
+            Convert a text prompt into a story easily.
+          </Text>
+          <Button variant="filled" color="blue" fullWidth className="mt-auto">
+            Start
+          </Button>
+        </Card>
 
-        <amp-story-page id="my-second-page" auto-advance-after="5s">
-          <amp-grid-layer template="fill">
-            <amp-img
-              src="https://codzify.com/assets/images/stories/tellMeAboutYourself/2.jpg"
-              width="900"
-              height="1600"
-              alt="This is my Second Image"
-            ></amp-img>
-          </amp-grid-layer>
-        </amp-story-page>
+        <Card
+          shadow="sm"
+          padding="lg"
+          className="flex flex-col text-center"
+          radius="md"
+        >
+          <Group justify="center" className="mb-4">
+            <div className="bg-red-100 text-red-600 p-3 rounded-full">
+              <IconFileText size={40} stroke={1.5} />
+            </div>
+          </Group>
+          <Text className="text-lg font-semibold mb-1">Script to Story</Text>
+          <Text color="dimmed" size="xs" className="mb-3">
+            Turn your script into a story.
+          </Text>
+          <Button variant="filled" color="red" fullWidth className="mt-auto">
+            Start
+          </Button>
+        </Card>
 
-        <amp-story-page id="my-third-page" auto-advance-after="5s">
-          <amp-grid-layer template="fill">
-            <amp-img
-              src="https://codzify.com/assets/images/stories/tellMeAboutYourself/3.jpg"
-              width="900"
-              height="1600"
-              alt="This is my Third Image"
-            ></amp-img>
-          </amp-grid-layer>
-        </amp-story-page>
-
-        <amp-story-page id="my-fourth-page" auto-advance-after="5s">
-          <amp-grid-layer template="fill">
-            <amp-img
-              src="https://codzify.com/assets/images/stories/tellMeAboutYourself/4.jpg"
-              width="900"
-              height="1600"
-              alt="This is my Fourth Image"
-            ></amp-img>
-          </amp-grid-layer>
-        </amp-story-page>
-
-        <amp-story-page id="my-fifth-page" auto-advance-after="5s">
-          <amp-grid-layer template="fill">
-            <amp-img
-              src="https://codzify.com/assets/images/stories/tellMeAboutYourself/5.jpg"
-              width="900"
-              height="1600"
-              alt="This is my Fifth Image"
-            ></amp-img>
-          </amp-grid-layer>
-        </amp-story-page>
-
-        <amp-story-page id="my-sixth-page" auto-advance-after="5s">
-          <amp-grid-layer template="fill">
-            <amp-img
-              src="https://codzify.com/assets/images/stories/tellMeAboutYourself/6.jpg"
-              width="900"
-              height="1600"
-              alt="This is my Sixth Image"
-            ></amp-img>
-          </amp-grid-layer>
-        </amp-story-page>
-      </amp-story>
-    </>
+        <Card
+          shadow="sm"
+          padding="lg"
+          className="flex flex-col text-center"
+          radius="md"
+        >
+          <Group justify="center" className="mb-4">
+            <div className="bg-green-100 text-green-600 p-3 rounded-full">
+              <IconVideo size={40} stroke={1.5} />
+            </div>
+          </Group>
+          <Text className="text-lg font-semibold mb-1">File to Story</Text>
+          <Text color="dimmed" size="xs" className="mb-3">
+            Upload a file and generate a video from it.
+          </Text>
+          <Button variant="filled" color="green" fullWidth className="mt-auto">
+            Start
+          </Button>
+        </Card>
+      </div>
+      {/* <StoryList /> */}
+    </Center>
   );
-}
+};
 
-export default MyAmpPage;
+export default MainSection;

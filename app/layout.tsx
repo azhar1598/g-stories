@@ -14,6 +14,8 @@ import "@mantine/notifications/styles.css";
 import { Notifications } from "@mantine/notifications";
 
 import Head from "next/head";
+import Header from "@/components/common/Header";
+import Sidebar from "@/components/common/Sidebar";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -45,7 +47,8 @@ export default function RootLayout({
             <MantineProvider theme={theme}>
               <Notifications position="top-center" />
               <Provider store={store}>
-                {/* {pathname !== "/login" && pathname !== "/signup"} */}
+                {pathname !== "/login" && pathname !== "/signup" && <Header />}
+                {pathname !== "/login" && pathname !== "/signup" && <Sidebar />}
                 {children}
                 {/* <p className="text-gray-300 px-4 md:p-0 text-center leading-5 absolute bottom-12 w-full">
                 Roxa ai might produce inaccuracies. Please review and edit as
