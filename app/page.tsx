@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 import {
   Card,
@@ -7,14 +8,33 @@ import {
   Container,
   Image,
   Center,
+  Modal,
+  TextInput,
+  NumberInput,
+  Stack,
+  Select,
 } from "@mantine/core";
-import { IconPrompt, IconFileText, IconVideo } from "@tabler/icons-react";
+import {
+  IconPrompt,
+  IconFileText,
+  IconVideo,
+  IconCross,
+  IconSquareX,
+  IconChartBubble,
+} from "@tabler/icons-react";
 import StoryList from "@/components/home/StoryList";
+import { useDisclosure, useSetState } from "@mantine/hooks";
+import PromptToStory from "@/components/home/Modals/PromptToStory";
+import ScriptToStory from "@/components/home/Modals/ScriptToStory";
 
 const MainSection: FC = () => {
+  const [opened, { close, open }] = useDisclosure(false);
+  const [state, setState] = useSetState({
+    openScriptModal: false,
+    openFileModal: false,
+  });
   return (
     <Center className="py-10" h={"100vh"}>
-      {/* Main Button Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <Card
           shadow="sm"
@@ -31,7 +51,13 @@ const MainSection: FC = () => {
           <Text color="dimmed" size="xs" className="mb-3">
             Convert a text prompt into a story easily.
           </Text>
-          <Button variant="filled" color="blue" fullWidth className="mt-auto">
+          <Button
+            variant="filled"
+            color="blue"
+            fullWidth
+            className="mt-auto"
+            onClick={open}
+          >
             Start
           </Button>
         </Card>
@@ -51,7 +77,15 @@ const MainSection: FC = () => {
           <Text color="dimmed" size="xs" className="mb-3">
             Turn your script into a story.
           </Text>
-          <Button variant="filled" color="red" fullWidth className="mt-auto">
+          <Button
+            variant="filled"
+            color="red"
+            fullWidth
+            className="mt-auto"
+            onClick={() => {
+              setState({ openScriptModal: true });
+            }}
+          >
             Start
           </Button>
         </Card>
@@ -76,7 +110,8 @@ const MainSection: FC = () => {
           </Button>
         </Card>
       </div>
-      {/* <StoryList /> */}
+      <PromptToStory opened={opened} close={close} />
+      <ScriptToStory state={state} setState={setState} />
     </Center>
   );
 };
