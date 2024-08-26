@@ -36,7 +36,7 @@ const MainSection: FC = () => {
     showFullScript: false,
   });
   return (
-    <Center className="py-10" h={"100vh"}>
+    <Center className="md:py-10 pt-20" h={"100vh"}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <Card
           shadow="sm"

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Sidebar: FC = () => {
   return (
-    <div className="bg-gray-800 h-screen w-20 fixed top-10 flex flex-col justify-between">
+    <div className="bg-gray-800 h-screen w-20 fixed top-10 flex flex-col justify-between hidden md:block">
       <div className="flex flex-col items-center">
         {sidebarItems.map((item, index) => (
           <Link href={item.link} key={index} className="w-full">
