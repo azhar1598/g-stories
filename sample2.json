@@ -1,0 +1,150 @@
+{
+  "id": 169,
+  "date": "2024-08-28T16:04:58",
+  "date_gmt": "2024-08-28T10:34:58",
+  "guid": {
+    "rendered": "https://mrchatwala.com/web-stories/joy-of-pets/"
+  },
+  "modified": "2024-08-28T16:04:58",
+  "modified_gmt": "2024-08-28T10:34:58",
+  "slug": "joy-of-pets",
+  "status": "publish",
+  "type": "web-story",
+  "link": "https://mrchatwala.com/web-stories/joy-of-pets/",
+  "title": {
+    "rendered": "joy of pets"
+  },
+  "content": {
+    "rendered": "<p><html ⚡><br />\n  <head><br />\n    <meta charset=\"utf-8\" /><br />\n    <title>Joy of Pets</title>\n    <link rel=\"canonical\" href=\"pets.html\" />\n    <meta\n      name=\"viewport\"\n      content=\"width=device-width,minimum-scale=1,initial-scale=1\"\n    /></p>\n<style amp-boilerplate>\n      body {\n        -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;\n        -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;\n        -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;\n        animation: -amp-start 8s steps(1, end) 0s 1 normal both;\n      }\n      @-webkit-keyframes -amp-start {\n        from {\n          visibility: hidden;\n        }\n        to {\n          visibility: visible;\n        }\n      }\n      @-moz-keyframes -amp-start {\n        from {\n          visibility: hidden;\n        }\n        to {\n          visibility: visible;\n        }\n      }\n      @-ms-keyframes -amp-start {\n        from {\n          visibility: hidden;\n        }\n        to {\n          visibility: visible;\n        }\n      }\n      @-o-keyframes -amp-start {\n        from {\n          visibility: hidden;\n        }\n        to {\n          visibility: visible;\n        }\n      }\n      @keyframes -amp-start {\n        from {\n          visibility: hidden;\n        }\n        to {\n          visibility: visible;\n        }\n      }\n    </style>\n<p>    <noscript\n      ></p>\n<style amp-boilerplate>\n        body {\n          -webkit-animation: none;\n          -moz-animation: none;\n          -ms-animation: none;\n          animation: none;\n        }\n      </style>\n<p></noscript\n    ><br />\n    <script async src=\"https://cdn.ampproject.org/v0.js\"></script><br />\n    <script\n      async\n      custom-element=\"amp-video\"\n      src=\"https://cdn.ampproject.org/v0/amp-video-0.1.js\"\n    ></script><br />\n    <script\n      async\n      custom-element=\"amp-story\"\n      src=\"https://cdn.ampproject.org/v0/amp-story-1.0.js\"\n    ></script>\n    <link\n      href=\"https://fonts.googleapis.com/css?family=Oswald:200,300,400\"\n      rel=\"stylesheet\"\n    /></p>\n<style amp-custom>\n      amp-story {\n        font-family: \"Oswald\", sans-serif;\n        color: #fff;\n      }\n      amp-story-page {\n        background-color: #000;\n      }\n      h1 {\n        font-weight: bold;\n        font-size: 2.875em;\n        font-weight: normal;\n        line-height: 1.174;\n      }\n      p {\n        font-weight: normal;\n        font-size: 1.3em;\n        line-height: 1.5em;\n        color: #fff;\n      }\n      q {\n        font-weight: 300;\n        font-size: 1.1em;\n      }\n      amp-story-grid-layer.bottom {\n        align-content: end;\n      }\n      amp-story-grid-layer.noedge {\n        padding: 0px;\n      }\n      amp-story-grid-layer.center-text {\n        align-content: center;\n      }\n      .wrapper {\n        display: grid;\n        grid-template-columns: 50% 50%;\n        grid-template-rows: 50% 50%;\n      }\n      .banner-text {\n        text-align: center;\n        background-color: #000;\n        line-height: 2em;\n      }\n    </style>\n<p>  </head><br />\n  <body><br />\n    <!-- Cover page --><br />\n    <amp-story\n      standalone\n      title=\"Joy of Pets\"\n      publisher=\"AMP tutorials\"\n      publisher-logo-src=\"assets/AMP-Brand-White-Icon.svg\"\n      poster-portrait-src=\"https://images.pexels.com/photos/1300355/pexels-photo-1300355.jpeg?auto=compress&#038;cs=tinysrgb&#038;w=1260&#038;h=750&#038;dpr=2\"\n    ><br />\n      <amp-story-page id=\"cover\"><br />\n        <amp-story-grid-layer template=\"fill\"><br />\n          <amp-img\n            src=\"https://images.pexels.com/photos/1931370/pexels-photo-1931370.jpeg?auto=compress&#038;cs=tinysrgb&#038;w=1260&#038;h=750&#038;dpr=2\"\n            width=\"720\"\n            height=\"1280\"\n            layout=\"responsive\"\n          ><br />\n          </amp-img><br />\n        </amp-story-grid-layer><br />\n        <amp-story-grid-layer template=\"vertical\"></p>\n<h1>The Joy of Pets</h1>\n<p>By AMP Tutorials</p>\n<p>        </amp-story-grid-layer><br />\n      </amp-story-page></p>\n<p>      <!-- Page 1 (Cat): 1 layer (vertical) --><br />\n      <amp-story-page id=\"page1\"><br />\n        <amp-story-grid-layer template=\"vertical\"></p>\n<h1>Cats</h1>\n<p>          <amp-img\n            src=\"https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&#038;cs=tinysrgb&#038;w=800\"\n            width=\"720\"\n            height=\"1280\"\n            layout=\"responsive\"\n          ><br />\n          </amp-img><br />\n          <q\n            >Dogs come when they&#8217;re called. Cats take a message and get back to<br />\n            you. &#8211;Mary Bly</q\n          ><br />\n        </amp-story-grid-layer><br />\n      </amp-story-page></p>\n<p>      <!-- Page 2 (Dog): 2 layers (fill + thirds) --><br />\n      <amp-story-page id=\"page2\"><br />\n        <amp-story-grid-layer template=\"fill\"><br />\n          <amp-img\n            src=\"https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&#038;cs=tinysrgb&#038;w=800\"\n            width=\"720\"\n            height=\"1280\"\n            layout=\"responsive\"\n          ><br />\n          </amp-img><br />\n        </amp-story-grid-layer><br />\n        <amp-story-grid-layer template=\"thirds\"></p>\n<h1 grid-area=\"upper-third\">Dogs</h1>\n<p grid-area=\"lower-third\">\n            Dogs were probably the first tame animals. They have accompanied<br />\n            humans for some 10,000 years. Some scientists assert that all dogs,<br />\n            domestic and wild, share a common ancestor in the small South Asian<br />\n            wolf.\n          </p>\n<p>        </amp-story-grid-layer><br />\n      </amp-story-page></p>\n<p>      <!-- Page 3 (Bird): 3 layers (fill + vertical + vertical) + Audio--><br />\n      <amp-story-page id=\"page3\" background-audio=\"assets/bird-singing.mp3\"><br />\n        <amp-story-grid-layer template=\"fill\"><br />\n          <amp-img\n            src=\"https://images.pexels.com/photos/349758/hummingbird-bird-birds-349758.jpeg?auto=compress&#038;cs=tinysrgb&#038;w=800\"\n            width=\"720\"\n            height=\"1280\"\n            layout=\"responsive\"\n          ><br />\n          </amp-img><br />\n        </amp-story-grid-layer><br />\n        <amp-story-grid-layer template=\"vertical\"></p>\n<h1>Birds</h1>\n<p>        </amp-story-grid-layer><br />\n        <amp-story-grid-layer template=\"vertical\" class=\"bottom\"><br />\n          <q\n            >A bird is three things: Feathers, flight and song, And feathers are<br />\n            the least of these. -Marjorie Allen Seiffert</q\n          ><br />\n        </amp-story-grid-layer><br />\n      </amp-story-page></p>\n<p>      <!-- Page 4 (Rabbit): 3 layers (fill (video) + vertical + vertical) --><br />\n      <amp-story-page id=\"page4\"><br />\n        <amp-story-grid-layer template=\"fill\"><br />\n          <amp-video\n            autoplay\n            loop\n            width=\"720\"\n            height=\"1280\"\n            poster=\"assets/rabbit.jpg\"\n            layout=\"responsive\"\n          ><source \nsrc=\"https://videos.pexels.com/video-files/4823938/4823938-uhd_1440_2560_24fps.mp4\"\n              type=\"video/mp4\"\n            /><br />\n          </amp-video><br />\n        </amp-story-grid-layer><br />\n        <amp-story-grid-layer template=\"vertical\"></p>\n<h1>Rabbits</h1>\n<p>        </amp-story-grid-layer><br />\n        <amp-story-grid-layer template=\"vertical\" class=\"bottom\"></p>\n<p>\n            Rabbits can learn to follow simple voice commands and come when<br />\n            called by name, and are curious and playful.\n          </p>\n<p>        </amp-story-grid-layer><br />\n      </amp-story-page></p>\n<p>      <!-- Page 5 (Collage): 2 layers + animations --><br />\n      <amp-story-page id=\"page5\"><br />\n        <amp-story-grid-layer template=\"vertical\" class=\"noedge\"></p>\n<div class=\"wrapper\">\n            <amp-img\n              src=\"https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&#038;cs=tinysrgb&#038;w=800\"\n              width=\"720\"\n              height=\"1280\"\n              layout=\"responsive\"\n              animate-in=\"fade-in\"\n              animate-in-delay=\"0.4s\"\n            ><br />\n            </amp-img><br />\n            <amp-img\n              src=\"https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&#038;cs=tinysrgb&#038;w=800\"\n              width=\"720\"\n              height=\"1280\"\n              layout=\"responsive\"\n              animate-in=\"fade-in\"\n              animate-in-delay=\"0.6s\"\n            ><br />\n            </amp-img><br />\n            <amp-img\n              src=\"https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&#038;cs=tinysrgb&#038;w=1260&#038;h=750&#038;dpr=2\"\n              width=\"720\"\n              height=\"1280\"\n              layout=\"responsive\"\n              animate-in=\"fade-in\"\n              animate-in-delay=\".8s\"\n            ><br />\n            </amp-img><br />\n            <amp-img\n              src=\"https://images.pexels.com/photos/326012/pexels-photo-326012.jpeg?auto=compress&#038;cs=tinysrgb&#038;w=800\"\n              width=\"720\"\n              height=\"1280\"\n              layout=\"responsive\"\n              animate-in=\"fade-in\"\n              animate-in-delay=\"1s\"\n            ><br />\n            </amp-img>\n          </div>\n<p>        </amp-story-grid-layer><br />\n        <amp-story-grid-layer template=\"vertical\" class=\"center-text\"></p>\n<p class=\"banner-text\" animate-in=\"whoosh-in-right\">\n            Pets can lower your stress levels!\n          </p>\n<p>        </amp-story-grid-layer><br />\n      </amp-story-page></p>\n<p>      <!-- Bookend --><br />\n      <amp-story-bookend\n        src=\"bookend.json\"\n        layout=\"nodisplay\"\n      ></amp-story-bookend><br />\n    </amp-story><br />\n  </body><br />\n</html></p>\n",
+    "protected": false
+  },
+  "excerpt": {
+    "rendered": "<p>Joy of Pets The Joy of Pets By AMP Tutorials Cats Dogs come when they&#8217;re called. Cats take a message and get back to you. &#8211;Mary Bly Dogs Dogs were probably the first tame animals. They have accompanied humans for some 10,000 years. Some scientists assert that all dogs, domestic &#8230; <a title=\"joy of pets\" class=\"read-more\" href=\"https://mrchatwala.com/web-stories/joy-of-pets/\" aria-label=\"More on joy of pets\">Read more</a></p>\n",
+    "protected": false
+  },
+  "author": 1,
+  "featured_media": 0,
+  "template": "",
+  "meta": {
+    "web_stories_products": [],
+    "web_stories_publisher_logo": 0,
+    "web_stories_poster": [],
+    "footnotes": ""
+  },
+  "web_story_category": [],
+  "web_story_tag": [],
+  "amp_enabled": true,
+  "story_data": {
+    "pages": [
+      {
+        "id": "page-1",
+        "elements": [
+          {
+            "type": "image",
+            "src": "joy",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "layer": 0,
+            "opacity": 1
+          },
+          {
+            "type": "text",
+            "content": "joy",
+            "position": {
+              "x": 20,
+              "y": 20
+            },
+            "size": {
+              "width": 60,
+              "height": 20
+            },
+            "layer": 1,
+            "color": "#ffffff",
+            "fontSize": 24
+          }
+        ]
+      }
+    ]
+  },
+  "_links": {
+    "self": [
+      {
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/169"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story"
+      }
+    ],
+    "about": [
+      {
+        "href": "https://mrchatwala.com/wp-json/wp/v2/types/web-story"
+      }
+    ],
+    "author": [
+      {
+        "embeddable": true,
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/users/1"
+      }
+    ],
+    "version-history": [
+      {
+        "count": 0,
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/169/revisions"
+      }
+    ],
+    "wp:attachment": [
+      {
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/media?parent=169"
+      }
+    ],
+    "wp:term": [
+      {
+        "taxonomy": "web_story_category",
+        "embeddable": true,
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web_story_category?post=169"
+      },
+      {
+        "taxonomy": "web_story_tag",
+        "embeddable": true,
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web_story_tag?post=169"
+      }
+    ],
+    "wp:lock": [
+      {
+        "embeddable": true,
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/169/lock"
+      }
+    ],
+    "wp:lockuser": [
+      {
+        "embeddable": true,
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/users/1"
+      }
+    ],
+    "wp:action-delete": [
+      {
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/169"
+      }
+    ],
+    "wp:action-edit": [
+      {
+        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/169"
+      }
+    ],
+    "curies": [
+      {
+        "name": "wp",
+        "href": "https://api.w.org/{rel}",
+        "templated": true
+      }
+    ]
+  }
+}
