@@ -1,0 +1,46 @@
+{
+  "id": "p0mffji3m2hn",
+  "general": {
+    "title": "Salman Khan",
+    "publisherName": "sarah",
+    "publisherLogo": "https://storyblaze-editor.s3.ap-south-1.amazonaws.com/-UpixS0pBNNqIRQJq1BB1",
+    "favicon": "https://storyblaze-editor.s3.ap-south-1.amazonaws.com/-UpixS0pBNNqIRQJq1BB1",
+    "portraitPoster": "https://storyblaze-editor.s3.ap-south-1.amazonaws.com/tU08Z-Qzf-UMZzcJMFNVQ",
+    "description": "Salman Khan Facts",
+    "website": "https://mrchatwala.com",
+    "brandId": "default_brand",
+    "published": false,
+    "visibility": "public",
+    "publishTimeLocal": null,
+    "postId": 192,
+    "status": "published"
+  },
+  "slides": [
+    {
+      "id": "9bqkm",
+      "style": {
+        "background": "url(https://images.unsplash.com/photo-1529651737248-dad5e287768e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjY4Mjd8MHwxfHNlYXJjaHwxfHxwcm9kdWN0aXZpdHl8ZW58MHwxfHx8MTcyNTA5MTcwNXww&ixlib=rb-4.0.3&q=80&w=200) no-repeat center center/cover"
+      },
+      "elements": [
+        {
+          "tag": "h4",
+          "attributes": {
+            "id": "yw08k"
+          },
+          "content": "Salman Khan Facts ",
+          "style": {
+            "position": "sticky",
+            "fontSize": "36px",
+            "fontFamily": "Roboto",
+            "fontWeight": "700",
+            "lineHeight": "1.4em",
+            "width": "187.5px",
+            "height": "auto",
+            "left": "37px",
+            "top": "77px"
+          }
+        }
+      ]
+    }
+  ]
+}

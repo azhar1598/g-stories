@@ -89,7 +89,8 @@
 
 body {
   font-family: "Open-sans", Arial, sans-serif;
-  background-color: #e8f0fe !important;
+  /* background-color: red !important; */
+  height: 100vh;
   /* background-image: url("../../public/assets/images/image2.PNG"); */
 }
 

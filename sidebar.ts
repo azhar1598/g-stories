@@ -11,7 +11,7 @@ import {
 } from "@tabler/icons-react";
 
 export const sidebarItems = [
-  { name: "Generate", icon: IconWandOff, link: "/" },
+  // { name: "Generate", icon: IconWandOff, link: "/" },
   { name: "Stories", icon: IconBook, link: "/stories" },
   { name: "Templates", icon: IconTemplate, link: "/templates" },
   { name: "Account", icon: IconUser, link: "/account" },
