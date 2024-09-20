@@ -52,7 +52,7 @@ const MoveableComponent = () => {
     e.target.style.height = `${e.target.scrollHeight}px`; // Set height based on content
 
     // Update Moveable dimensions based on textarea height
-    const newHeight = e.target.scrollHeight;
+    const newHeight = e.target.scrollHeight + 10; // Add padding to prevent cutoff
     setDimensions((prev) => ({ ...prev, height: newHeight }));
   };
 
