@@ -39,6 +39,7 @@ export default function RootLayout({
             content="Video creation at its best"
           />
         </Head>
+        <script src="//daybrush.com/moveable/release/latest/dist/moveable.min.js"></script>
       </head>
       <body className={inter.className}>
         <SessionProvider>

@@ -13,6 +13,7 @@ import {
 import Moveable from "react-moveable";
 
 import { X } from "lucide-react";
+import MoveableComponent from "./MoveableComponent";
 
 const EditorPage = () => {
   return (
@@ -63,11 +64,11 @@ const EditorComponent = () => {
         updateSlide={updateSlide}
       />
       {/* <DraggableInputContainer /> */}
-      <EditPanel
+      {/* <EditPanel
         selectedSlide={selectedSlide}
         updateSlide={updateSlide}
         addSlide={addSlide}
-      />
+      /> */}
     </div>
   );
 };
@@ -299,21 +300,13 @@ const Preview = ({
             style={{ backgroundColor: selectedSlide.backgroundColor }}
             className="h-full"
           >
-            <div ref={containerRef} className="relative h-full overflow-hidden">
-              {inputs.map((input) => (
-                <DraggableInput
-                  key={input.id}
-                  text={input.text}
-                  position={input.position}
-                  onDrag={(newPosition) => handleDrag(input.id, newPosition)}
-                  onDelete={() => handleDelete(input.id)}
-                  onChange={(newText) => handleChange(input.id, newText)}
-                />
-              ))}
+            <div className="relative overflow-none">
+              <MoveableComponent />
             </div>
           </div>
         )}
       </div>
+
       <div className="mt-4 flex space-x-2">
         {slides.map((slide) => (
           <div
