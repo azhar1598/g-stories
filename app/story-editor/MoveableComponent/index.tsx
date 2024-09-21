@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 
-const MoveableComponent = () => {
+const MoveableComponent = ({ content, updateContent }) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [value, setValue] = useState("Type here...");
   const [isEditable, setIsEditable] = useState(false);
-  const [dimensions, setDimensions] = useState({ width: 200, height: 100 });
+  const [dimensions, setDimensions] = useState({ width: 200, height: "auto" });
 
   const handleDoubleClick = () => {
     setIsEditable(true);
@@ -22,6 +22,10 @@ const MoveableComponent = () => {
     }
   };
 
+  const handleBlur = () => {
+    setIsEditable(false);
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -31,6 +35,8 @@ const MoveableComponent = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
+    setDimensions({ height: e.target.style.height });
+    updateContent(content.id, { text: e.target.value });
     e.target.style.height = "auto";
     e.target.style.height = `${e.target.scrollHeight}px`;
   };
@@ -50,11 +56,11 @@ const MoveableComponent = () => {
 
   const commonStyles: React.CSSProperties = {
     width: "100%",
-    padding: "10px",
+    // padding: "10px",
     boxSizing: "border-box",
     whiteSpace: "pre-wrap",
     wordWrap: "break-word",
-    fontSize: "16px",
+
     lineHeight: "1.5",
     fontFamily: "Arial, sans-serif",
     border: "none",
@@ -62,7 +68,24 @@ const MoveableComponent = () => {
     background: "transparent",
     resize: "none",
     overflow: "hidden",
-    color: "black",
+    color: "white",
+  };
+
+  const getStyleForType = (type) => {
+    switch (type) {
+      case "Title":
+        return { fontSize: "42px", fontWeight: "bold" };
+      case "Headline":
+        return { fontSize: "20px", fontWeight: "bold" };
+      case "Subheadline":
+        return { fontSize: "18px", fontWeight: "semi-bold" };
+      case "Normal text":
+        return { fontSize: "16px" };
+      case "Small text":
+        return { fontSize: "14px" };
+      default:
+        return { fontSize: "16px" };
+    }
   };
 
   return (
@@ -71,6 +94,7 @@ const MoveableComponent = () => {
         ref={targetRef}
         onDoubleClick={handleDoubleClick}
         style={{
+          ...getStyleForType(content.type),
           width: `${dimensions.width}px`,
           height: isEditable ? "auto" : `${dimensions.height}px`,
           border: isEditable ? "1px solid #ccc" : "1px solid transparent",

@@ -10,9 +10,6 @@ import {
   ImageIcon,
   Plus,
 } from "lucide-react";
-import Moveable from "react-moveable";
-
-import { X } from "lucide-react";
 import MoveableComponent from "./MoveableComponent";
 
 const EditorPage = () => {
@@ -27,7 +24,7 @@ const EditorPage = () => {
 
 const EditorComponent = () => {
   const [slides, setSlides] = useState([
-    { id: 1, backgroundColor: "#B24592", content: [{ text: "", type: "" }] },
+    { id: 1, backgroundColor: "#B24592", content: [] },
   ]);
   const [selectedSlide, setSelectedSlide] = useState(slides[0]);
 
@@ -35,7 +32,7 @@ const EditorComponent = () => {
     const newSlide = {
       id: Date.now(),
       backgroundColor: "#B24592",
-      content: "Type something",
+      content: [],
     };
     setSlides([...slides, newSlide]);
   };
@@ -47,37 +44,50 @@ const EditorComponent = () => {
       )
     );
 
-    // If the selected slide is the one being updated, update the state for selectedSlide as well
     if (selectedSlide.id === id) {
       setSelectedSlide({ ...selectedSlide, ...updates });
     }
   };
 
+  const addTextContent = (style) => {
+    const newContent = {
+      id: Date.now(),
+      type: style,
+      text: "Type something...",
+    };
+    updateSlide(selectedSlide.id, {
+      content: [...selectedSlide.content, newContent],
+    });
+  };
+
+  const updateContent = (contentId, updates) => {
+    const updatedContent = selectedSlide.content.map((item) =>
+      item.id === contentId ? { ...item, ...updates } : item
+    );
+    updateSlide(selectedSlide.id, { content: updatedContent });
+  };
+
   return (
     <div className="flex h-[calc(100vh-64px)]">
-      <Sidebar updateSlide={updateSlide} selectedSlide={selectedSlide} />
+      <Sidebar selectedSlide={selectedSlide} addTextContent={addTextContent} />
       <Preview
         addSlide={addSlide}
         slides={slides}
         selectedSlide={selectedSlide}
         setSelectedSlide={setSelectedSlide}
         updateSlide={updateSlide}
+        updateContent={updateContent}
       />
-      {/* <DraggableInputContainer /> */}
-      {/* <EditPanel
-        selectedSlide={selectedSlide}
-        updateSlide={updateSlide}
-        addSlide={addSlide}
-      /> */}
     </div>
   );
 };
 
-const Sidebar = ({ selectedSlide, updateSlide }) => {
-  const [activePanel, setActivePanel] = useState(null);
+const Sidebar = ({ selectedSlide, addTextContent }) => {
   const [files, setFiles] = useState([]);
 
   const [isTextPanelOpen, setIsTextPanelOpen] = useState(false);
+
+  const [activePanel, setActivePanel] = useState(null);
 
   const toggleTextPanel = () => {
     setIsTextPanelOpen(!isTextPanelOpen);
@@ -116,14 +126,12 @@ const Sidebar = ({ selectedSlide, updateSlide }) => {
   };
 
   const handleTextStyleClick = (style) => {
-    const newContentBlock = { type: style, text: "Type something..." };
-
-    // Check if the slide content is already an array, if not make it an array
-    let updatedContent = Array.isArray(selectedSlide.content)
-      ? [...selectedSlide.content, newContentBlock]
-      : [newContentBlock];
-
-    updateSlide(selectedSlide.id, { content: updatedContent });
+    // const newContentBlock = { type: style, text: "Type something..." };
+    // let updatedContent = Array.isArray(selectedSlide.content)
+    //   ? [...selectedSlide.content, newContentBlock]
+    //   : [newContentBlock];
+    addTextContent(style);
+    // updateSlide(selectedSlide.id, { content: updatedContent });
   };
 
   return (
@@ -219,90 +227,27 @@ const Preview = ({
   setSelectedSlide,
   addSlide,
   updateSlide,
+  updateContent,
 }) => {
-  const [target, setTarget] = useState(null); // Track the current target element
-  const [frames, setFrames] = useState([]); // Track frames for each block
-  const targetRefs = useRef([]); // Array to hold references for each block
-
-  useEffect(() => {
-    // Initialize frames and targetRefs for each block when selectedSlide changes
-    if (selectedSlide && selectedSlide.content) {
-      setFrames(
-        selectedSlide.content.map(() => ({
-          translate: [0, 0],
-          width: 100,
-          height: 30,
-        }))
-      );
-
-      targetRefs.current = selectedSlide.content.map(
-        (_, index) => targetRefs.current[index] || React.createRef()
-      );
-    }
-  }, [selectedSlide]);
-
-  const [inputs, setInputs] = useState([]);
-  const containerRef = useRef(null);
-
-  const handleAddInput = () => {
-    const newInput = {
-      id: Date.now(),
-      text: "New Input",
-      position: { x: 10, y: 10 },
-    };
-    setInputs([...inputs, newInput]);
-  };
-
-  const handleDrag = (id, newPosition) => {
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const clampedX = Math.max(
-      0,
-      Math.min(newPosition.x - containerRect.left, containerRect.width - 100)
-    );
-    const clampedY = Math.max(
-      0,
-      Math.min(newPosition.y - containerRect.top, containerRect.height - 40)
-    );
-
-    setInputs(
-      inputs.map((input) =>
-        input.id === id
-          ? { ...input, position: { x: clampedX, y: clampedY } }
-          : input
-      )
-    );
-  };
-
-  const handleDelete = (id) => {
-    setInputs(inputs.filter((input) => input.id !== id));
-  };
-
-  const handleChange = (id, newText) => {
-    setInputs(
-      inputs.map((input) =>
-        input.id === id ? { ...input, text: newText } : input
-      )
-    );
-  };
-
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-4 bg-gray-900">
       <div className="text-gray-400 mb-4">
         Slide {slides.indexOf(selectedSlide) + 1}
       </div>
-      <button onClick={handleAddInput} className="mb-4">
-        Add Input Text
-      </button>
 
-      <div className="w-64 h-[32rem] bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+      <div className="w-64 h-[32rem] bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
         {selectedSlide && (
           <div
             style={{ backgroundColor: selectedSlide.backgroundColor }}
             className="h-full"
           >
-            <div className="relative overflow-none">
-              <MoveableComponent />
-            </div>
+            {selectedSlide.content.map((item) => (
+              <MoveableComponent
+                key={item.id}
+                content={item}
+                updateContent={updateContent}
+              />
+            ))}
           </div>
         )}
       </div>
@@ -369,184 +314,3 @@ const EditPanel = ({ selectedSlide, updateSlide }) => {
 };
 
 export default EditorPage;
-
-// claude start
-const DraggableInput = ({ text, position, onDrag, onDelete, onChange }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedText, setEditedText] = useState(text);
-  const [isDragging, setIsDragging] = useState(false);
-  const inputRef = useRef(null);
-  const dragStartPos = useRef({ x: 0, y: 0 });
-  const dragStartOffset = useRef({ x: 0, y: 0 });
-
-  const handleDoubleClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleBlur = () => {
-    setIsEditing(false);
-    onChange(editedText);
-  };
-
-  const handleMouseDown = (e) => {
-    if (e.button !== 0) return; // Only handle left mouse button
-    e.preventDefault(); // Prevent text selection
-    setIsDragging(true);
-    const rect = inputRef.current.getBoundingClientRect();
-    dragStartPos.current = { x: e.clientX, y: e.clientY };
-    dragStartOffset.current = { x: rect.left, y: rect.top };
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    const dx = e.clientX - dragStartPos.current.x;
-    const dy = e.clientY - dragStartPos.current.y;
-    const newX = dragStartOffset.current.x + dx;
-    const newY = dragStartOffset.current.y + dy;
-    onDrag({ x: newX, y: newY });
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  useEffect(() => {
-    if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-    } else {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    }
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [isDragging]);
-
-  return (
-    <div
-      ref={inputRef}
-      className="absolute p-2 rounded border border-gray-300"
-      style={{
-        left: position.x,
-        top: position.y,
-        cursor: isDragging ? "grabbing" : "grab",
-        userSelect: "none",
-      }}
-      onMouseDown={handleMouseDown}
-    >
-      {isEditing ? (
-        <input
-          type="text"
-          value={editedText}
-          onChange={(e) => setEditedText(e.target.value)}
-          onBlur={handleBlur}
-          autoFocus
-          className="w-full bg-transparent outline-none"
-        />
-      ) : (
-        <span onDoubleClick={handleDoubleClick}>{text}</span>
-      )}
-      <button
-        // variant="ghost"
-        // size="icon"
-        className="absolute -top-2 -right-2 hover:bg-transparent"
-        onClick={onDelete}
-      >
-        <X className="h-4 w-4 text-red-500" />
-      </button>
-    </div>
-  );
-};
-
-const DraggableInputContainer = () => {
-  const [inputs, setInputs] = useState([]);
-  const containerRef = useRef(null);
-
-  const handleAddInput = () => {
-    const newInput = {
-      id: Date.now(),
-      text: "New Input",
-      position: { x: 10, y: 10 },
-    };
-    setInputs([...inputs, newInput]);
-  };
-
-  const handleDrag = (id, newPosition) => {
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const clampedX = Math.max(
-      0,
-      Math.min(newPosition.x - containerRect.left, containerRect.width - 100)
-    );
-    const clampedY = Math.max(
-      0,
-      Math.min(newPosition.y - containerRect.top, containerRect.height - 40)
-    );
-
-    setInputs(
-      inputs.map((input) =>
-        input.id === id
-          ? { ...input, position: { x: clampedX, y: clampedY } }
-          : input
-      )
-    );
-  };
-
-  const handleDelete = (id) => {
-    setInputs(inputs.filter((input) => input.id !== id));
-  };
-
-  const handleChange = (id, newText) => {
-    setInputs(
-      inputs.map((input) =>
-        input.id === id ? { ...input, text: newText } : input
-      )
-    );
-  };
-
-  return (
-    <div className="w-full max-w-3xl mx-auto">
-      <button onClick={handleAddInput} className="mb-4">
-        Add Input Text
-      </button>
-      <div
-        ref={containerRef}
-        className="relative border-2 border-gray-300 rounded-lg h-96 overflow-hidden"
-      >
-        {inputs.map((input) => (
-          <DraggableInput
-            key={input.id}
-            text={input.text}
-            position={input.position}
-            onDrag={(newPosition) => handleDrag(input.id, newPosition)}
-            onDelete={() => handleDelete(input.id)}
-            onChange={(newText) => handleChange(input.id, newText)}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// claude end
-{
-  /* <input
-type="text"
-value={block.text || ""}
-onChange={(e) => {
-  const updatedContent = [...selectedSlide.content]; // Create a copy of the content array
-  updatedContent[index] = {
-    ...updatedContent[index],
-    text: e.target.value,
-  }; // Update the specific text in the content block
-  updateSlide(selectedSlide.id, { content: updatedContent }); // Pass the updated content array
-}}
-style={{
-  outline: "none",
-  background: "transparent",
-  border: "1px solid white",
-}}
-className="text-white bg-none"
-/> */
-}
