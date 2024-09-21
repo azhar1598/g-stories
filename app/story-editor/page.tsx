@@ -9,6 +9,7 @@ import {
   Pen,
   ImageIcon,
   Plus,
+  Slice,
 } from "lucide-react";
 import MoveableComponent from "./MoveableComponent";
 
@@ -24,7 +25,11 @@ const EditorPage = () => {
 
 const EditorComponent = () => {
   const [slides, setSlides] = useState([
-    { id: 1, backgroundColor: "#B24592", content: [] },
+    {
+      id: 1,
+      styles: { backgroundImage: "", backgroundColor: "#B24592" },
+      elements: [],
+    },
   ]);
   const [selectedSlide, setSelectedSlide] = useState(slides[0]);
 
@@ -43,33 +48,66 @@ const EditorComponent = () => {
         slide.id === id ? { ...slide, ...updates } : slide
       )
     );
+    setSelectedSlide((prev) =>
+      prev.id === id ? { ...prev, ...updates } : prev
+    );
+  };
 
+  console.log("slides", slides);
+
+  const deleteSlide = (id) => {
+    const updatedSlides = slides.filter((slide) => slide.id !== id);
+    setSlides(updatedSlides);
     if (selectedSlide.id === id) {
-      setSelectedSlide({ ...selectedSlide, ...updates });
+      setSelectedSlide(updatedSlides.length ? updatedSlides[0] : null);
     }
   };
 
-  const addTextContent = (style) => {
-    const newContent = {
-      id: Date.now(),
-      type: style,
-      text: "Type something...",
-    };
-    updateSlide(selectedSlide.id, {
-      content: [...selectedSlide.content, newContent],
-    });
+  const addContent = (type, data) => {
+    if (type === "backgroundImage") {
+      // Handle adding a background image
+      const updatedStyles = {
+        ...selectedSlide.styles, // Keep other styles intact
+        backgroundImage: `url(${data.url})`, // Set backgroundImage
+      };
+
+      updateSlide(selectedSlide.id, {
+        styles: updatedStyles, // Update styles with the new backgroundImage
+      });
+    } else if (type === "Text") {
+      // Handle adding multiple text elements
+      // const newElements = data.elements.map((element) => ({
+      //   id: Date.now(), // Ensure unique ID for each element
+      //   type: element.tag, // 'Title', 'Headline', etc.
+      //   content: element.content,
+      //   styles: {},
+      // }));
+      const newElements = [
+        {
+          id: Date.now(),
+          type: data,
+        },
+      ];
+
+      updateSlide(selectedSlide.id, {
+        elements: [...selectedSlide.elements, ...newElements],
+      });
+    }
   };
 
   const updateContent = (contentId, updates) => {
-    const updatedContent = selectedSlide.content.map((item) =>
+    const updatedContent = selectedSlide.elements.map((item) =>
       item.id === contentId ? { ...item, ...updates } : item
     );
     updateSlide(selectedSlide.id, { content: updatedContent });
   };
 
+  console.log("slidess", slides);
+
   return (
     <div className="flex h-[calc(100vh-64px)]">
-      <Sidebar selectedSlide={selectedSlide} addTextContent={addTextContent} />
+      <Sidebar selectedSlide={selectedSlide} addContent={addContent} />
+
       <Preview
         addSlide={addSlide}
         slides={slides}
@@ -82,17 +120,10 @@ const EditorComponent = () => {
   );
 };
 
-const Sidebar = ({ selectedSlide, addTextContent }) => {
-  const [files, setFiles] = useState([]);
-
-  const [isTextPanelOpen, setIsTextPanelOpen] = useState(false);
-
+const Sidebar = ({ selectedSlide, addContent }) => {
+  const [file, setFile] = useState(null); // For a single file
+  const [imageUrl, setImageUrl] = useState(""); // For the image URL
   const [activePanel, setActivePanel] = useState(null);
-
-  const toggleTextPanel = () => {
-    setIsTextPanelOpen(!isTextPanelOpen);
-  };
-
   const fileInputRef = useRef(null);
 
   const buttons = [
@@ -104,7 +135,6 @@ const Sidebar = ({ selectedSlide, addTextContent }) => {
   ];
 
   const handleButtonClick = (label) => {
-    if (label === "Text") toggleTextPanel();
     setActivePanel(activePanel === label ? null : label);
   };
 
@@ -115,23 +145,50 @@ const Sidebar = ({ selectedSlide, addTextContent }) => {
 
   const handleDrop = (e) => {
     e.preventDefault();
-    e.stopPropagation();
-    const droppedFiles = Array.from(e.dataTransfer.files);
-    setFiles((prevFiles) => [...prevFiles, ...droppedFiles]);
+    const droppedFile = e.dataTransfer.files[0];
+    if (
+      droppedFile &&
+      (droppedFile.type.startsWith("image/") ||
+        droppedFile.type.startsWith("video/"))
+    ) {
+      setFile(droppedFile);
+      setImageUrl(URL.createObjectURL(droppedFile));
+    } else {
+      alert("Please upload an image or video file.");
+    }
   };
 
   const handleFileInputChange = (e) => {
-    const selectedFiles = Array.from(e.target.files);
-    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+    const selectedFile = e.target.files[0]; // Only handle one file
+    console.log("slee", selectedFile, URL.createObjectURL(selectedFile));
+    addContent("backgroundImage", {
+      url: URL.createObjectURL(selectedFile),
+      alt: e.target.files[0].name,
+    });
+    // if (selectedFile) {
+    setFile(selectedFile);
+    setImageUrl(URL.createObjectURL(selectedFile)); // Create object URL for preview
+    // }
   };
 
   const handleTextStyleClick = (style) => {
-    // const newContentBlock = { type: style, text: "Type something..." };
-    // let updatedContent = Array.isArray(selectedSlide.content)
-    //   ? [...selectedSlide.content, newContentBlock]
-    //   : [newContentBlock];
-    addTextContent(style);
-    // updateSlide(selectedSlide.id, { content: updatedContent });
+    addContent("Text", style);
+  };
+
+  useEffect(() => {
+    if (file) {
+      const timer = setTimeout(() => setFile(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [file]);
+
+  const handleFileUpload = () => {
+    //   console.log("file", file);
+    //   if (file) {
+    //     addContent("backgroundImage", { url: imageUrl, alt: file.name });
+    //     // setFile(null); // Reset file state after upload
+    //     // setImageUrl(""); // Clear preview
+    //   }
   };
 
   return (
@@ -151,10 +208,11 @@ const Sidebar = ({ selectedSlide, addTextContent }) => {
           </button>
         ))}
       </div>
+
       {activePanel === "Image" && (
         <div className="w-72 bg-gray-800 p-4">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-white text-lg">Image Video</h2>
+            <h2 className="text-white text-lg">Image Upload</h2>
             <button className="bg-orange-500 text-white rounded-full p-1">
               <Plus size={16} />
             </button>
@@ -165,21 +223,19 @@ const Sidebar = ({ selectedSlide, addTextContent }) => {
             onDrop={handleDrop}
             onClick={() => fileInputRef.current.click()}
           >
-            {files.length === 0 ? (
+            {!file ? (
               <>
                 <div className="mb-2">
                   <Video size={32} />
                 </div>
                 <p className="text-center text-sm">
-                  Drop your files here
+                  Drop your file here
                   <br />
                   or browse.
                 </p>
               </>
             ) : (
-              <p className="text-center text-sm">
-                {files.length} file(s) selected
-              </p>
+              <p className="text-center text-sm">1 file selected</p>
             )}
           </div>
           <input
@@ -187,12 +243,24 @@ const Sidebar = ({ selectedSlide, addTextContent }) => {
             ref={fileInputRef}
             onChange={handleFileInputChange}
             className="hidden"
-            multiple
             accept="image/*,video/*"
           />
+
+          <div className="mt-4">
+            {imageUrl && (
+              <div>
+                <img
+                  src={imageUrl}
+                  alt="Uploaded file"
+                  className="w-full h-auto rounded"
+                />
+              </div>
+            )}
+          </div>
         </div>
       )}
-      {isTextPanelOpen && (
+
+      {activePanel === "Text" && (
         <div className="p-4 bg-gray-800 text-white w-64">
           <h3 className="text-gray-400 mb-4">Text Styles</h3>
           <div className="space-y-2">
@@ -226,7 +294,6 @@ const Preview = ({
   selectedSlide,
   setSelectedSlide,
   addSlide,
-  updateSlide,
   updateContent,
 }) => {
   return (
@@ -234,22 +301,23 @@ const Preview = ({
       <div className="text-gray-400 mb-4">
         Slide {slides.indexOf(selectedSlide) + 1}
       </div>
+      {console.log("ssssss", selectedSlide.styles.backgroundImage)}
 
       <div className="w-64 h-[32rem] bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
-        {selectedSlide && (
-          <div
-            style={{ backgroundColor: selectedSlide.backgroundColor }}
-            className="h-full"
-          >
-            {selectedSlide.content.map((item) => (
-              <MoveableComponent
-                key={item.id}
-                content={item}
-                updateContent={updateContent}
-              />
+        <div
+          style={{
+            backgroundImage: `${selectedSlide.styles.backgroundImage}`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          className="h-full"
+        >
+          {selectedSlide &&
+            selectedSlide.elements.map((item) => (
+              <MoveableComponent item={item} updateContent={updateContent} />
             ))}
-          </div>
-        )}
+        </div>
       </div>
 
       <div className="mt-4 flex space-x-2">

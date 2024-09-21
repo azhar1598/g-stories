@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 
-const MoveableComponent = ({ content, updateContent }) => {
+const MoveableComponent = ({ item, updateContent }) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [value, setValue] = useState("Type here...");
@@ -36,7 +36,7 @@ const MoveableComponent = ({ content, updateContent }) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
     setDimensions({ height: e.target.style.height });
-    updateContent(content.id, { text: e.target.value });
+    updateContent(item.id, { text: e.target.value });
     e.target.style.height = "auto";
     e.target.style.height = `${e.target.scrollHeight}px`;
   };
@@ -94,7 +94,7 @@ const MoveableComponent = ({ content, updateContent }) => {
         ref={targetRef}
         onDoubleClick={handleDoubleClick}
         style={{
-          ...getStyleForType(content.type),
+          ...getStyleForType(item.type),
           width: `${dimensions.width}px`,
           height: isEditable ? "auto" : `${dimensions.height}px`,
           border: isEditable ? "1px solid #ccc" : "1px solid transparent",
