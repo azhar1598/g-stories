@@ -1,3 +1,4 @@
+import { cssToJsx } from "@/lib/cssParser";
 import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 
@@ -27,6 +28,15 @@ const MoveableComponent = ({ item, updateContent, selectedSlide }) => {
   const handleBlur = () => {
     setIsEditable(false);
   };
+
+  console.log("selectedSlide", selectedSlide);
+
+  useEffect(() => {
+    console.log("bhd", targetRef.current?.style?.cssText);
+    // updateContent(item.id, {
+    //   styles: cssToJsx(targetRef.current?.style?.cssText),
+    // });
+  }, [selectedSlide.id]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -92,6 +102,8 @@ const MoveableComponent = ({ item, updateContent, selectedSlide }) => {
         return { fontSize: "16px" };
     }
   };
+
+  console.log("byeeee", targetRef.current?.style.cssText);
 
   return (
     <div className="container">
