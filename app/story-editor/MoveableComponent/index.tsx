@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 
-const MoveableComponent = ({ item, updateContent }) => {
+const MoveableComponent = ({ item, updateContent, selectedSlide }) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [value, setValue] = useState("Type here...");
   const [isEditable, setIsEditable] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 200, height: "auto" });
+
+  console.log("slideLevel", selectedSlide);
 
   const handleDoubleClick = () => {
     setIsEditable(true);
@@ -32,14 +34,17 @@ const MoveableComponent = ({ item, updateContent }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  console.log("tattat", targetRef.current?.style);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
     setDimensions({ height: e.target.style.height });
-    updateContent(item.id, { text: e.target.value });
+    updateContent(item.id, { content: e.target.value });
     e.target.style.height = "auto";
     e.target.style.height = `${e.target.scrollHeight}px`;
   };
+
+  console.log("item", item, selectedSlide);
 
   const adjustHeight = () => {
     if (textareaRef.current) {
@@ -71,17 +76,17 @@ const MoveableComponent = ({ item, updateContent }) => {
     color: "white",
   };
 
-  const getStyleForType = (type) => {
-    switch (type) {
-      case "Title":
+  const getStyleForType = (tag) => {
+    switch (tag) {
+      case "h1":
         return { fontSize: "42px", fontWeight: "bold" };
-      case "Headline":
+      case "h2":
         return { fontSize: "20px", fontWeight: "bold" };
-      case "Subheadline":
+      case "h3":
         return { fontSize: "18px", fontWeight: "semi-bold" };
-      case "Normal text":
+      case "p":
         return { fontSize: "16px" };
-      case "Small text":
+      case "small":
         return { fontSize: "14px" };
       default:
         return { fontSize: "16px" };
@@ -94,7 +99,7 @@ const MoveableComponent = ({ item, updateContent }) => {
         ref={targetRef}
         onDoubleClick={handleDoubleClick}
         style={{
-          ...getStyleForType(item.type),
+          ...getStyleForType(item.tag),
           width: `${dimensions.width}px`,
           height: isEditable ? "auto" : `${dimensions.height}px`,
           border: isEditable ? "1px solid #ccc" : "1px solid transparent",
@@ -105,7 +110,7 @@ const MoveableComponent = ({ item, updateContent }) => {
         {isEditable ? (
           <textarea
             ref={textareaRef}
-            value={value}
+            value={item.content}
             onChange={handleInputChange}
             style={{
               ...commonStyles,
@@ -115,8 +120,14 @@ const MoveableComponent = ({ item, updateContent }) => {
             autoFocus
           />
         ) : (
-          <div style={{ ...commonStyles, height: `${dimensions.height}px` }}>
-            {value}
+          <div
+            style={{
+              ...commonStyles,
+              height: `${dimensions.height}px`,
+              // transform: "translate(20px, 144px)",
+            }}
+          >
+            {item.content || "Type Here.."}
           </div>
         )}
       </div>

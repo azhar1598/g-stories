@@ -35,9 +35,9 @@ const EditorComponent = () => {
 
   const addSlide = () => {
     const newSlide = {
-      id: Date.now(),
-      backgroundColor: "#B24592",
-      content: [],
+      id: slides.length + 1,
+      styles: { backgroundImage: "", backgroundColor: "#B24592" },
+      elements: [],
     };
     setSlides([...slides, newSlide]);
   };
@@ -85,7 +85,7 @@ const EditorComponent = () => {
       const newElements = [
         {
           id: Date.now(),
-          type: data,
+          tag: data,
         },
       ];
 
@@ -96,10 +96,10 @@ const EditorComponent = () => {
   };
 
   const updateContent = (contentId, updates) => {
-    const updatedContent = selectedSlide.elements.map((item) =>
+    const updatedElements = selectedSlide.elements.map((item) =>
       item.id === contentId ? { ...item, ...updates } : item
     );
-    updateSlide(selectedSlide.id, { content: updatedContent });
+    updateSlide(selectedSlide.id, { elements: updatedElements }); // Update elements
   };
 
   console.log("slidess", slides);
@@ -265,18 +265,19 @@ const Sidebar = ({ selectedSlide, addContent }) => {
           <h3 className="text-gray-400 mb-4">Text Styles</h3>
           <div className="space-y-2">
             {[
-              "Title",
-              "Headline",
-              "Subheadline",
-              "Normal text",
-              "Small text",
-            ].map((style) => (
+              { label: "Title", value: "h1" },
+              { label: "Headline", value: "h2" },
+              ,
+              { label: "Sub Headline", value: "h3" },
+              { label: "Normal Text", value: "p" },
+              { label: "Small Text", value: "small" },
+            ].map((style: { label: string; value: string }) => (
               <button
-                key={style}
+                key={style.value}
                 className="block w-full py-2 bg-gray-700 rounded text-left px-2"
-                onClick={() => handleTextStyleClick(style)}
+                onClick={() => handleTextStyleClick(style.value)}
               >
-                {style}
+                {style.label}
               </button>
             ))}
           </div>
@@ -315,7 +316,11 @@ const Preview = ({
         >
           {selectedSlide &&
             selectedSlide.elements.map((item) => (
-              <MoveableComponent item={item} updateContent={updateContent} />
+              <MoveableComponent
+                item={item}
+                selectedSlide={selectedSlide}
+                updateContent={updateContent}
+              />
             ))}
         </div>
       </div>
@@ -327,9 +332,41 @@ const Preview = ({
             className={`w-12 h-20 rounded-md cursor-pointer ${
               slide.id === selectedSlide.id ? "ring-2 ring-orange-500" : ""
             }`}
-            style={{ backgroundColor: slide.backgroundColor }}
+            style={{
+              backgroundImage: slide.styles.backgroundImage,
+              backgroundColor: "pink",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
             onClick={() => setSelectedSlide(slide)}
           />
+
+          // <div
+          //   className={`w-24 h-12 rounded-md cursor-pointer ${
+          //     slide.id === selectedSlide.id ? "ring-2 ring-orange-500" : ""
+          //   }`}
+          // >
+          //   <div
+          //     style={{
+          //       backgroundImage: `${slide.styles.backgroundImage}`,
+          //       backgroundRepeat: "no-repeat",
+          //       backgroundSize: "cover",
+          //       backgroundPosition: "center",
+          //       height: "60px !important",
+          //     }}
+          //     className=" "
+          //   >
+          //     {selectedSlide &&
+          //       selectedSlide.elements.map((item) => (
+          //         // <MoveableComponent
+          //         //   item={item}
+          //         //   updateContent={updateContent}
+          //         // />
+          //         <></>
+          //       ))}
+          //   </div>
+          // </div>
         ))}
         <button
           className="w-12 h-20 bg-gray-700 rounded-md flex items-center justify-center text-2xl"
