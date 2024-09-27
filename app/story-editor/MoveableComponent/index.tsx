@@ -2,7 +2,12 @@ import { cssToJsx } from "@/lib/cssParser";
 import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 
-const MoveableComponent = ({ item, updateContent, selectedSlide }) => {
+const MoveableComponent = ({
+  item,
+  updateContent,
+  selectedSlide,
+  elementStyles,
+}: any) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [value, setValue] = useState("Type here...");
@@ -103,7 +108,12 @@ const MoveableComponent = ({ item, updateContent, selectedSlide }) => {
     }
   };
 
-  console.log("byeeee", targetRef.current?.style.cssText);
+  console.log(
+    "byeeee",
+    targetRef.current?.style.cssText,
+    getStyleForType(item.tag),
+    elementStyles
+  );
 
   return (
     <div className="container">
@@ -111,12 +121,14 @@ const MoveableComponent = ({ item, updateContent, selectedSlide }) => {
         ref={targetRef}
         onDoubleClick={handleDoubleClick}
         style={{
+          ...elementStyles,
           ...getStyleForType(item.tag),
           width: `${dimensions.width}px`,
           height: isEditable ? "auto" : `${dimensions.height}px`,
           border: isEditable ? "1px solid #ccc" : "1px solid transparent",
           position: "relative",
           overflow: "hidden",
+          // transform: "translate(5px, 120px)",
         }}
       >
         {isEditable ? (
@@ -136,7 +148,6 @@ const MoveableComponent = ({ item, updateContent, selectedSlide }) => {
             style={{
               ...commonStyles,
               height: `${dimensions.height}px`,
-              // transform: "translate(20px, 144px)",
             }}
           >
             {item.content || "Type Here.."}
@@ -157,6 +168,9 @@ const MoveableComponent = ({ item, updateContent, selectedSlide }) => {
           pinchable={false}
           onDrag={({ target, transform }) => {
             target!.style.transform = transform;
+            updateContent(item.id, {
+              styles: cssToJsx(targetRef.current?.style?.cssText),
+            });
           }}
           onResize={({ target, width, height, delta }) => {
             if (delta[0]) target!.style.width = `${width}px`;

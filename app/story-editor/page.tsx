@@ -320,6 +320,7 @@ const Preview = ({
                 item={item}
                 selectedSlide={selectedSlide}
                 updateContent={updateContent}
+                elementStyles={item.styles}
               />
             ))}
         </div>
