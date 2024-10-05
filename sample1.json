@@ -1,360 +1,69 @@
-{
-  "id": 152,
-  "date": "2024-08-28T14:54:27",
-  "date_gmt": "2024-08-28T09:24:27",
-  "guid": {
-    "rendered": "https://mrchatwala.com/?post_type=web-story&#038;p=152"
-  },
-  "modified": "2024-08-28T14:54:27",
-  "modified_gmt": "2024-08-28T09:24:27",
-  "slug": "new-hello",
-  "status": "publish",
-  "type": "web-story",
-  "link": "https://mrchatwala.com/web-stories/new-hello/",
-  "title": {
-    "rendered": "new hello"
-  },
-  "content": {
-    "rendered": "<p><html amp=\"\" lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,minimum-scale=1,initial-scale=1\"/><script async=\"\" src=\"https://cdn.ampproject.org/v0.js\"></script><script async=\"\" src=\"https://cdn.ampproject.org/v0/amp-story-1.0.js\" custom-element=\"amp-story\"></script><link href=\"https://fonts.googleapis.com/css2?display=swap&amp;family=Roboto%3Awght%40700\" rel=\"stylesheet\"/><link href=\"https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19.jpeg\" rel=\"preload\" as=\"image\"/>\n<style amp-boilerplate=\"\">body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>\n<p><noscript></p>\n<style amp-boilerplate=\"\">body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style>\n<p></noscript></p>\n<style amp-custom=\"\">\n              h1, h2, h3 { font-weight: normal; }</p>\n<p>              amp-story-page {\n                background-color: #131516;\n              }</p>\n<p>              amp-story-grid-layer {\n                overflow: visible;\n              }</p>\n<p>              @media (max-aspect-ratio: 9 / 16)  {\n                @media (min-aspect-ratio: 320 / 678) {\n                  amp-story-grid-layer.grid-layer {\n                    margin-top: calc((100% / 0.5625 - 100% / 0.6666666666666666) / 2);\n                  }\n                }\n              }</p>\n<p>              @media not all and (min-resolution:.001dpcm) {\n                @media {\n                  p.text-wrapper > span {\n                    font-size: calc(100% - 0.5px);\n                  }\n                }\n              }</p>\n<p>              .page-fullbleed-area,\n              .page-background-overlay-area {\n                position: absolute;\n                overflow: hidden;\n                width: 100%;\n                left: 0;\n                height: calc(1.1851851851851851 * 100%);\n                top: calc((1 - 1.1851851851851851) * 100% / 2);\n              }</p>\n<p>              .element-overlay-area {\n                position: absolute;\n                width: 100%;\n                height: 100%;\n                top: 0;\n                left: 0;\n              }</p>\n<p>              .page-safe-area {\n                overflow: visible;\n                position: absolute;\n                top: 0;\n                bottom: 0;\n                left: 0;\n                right: 0;\n                width: 100%;\n                height: calc(0.84375 * 100%);\n                margin: auto 0;\n              }</p>\n<p>              .mask {\n                position: absolute;\n                overflow: hidden;\n              }</p>\n<p>              .fill {\n                position: absolute;\n                top: 0;\n                left: 0;\n                right: 0;\n                bottom: 0;\n                margin: 0;\n              }</p>\n<p>              @media (prefers-reduced-motion: no-preference) {\n                .animation-wrapper {\n                  opacity: var(--initial-opacity);\n                  transform: var(--initial-transform);\n                }\n              }</p>\n<p>              amp-story-grid-layer.align-bottom {\n                align-content: end;\n                padding: 0;\n                /* \n                  AMP CTA Layer will exactly occupy 74px regardless of any device.\n                  To space out captions 74px from the BOTTOM (AMP CTA Layer),\n                  74px from the TOP should also be spaced out and thus: 2 * 74px\n                  will be the desired max-height.\n                */\n                max-height: calc(100vh - (2 * 74px));\n              }</p>\n<p>              .captions-area {\n                padding: 0 32px 0;\n              }</p>\n<p>              amp-story-captions {\n                margin-bottom: 16px;\n                text-align: center;\n              }\n              </style>\n<p><meta name=\"web-stories-replace-head-start\"/><title>new hello</title><link rel=\"canonical\" href=\"https://mrchatwala.com/?post_type=web-story&amp;p=152\"/><meta name=\"web-stories-replace-head-end\"/></head><body><amp-story standalone=\"\" publisher=\"Mr.Chatwala\" publisher-logo-src=\"\" title=\"new hello\" poster-portrait-src=\"https://mrchatwala.com/wp-content/uploads/2024/05/cropped-GM-edited.png\"><amp-story-page id=\"c304f1c2-aaa8-46ea-85ab-80006b06383a\" auto-advance-after=\"7s\"><amp-story-grid-layer template=\"vertical\" aspect-ratio=\"412:618\" class=\"grid-layer\"></p>\n<div class=\"page-fullbleed-area\" style=\"background-color:#32798e\">\n<div class=\"page-safe-area\">\n<div style=\"position:absolute;pointer-events:none;left:0;top:-9.25926%;width:100%;height:118.51852%;opacity:1\">\n<div style=\"pointer-events:initial;width:100%;height:100%;display:block;position:absolute;top:0;left:0;z-index:0\" class=\"mask\" id=\"el-b04b63e9-26ae-4644-9050-7f6408ac5257\">\n<div style=\"position:absolute;width:177.77778%;height:100%;left:-38.88889%;top:0%\" data-leaf-element=\"true\"><amp-img layout=\"fill\" src=\"https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19.jpeg\" alt=\"Travel Adapters\" srcSet=\"https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19.jpeg 1024w,https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-768x768.jpeg 768w,https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-300x300.jpeg 300w,https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-150x150.jpeg 150w,https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-96x96.jpeg 96w\" sizes=\"(min-width: 1024px) 80vh, 178vw\" disable-inline-width=\"true\"></amp-img></div>\n</div>\n</div>\n</div>\n</div>\n<p></amp-story-grid-layer><amp-story-grid-layer template=\"vertical\" aspect-ratio=\"412:618\" class=\"grid-layer\"></p>\n<div class=\"page-fullbleed-area\">\n<div class=\"page-safe-area\">\n<div style=\"position:absolute;pointer-events:none;left:11.65049%;top:47.08738%;width:45.14563%;height:6.6343%;opacity:1\">\n<div style=\"pointer-events:initial;width:100%;height:100%;display:block;position:absolute;top:0;left:0;z-index:0;border-radius:1.0752688172043012% 1.0752688172043012% 1.0752688172043012% 1.0752688172043012% / 4.878048780487805% 4.878048780487805% 4.878048780487805% 4.878048780487805%\" id=\"el-157dfb12-a25a-4623-8e38-084705a87113\">\n<h1 class=\"fill text-wrapper\" style=\"white-space:pre-line;overflow-wrap:break-word;word-break:break-word;margin:-0.17540322580645062% 0;font-family:&quot;Roboto&quot;,&quot;Helvetica Neue&quot;,&quot;Helvetica&quot;,sans-serif;font-size:0.582524em;line-height:1.19;text-align:left;padding:0;color:#000000\"><span><span style=\"font-weight: 700\">hello world</span></span></h1>\n</div>\n</div>\n</div>\n</div>\n<p></amp-story-grid-layer></amp-story-page></amp-story></body></html></p>\n",
-    "protected": false
-  },
-  "excerpt": {
-    "rendered": "<p>new hello</p>\n",
-    "protected": false
-  },
-  "author": 1,
-  "featured_media": 153,
-  "template": "",
-  "meta": {
-    "web_stories_products": [],
-    "web_stories_publisher_logo": 0,
-    "web_stories_poster": [],
-    "footnotes": ""
-  },
-  "web_story_category": [],
-  "web_story_tag": [],
-  "amp_enabled": true,
-  "story_data": {
-    "version": 47,
-    "pages": [
-      {
-        "elements": [
-          {
-            "opacity": 100,
-            "flip": {
-              "vertical": false,
-              "horizontal": false
-            },
-            "rotationAngle": 0,
-            "lockAspectRatio": true,
-            "backgroundColor": {
-              "color": {
-                "r": 196,
-                "g": 196,
-                "b": 196
-              }
-            },
-            "x": 48,
-            "y": 0,
-            "width": 330,
-            "height": 330,
-            "mask": {
-              "type": "rectangle"
-            },
-            "isBackground": true,
-            "type": "image",
-            "id": "b04b63e9-26ae-4644-9050-7f6408ac5257",
-            "scale": 100,
-            "focalX": 50,
-            "focalY": 50,
-            "resource": {
-              "type": "image",
-              "mimeType": "image/jpeg",
-              "width": 1024,
-              "height": 1024,
-              "sizes": {
-                "medium": {
-                  "file": "c1a5c8d0-23b6-4b52-b072-5c79e581df19-300x300.jpeg",
-                  "width": 300,
-                  "height": 300,
-                  "filesize": 36643,
-                  "mimeType": "image/jpeg",
-                  "sourceUrl": "https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-300x300.jpeg"
-                },
-                "thumbnail": {
-                  "file": "c1a5c8d0-23b6-4b52-b072-5c79e581df19-150x150.jpeg",
-                  "width": 150,
-                  "height": 150,
-                  "filesize": 10195,
-                  "mimeType": "image/jpeg",
-                  "sourceUrl": "https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-150x150.jpeg"
-                },
-                "medium_large": {
-                  "file": "c1a5c8d0-23b6-4b52-b072-5c79e581df19-768x768.jpeg",
-                  "width": 768,
-                  "height": 768,
-                  "filesize": 175337,
-                  "mimeType": "image/jpeg",
-                  "sourceUrl": "https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-768x768.jpeg"
-                },
-                "web-stories-poster-portrait": {
-                  "file": "c1a5c8d0-23b6-4b52-b072-5c79e581df19-640x853.jpeg",
-                  "width": 640,
-                  "height": 853,
-                  "filesize": 163543,
-                  "mimeType": "image/jpeg",
-                  "sourceUrl": "https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-640x853.jpeg"
-                },
-                "web-stories-publisher-logo": {
-                  "file": "c1a5c8d0-23b6-4b52-b072-5c79e581df19-96x96.jpeg",
-                  "width": 96,
-                  "height": 96,
-                  "filesize": 4531,
-                  "mimeType": "image/jpeg",
-                  "sourceUrl": "https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-96x96.jpeg"
-                },
-                "web-stories-thumbnail": {
-                  "file": "c1a5c8d0-23b6-4b52-b072-5c79e581df19-150x150.jpeg",
-                  "width": 150,
-                  "height": 150,
-                  "filesize": 10195,
-                  "mimeType": "image/jpeg",
-                  "sourceUrl": "https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19-150x150.jpeg"
-                },
-                "full": {
-                  "file": "c1a5c8d0-23b6-4b52-b072-5c79e581df19.jpeg",
-                  "width": 1024,
-                  "height": 1024,
-                  "mimeType": "image/jpeg",
-                  "sourceUrl": "https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19.jpeg"
-                }
-              },
-              "isPlaceholder": false,
-              "isExternal": false,
-              "needsProxy": false,
-              "baseColor": "#32798e",
-              "blurHash": "UDCI8WS~hcxGQ6-TDlRkIqJ.VGwcY4a1xCoK",
-              "creationDate": "2024-05-08T03:27:12",
-              "src": "https://mrchatwala.com/wp-content/uploads/2024/05/c1a5c8d0-23b6-4b52-b072-5c79e581df19.jpeg",
-              "id": 90,
-              "alt": "Travel Adapters",
-              "local": false
-            }
-          },
-          {
-            "opacity": 100,
-            "flip": {
-              "vertical": false,
-              "horizontal": false
-            },
-            "rotationAngle": 0,
-            "lockAspectRatio": true,
-            "backgroundTextMode": "NONE",
-            "font": {
-              "family": "Roboto"
-            },
-            "fontSize": 36,
-            "backgroundColor": {
-              "color": {
-                "r": 196,
-                "g": 196,
-                "b": 196
-              }
-            },
-            "lineHeight": 1.19,
-            "textAlign": "left",
-            "padding": {
-              "locked": true,
-              "hasHiddenPadding": false,
-              "horizontal": 0,
-              "vertical": 0
-            },
-            "content": "<span style=\"font-weight: 700\">hello world</span>",
-            "x": 48,
-            "y": 291,
-            "width": 186,
-            "borderRadius": {
-              "locked": true,
-              "topLeft": 2,
-              "topRight": 2,
-              "bottomRight": 2,
-              "bottomLeft": 2
-            },
-            "type": "text",
-            "height": 41,
-            "id": "157dfb12-a25a-4623-8e38-084705a87113"
-          }
-        ],
-        "backgroundColor": {
-          "color": {
-            "r": 255,
-            "g": 255,
-            "b": 255
-          }
-        },
-        "id": "c304f1c2-aaa8-46ea-85ab-80006b06383a",
-        "defaultBackgroundElement": {
-          "opacity": 100,
-          "flip": {
-            "vertical": false,
-            "horizontal": false
-          },
-          "rotationAngle": 0,
-          "lockAspectRatio": true,
-          "backgroundColor": {
-            "color": {
-              "r": 196,
-              "g": 196,
-              "b": 196
-            }
-          },
-          "x": 1,
-          "y": 1,
-          "width": 1,
-          "height": 1,
-          "mask": {
-            "type": "rectangle"
-          },
-          "isBackground": true,
-          "isDefaultBackground": true,
-          "type": "shape",
-          "id": "1a877246-7132-4e8a-9a14-d390f6eecb0c"
-        },
-        "animations": []
-      }
-    ],
-    "fonts": {
-      "Roboto": {
-        "family": "Roboto",
-        "weights": [100, 300, 400, 500, 700, 900],
-        "styles": ["italic", "regular"],
-        "variants": [
-          [0, 100],
-          [1, 100],
-          [0, 300],
-          [1, 300],
-          [0, 400],
-          [1, 400],
-          [0, 500],
-          [1, 500],
-          [0, 700],
-          [1, 700],
-          [0, 900],
-          [1, 900]
-        ],
-        "fallbacks": ["Helvetica Neue", "Helvetica", "sans-serif"],
-        "service": "fonts.google.com",
-        "metrics": {
-          "upm": 2048,
-          "asc": 1900,
-          "des": -500,
-          "tAsc": 1536,
-          "tDes": -512,
-          "tLGap": 102,
-          "wAsc": 1946,
-          "wDes": 512,
-          "xH": 1082,
-          "capH": 1456,
-          "yMin": -555,
-          "yMax": 2163,
-          "hAsc": 1900,
-          "hDes": -500,
-          "lGap": 0
-        }
-      }
+[
+  {
+    "id": 1,
+    "styles": {
+      "backgroundImage": "url(blob:http://localhost:3000/731ce11b-c0be-4dea-aede-068837546258)",
+      "backgroundColor": "#B24592"
     },
-    "autoAdvance": true,
-    "defaultPageDuration": 7,
-    "currentStoryStyles": {
-      "colors": []
-    }
-  },
-  "story_poster": {
-    "id": 153,
-    "url": "https://mrchatwala.com/wp-content/uploads/2024/05/cropped-GM-edited.png",
-    "width": 640,
-    "height": 853,
-    "needsProxy": false
-  },
-  "_links": {
-    "self": [
+    "elements": [
       {
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/152"
-      }
-    ],
-    "collection": [
-      {
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story"
-      }
-    ],
-    "about": [
-      {
-        "href": "https://mrchatwala.com/wp-json/wp/v2/types/web-story"
-      }
-    ],
-    "author": [
-      {
-        "embeddable": true,
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/users/1"
-      }
-    ],
-    "version-history": [
-      {
-        "count": 2,
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/152/revisions"
-      }
-    ],
-    "predecessor-version": [
-      {
-        "id": 155,
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/152/revisions/155"
-      }
-    ],
-    "wp:featuredmedia": [
-      {
-        "embeddable": true,
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/media/153"
-      }
-    ],
-    "wp:attachment": [
-      {
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/media?parent=152"
-      }
-    ],
-    "wp:term": [
-      {
-        "taxonomy": "web_story_category",
-        "embeddable": true,
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web_story_category?post=152"
+        "id": 1728109005850,
+        "tag": "h1",
+        "content": "Avez here",
+        "styles": {
+          "fontSize": "42px",
+          "fontWeight": "bold",
+          "width": "200px",
+          "border": "1px solid transparent",
+          "position": "relative",
+          "overflow": "hidden",
+          "height": "126px",
+          "transform": "translate(47px, 281px)"
+        }
       },
       {
-        "taxonomy": "web_story_tag",
-        "embeddable": true,
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web_story_tag?post=152"
+        "id": 1728109021350,
+        "tag": "h3",
+        "content": "ew era",
+        "styles": {
+          "fontSize": "18px",
+          "width": "200px",
+          "border": "1px solid transparent",
+          "position": "relative",
+          "overflow": "hidden",
+          "height": "54px",
+          "transform": "translate(170px, -49px)"
+        }
       }
-    ],
-    "wp:lock": [
+    ]
+  },
+  {
+    "id": 2,
+    "styles": {
+      "backgroundImage": "url(blob:http://localhost:3000/8eb783f8-d81f-479a-8a6d-845ed0d78b1f)",
+      "backgroundColor": "#B24592"
+    },
+    "elements": [
       {
-        "embeddable": true,
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/152/lock"
-      }
-    ],
-    "wp:action-delete": [
+        "id": 1728109073032,
+        "tag": "h2",
+        "content": "Sonu here",
+        "styles": {
+          "fontSize": "20px",
+          "fontWeight": "bold",
+          "width": "200px",
+          "border": "1px solid transparent",
+          "position": "relative",
+          "overflow": "hidden",
+          "height": "60px",
+          "transform": "translate(35px, 181px)"
+        }
+      },
       {
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/152"
-      }
-    ],
-    "wp:action-edit": [
-      {
-        "href": "https://mrchatwala.com/wp-json/web-stories/v1/web-story/152"
-      }
-    ],
-    "curies": [
-      {
-        "name": "wp",
-        "href": "https://api.w.org/{rel}",
-        "templated": true
+        "id": 1728109083216,
+        "tag": "h2",
+        "content": "Bulldozer"
       }
     ]
   }
-}
+]
