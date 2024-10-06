@@ -1,4 +1,4 @@
-import { ImageIcon, Layout, Pen, Type, Video } from "lucide-react";
+import { ImageIcon, Layout, Pen, Plus, Type, Video } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export const Sidebar = ({ selectedSlide, addContent }) => {

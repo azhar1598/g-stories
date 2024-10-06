@@ -10,7 +10,7 @@ const MoveableComponent = ({
   elementStyles,
 }: any) => {
   const targetRef = useRef<HTMLDivElement>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState("Type here...");
   const [isEditable, setIsEditable] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 200, height: "auto" });
@@ -41,26 +41,23 @@ const MoveableComponent = ({
   console.log("selectedSlide", selectedSlide);
 
   useEffect(() => {
-    console.log("bhd", targetRef.current?.style?.cssText);
-    // updateContent(item.id, {
-    //   styles: cssToJsx(targetRef.current?.style?.cssText),
-    // });
-  }, [selectedSlide.id]);
-
-  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   console.log("tattat", targetRef.current?.style);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
+
+    console.log("eeeee", e.target.style.height);
     setDimensions({ height: e.target.style.height });
     updateContent(item.id, { content: e.target.value });
     e.target.style.height = "auto";
     e.target.style.height = `${e.target.scrollHeight}px`;
+    // handleInput();
   };
 
   console.log("item", item, selectedSlide);
@@ -73,10 +70,10 @@ const MoveableComponent = ({
   };
 
   useEffect(() => {
-    if (!isEditable) {
-      adjustHeight();
-    }
-  }, [isEditable]);
+    // if (!isEditable) {
+    adjustHeight();
+    // }
+  }, [isEditable, item.content]);
 
   const commonStyles: React.CSSProperties = {
     width: "100%",
@@ -143,9 +140,17 @@ const MoveableComponent = ({
     });
   };
 
+  const handleInput = () => {
+    console.log("innerText", textareaRef.current.innerText);
+    if (textareaRef.current) {
+      updateContent(item.id, { content: textareaRef.current.innerText });
+      adjustHeight();
+    }
+  };
+
   const toggleLock = () => setIsLocked(!isLocked);
 
-  console.log("itemdok", item, dimensions.height);
+  console.log("itemdok", item, dimensions.height, targetRef.current);
 
   return (
     <div className="container relative">
@@ -158,8 +163,8 @@ const MoveableComponent = ({
           ...getStyleForType(item),
           backgroundColor: item.styles?.backgroundColor || "",
           width: `${dimensions.width}px`,
-          // height: isEditable ? "auto" : `${dimensions.height}px`,
-          height: "auto",
+          height: `${dimensions.height}px`,
+          // height: "auto",
           border: isEditable ? "1px solid #ccc" : "1px solid transparent",
           position: "relative",
 
@@ -201,12 +206,12 @@ const MoveableComponent = ({
           <textarea
             ref={textareaRef}
             value={item.content}
+            rows={1}
             onChange={handleInputChange}
             style={{
               ...commonStyles,
-              height: "auto",
+              height: `${`${dimensions.height}px` || "auto"}`,
               color: item.styles?.color || "",
-              minHeight: `${dimensions.height}px`,
             }}
             autoFocus
           />
@@ -216,16 +221,15 @@ const MoveableComponent = ({
               ...commonStyles,
               cursor: "grab",
               color: item.styles?.color || "",
-              // height: `${dimensions.height}px` || "auto",
-              height: "auto",
+              height: `${dimensions.height}px` || "auto",
             }}
           >
-            {item.content || "Type Here.."}
+            {item.content || "Type"}
           </div>
         )}
       </div>
 
-      {!isEditable && (
+      {!isEditable && selectedSlide && (
         <Moveable
           target={targetRef.current}
           container={null}
