@@ -8,8 +8,11 @@ const MoveableComponent = ({
   updateContent,
   selectedSlide,
   elementStyles,
+  isSelected,
+  onSelect,
 }: any) => {
   const targetRef = useRef<HTMLDivElement>(null);
+
   const textareaRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState("Type here...");
   const [isEditable, setIsEditable] = useState(false);
@@ -18,7 +21,21 @@ const MoveableComponent = ({
   const [isBold, setIsBold] = useState(item.styles?.fontWeight === "bold");
   const [isCenter, setIsCenter] = useState(item.styles?.textAlign === "center");
   const [isLocked, setIsLocked] = useState(false);
-  console.log("slideLevel", selectedSlide);
+
+  const [currentStyles, setCurrentStyles] = useState(item.styles);
+
+  useEffect(() => {
+    setCurrentStyles(elementStyles);
+  }, [selectedSlide]);
+
+  // useEffect(() => {
+  //   if (targetRef.current) {
+  //     // Reset styles
+  //     Object.assign(targetRef.current.style, item.styles);
+  //     // Force a repaint
+  //     targetRef.current.offsetHeight;
+  //   }
+  // }, [selectedSlide]);
 
   const handleDoubleClick = () => {
     setIsEditable(true);
@@ -38,8 +55,6 @@ const MoveableComponent = ({
     setIsEditable(false);
   };
 
-  console.log("selectedSlide", selectedSlide);
-
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -47,20 +62,15 @@ const MoveableComponent = ({
     };
   }, []);
 
-  console.log("tattat", targetRef.current?.style);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
 
-    console.log("eeeee", e.target.style.height);
     setDimensions({ height: e.target.style.height });
     updateContent(item.id, { content: e.target.value });
     e.target.style.height = "auto";
     e.target.style.height = `${e.target.scrollHeight}px`;
     // handleInput();
   };
-
-  console.log("item", item, selectedSlide);
 
   const adjustHeight = () => {
     if (textareaRef.current) {
@@ -93,7 +103,6 @@ const MoveableComponent = ({
   };
 
   const getStyleForType = (item) => {
-    console.log("itemm", item);
     switch (item.tag) {
       case "h1":
         return {
@@ -119,13 +128,6 @@ const MoveableComponent = ({
     }
   };
 
-  console.log(
-    "byeeee",
-    targetRef.current?.style.cssText,
-    getStyleForType(item.tag),
-    elementStyles
-  );
-
   const toggleBold = () => {
     setIsBold(!isBold);
     updateContent(item.id, {
@@ -141,7 +143,6 @@ const MoveableComponent = ({
   };
 
   const handleInput = () => {
-    console.log("innerText", textareaRef.current.innerText);
     if (textareaRef.current) {
       updateContent(item.id, { content: textareaRef.current.innerText });
       adjustHeight();
@@ -150,22 +151,40 @@ const MoveableComponent = ({
 
   const toggleLock = () => setIsLocked(!isLocked);
 
-  console.log("itemdok", item, dimensions.height, targetRef.current);
+  console.log(
+    "itemdok",
+
+    selectedSlide,
+    elementStyles,
+    dimensions.height,
+    targetRef.current
+  );
+
+  // useEffect(() => {
+  //   if (item.styles)
+  //     updateContent(item.id, {
+  //       styles: item.styles,
+  //     });
+  // }, [selectedSlide]);
 
   return (
     <div className="container relative">
       <div
         ref={targetRef}
+        id={`moveable-${item.id}`}
         // className="relative"
         onDoubleClick={handleDoubleClick}
+        key={selectedSlide}
         style={{
-          ...elementStyles,
+          ...currentStyles,
+
           ...getStyleForType(item),
           backgroundColor: item.styles?.backgroundColor || "",
           width: `${dimensions.width}px`,
           height: `${dimensions.height}px`,
           // height: "auto",
           border: isEditable ? "1px solid #ccc" : "1px solid transparent",
+          // border: isSelected ? "2px solid blue" : "none",
           position: "relative",
 
           // overflow: "hidden",
@@ -243,7 +262,6 @@ const MoveableComponent = ({
           onDrag={({ target, transform }) => {
             target!.style.transform = transform;
 
-            console.log("cssTe", targetRef.current?.style?.cssText);
             updateContent(item.id, {
               styles: cssToJsx(targetRef.current?.style?.cssText),
             });

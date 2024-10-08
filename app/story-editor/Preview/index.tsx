@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import MoveableComponent from "../MoveableComponent";
 
 export const Preview = ({
@@ -7,6 +8,16 @@ export const Preview = ({
   addSlide,
   updateContent,
 }) => {
+  const [selectedElementId, setSelectedElementId] = useState(null);
+
+  useEffect(() => {
+    // When the slide changes, select the first element if it exists
+    if (selectedSlide && selectedSlide.elements.length > 0) {
+      setSelectedElementId(selectedSlide.elements[0].id);
+    } else {
+      setSelectedElementId(null);
+    }
+  }, [selectedSlide]);
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-4 bg-gray-900">
       <div className="text-gray-400 mb-4">
@@ -27,9 +38,12 @@ export const Preview = ({
             selectedSlide.elements.map((item) => (
               <MoveableComponent
                 item={item}
+                key={`${selectedSlide.id}-${item.id}`}
                 selectedSlide={selectedSlide}
                 updateContent={updateContent}
+                isSelected={item.id === selectedElementId}
                 elementStyles={item.styles}
+                onSelect={() => setSelectedElementId(item.id)}
               />
             ))}
         </div>
