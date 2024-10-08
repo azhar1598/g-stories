@@ -101,8 +101,11 @@ body {
 }
 
 .moveable-control {
-  color: orange !important;
-  background: orange !important;
-  border: 1px solid red !important;
-  /* cursor: ; */
+  width: 6px !important;
+  height: 17px !important;
+  margin-top: -8px !important;
+  margin-left: -3px !important;
+  border-radius: 4px !important;
+  background: white !important;
+  border: 1px solid #2b33f6 !important;
 }
