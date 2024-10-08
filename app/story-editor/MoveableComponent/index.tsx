@@ -28,17 +28,10 @@ const MoveableComponent = ({
     setCurrentStyles(elementStyles);
   }, [selectedSlide]);
 
-  // useEffect(() => {
-  //   if (targetRef.current) {
-  //     // Reset styles
-  //     Object.assign(targetRef.current.style, item.styles);
-  //     // Force a repaint
-  //     targetRef.current.offsetHeight;
-  //   }
-  // }, [selectedSlide]);
-
   const handleDoubleClick = () => {
-    setIsEditable(true);
+    if (!isLocked) {
+      setIsEditable(true);
+    }
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -63,13 +56,13 @@ const MoveableComponent = ({
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value);
-
-    setDimensions({ height: e.target.style.height });
-    updateContent(item.id, { content: e.target.value });
-    e.target.style.height = "auto";
-    e.target.style.height = `${e.target.scrollHeight}px`;
-    // handleInput();
+    if (!isLocked) {
+      setValue(e.target.value);
+      setDimensions({ height: e.target.style.height });
+      updateContent(item.id, { content: e.target.value });
+      e.target.style.height = "auto";
+      e.target.style.height = `${e.target.scrollHeight}px`;
+    }
   };
 
   const adjustHeight = () => {
@@ -80,18 +73,14 @@ const MoveableComponent = ({
   };
 
   useEffect(() => {
-    // if (!isEditable) {
     adjustHeight();
-    // }
   }, [isEditable, item.content]);
 
   const commonStyles: React.CSSProperties = {
     width: "100%",
-    // padding: "10px",
     boxSizing: "border-box",
     whiteSpace: "pre-wrap",
     wordWrap: "break-word",
-
     lineHeight: "1.5",
     fontFamily: "Arial, sans-serif",
     border: "none",
@@ -129,99 +118,85 @@ const MoveableComponent = ({
   };
 
   const toggleBold = () => {
-    setIsBold(!isBold);
-    updateContent(item.id, {
-      styles: { ...item.styles, fontWeight: isBold ? "normal" : "bold" },
-    });
+    if (!isLocked) {
+      setIsBold(!isBold);
+      updateContent(item.id, {
+        styles: { ...item.styles, fontWeight: isBold ? "normal" : "bold" },
+      });
+    }
   };
 
   const toggleCenter = () => {
-    setIsCenter(!isCenter);
-    updateContent(item.id, {
-      styles: { ...item.styles, textAlign: isCenter ? "left" : "center" },
-    });
+    if (!isLocked) {
+      setIsCenter(!isCenter);
+      updateContent(item.id, {
+        styles: { ...item.styles, textAlign: isCenter ? "left" : "center" },
+      });
+    }
   };
 
   const handleInput = () => {
-    if (textareaRef.current) {
+    if (textareaRef.current && !isLocked) {
       updateContent(item.id, { content: textareaRef.current.innerText });
       adjustHeight();
     }
   };
 
-  const toggleLock = () => setIsLocked(!isLocked);
-
-  console.log(
-    "itemdok",
-
-    selectedSlide,
-    elementStyles,
-    dimensions.height,
-    targetRef.current
-  );
-
-  // useEffect(() => {
-  //   if (item.styles)
-  //     updateContent(item.id, {
-  //       styles: item.styles,
-  //     });
-  // }, [selectedSlide]);
+  const toggleLock = () => {
+    setIsLocked(!isLocked);
+    setIsEditable(false);
+  };
 
   return (
     <div className="container relative">
       <div
         ref={targetRef}
         id={`moveable-${item.id}`}
-        // className="relative"
         onDoubleClick={handleDoubleClick}
         key={selectedSlide}
         style={{
           ...currentStyles,
-
           ...getStyleForType(item),
           backgroundColor: item.styles?.backgroundColor || "",
           width: `${dimensions.width}px`,
           height: `${dimensions.height}px`,
-          // height: "auto",
           border: isEditable ? "1px solid #ccc" : "1px solid transparent",
-          // border: isSelected ? "2px solid blue" : "none",
           position: "relative",
-
-          // overflow: "hidden",
+          cursor: isLocked ? "not-allowed" : "grab",
         }}
       >
-        {!isEditable && (
-          <div className="absolute -top-10 z-[10000] left-0 right-0 bg-gray-800 rounded-t-md p-1 flex justify-between items-center">
-            <div className="flex space-x-2">
-              <button
-                onClick={toggleBold}
-                className={`p-1 rounded ${
-                  isBold ? "bg-orange-500" : "bg-gray-700"
-                }`}
-              >
-                <Bold size={16} />
-              </button>
-              <button
-                onClick={toggleCenter}
-                className={`p-1 rounded ${
-                  isCenter ? "bg-orange-500" : "bg-gray-700"
-                }`}
-              >
-                <AlignCenter size={16} />
-              </button>
-            </div>
+        <div className="absolute -top-10 z-[10000] left-0 right-0 bg-gray-800 rounded-t-md p-1 flex justify-between items-center">
+          <div className="flex space-x-2">
             <button
-              onClick={toggleLock}
+              onClick={toggleBold}
               className={`p-1 rounded ${
-                isLocked ? "bg-orange-500" : "bg-gray-700"
-              }`}
+                isBold ? "bg-orange-500" : "bg-gray-700"
+              } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
+              disabled={isLocked}
             >
-              <Lock size={16} />
+              <Bold size={16} />
+            </button>
+            <button
+              onClick={toggleCenter}
+              className={`p-1 rounded ${
+                isCenter ? "bg-orange-500" : "bg-gray-700"
+              } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
+              disabled={isLocked}
+            >
+              <AlignCenter size={16} />
             </button>
           </div>
-        )}
+          <button
+            onClick={toggleLock}
+            className={`p-1 rounded ${
+              isLocked ? "bg-orange-500" : "bg-gray-700"
+            }`}
+          >
+            <Lock size={16} />
+          </button>
+        </div>
 
-        {isEditable ? (
+        {isEditable && !isLocked ? (
           <textarea
             ref={textareaRef}
             value={item.content}
@@ -238,7 +213,6 @@ const MoveableComponent = ({
           <div
             style={{
               ...commonStyles,
-              cursor: "grab",
               color: item.styles?.color || "",
               height: `${dimensions.height}px` || "auto",
             }}
@@ -248,7 +222,7 @@ const MoveableComponent = ({
         )}
       </div>
 
-      {!isEditable && selectedSlide && (
+      {!isEditable && selectedSlide && !isLocked && (
         <Moveable
           target={targetRef.current}
           container={null}
