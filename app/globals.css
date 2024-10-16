@@ -107,5 +107,9 @@ body {
   margin-left: -3px !important;
   border-radius: 4px !important;
   background: white !important;
-  border: 1px solid #2b33f6 !important;
+  /* border: 1px solid #2b33f6 !important; */
 }
+
+/* .moveable-line {
+  background: transparent !important;
+} */
