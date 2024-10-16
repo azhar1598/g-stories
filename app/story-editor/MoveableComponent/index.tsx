@@ -161,12 +161,17 @@ const MoveableComponent = ({
         onClick={() => setIsSelected(true)}
         onMouseEnter={() => {
           setIsHovered(true);
-          if (!isSelected) setIsSelected(true);
+          // setIsSelected(true);
         }}
         onMouseLeave={() => {
           setIsHovered(false);
-          if (!isSelected) setIsSelected(false);
+          // setIsSelected(false);
         }}
+        // draggable="true"
+        // onDragStart={() => {
+        //   console.log("dddd");
+        //   setIsSelected(true);
+        // }}
         key={selectedSlide}
         style={{
           ...currentStyles,
@@ -174,9 +179,14 @@ const MoveableComponent = ({
           backgroundColor: item.styles?.backgroundColor || "",
           width: `${dimensions.width}px`,
           height: `${dimensions.height}px`,
+
           // border: isEditable ? "1px solid #ccc" : "1px solid transparent",
           position: "relative",
-          cursor: isLocked ? "not-allowed" : "all-scroll",
+          cursor: isLocked
+            ? "not-allowed"
+            : isSelected
+            ? "all-scroll"
+            : "default",
           border: isEditable
             ? "1px solid #ccc"
             : isSelected
@@ -187,36 +197,38 @@ const MoveableComponent = ({
           zIndex: 10000,
         }}
       >
-        <div className="absolute -top-10 z-[10000] left-0 right-0 bg-gray-800 rounded-t-md p-1 flex justify-between items-center">
-          <div className="flex space-x-2">
+        {isSelected && (
+          <div className="absolute -top-10 z-[10000] left-0 right-0 bg-gray-800 rounded-t-md p-1 flex justify-between items-center">
+            <div className="flex space-x-2">
+              <button
+                onClick={toggleBold}
+                className={`p-1 rounded ${
+                  isBold ? "bg-orange-500" : "bg-gray-700"
+                } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
+                disabled={isLocked}
+              >
+                <Bold size={16} />
+              </button>
+              <button
+                onClick={toggleCenter}
+                className={`p-1 rounded ${
+                  isCenter ? "bg-orange-500" : "bg-gray-700"
+                } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
+                disabled={isLocked}
+              >
+                <AlignCenter size={16} />
+              </button>
+            </div>
             <button
-              onClick={toggleBold}
+              onClick={toggleLock}
               className={`p-1 rounded ${
-                isBold ? "bg-orange-500" : "bg-gray-700"
-              } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
-              disabled={isLocked}
+                isLocked ? "bg-orange-500" : "bg-gray-700"
+              }`}
             >
-              <Bold size={16} />
-            </button>
-            <button
-              onClick={toggleCenter}
-              className={`p-1 rounded ${
-                isCenter ? "bg-orange-500" : "bg-gray-700"
-              } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
-              disabled={isLocked}
-            >
-              <AlignCenter size={16} />
+              <Lock size={16} />
             </button>
           </div>
-          <button
-            onClick={toggleLock}
-            className={`p-1 rounded ${
-              isLocked ? "bg-orange-500" : "bg-gray-700"
-            }`}
-          >
-            <Lock size={16} />
-          </button>
-        </div>
+        )}
 
         {isEditable && !isLocked ? (
           <textarea
@@ -226,6 +238,7 @@ const MoveableComponent = ({
             onChange={handleInputChange}
             style={{
               ...commonStyles,
+              textAlign: isCenter ? "left" : "center",
               height: `${`${dimensions.height}px` || "auto"}`,
               color: item.styles?.color || "",
             }}
@@ -244,37 +257,34 @@ const MoveableComponent = ({
         )}
       </div>
 
-      {!isEditable &&
-        selectedSlide &&
-        !isLocked &&
-        (isSelected || isHovered) && (
-          <Moveable
-            target={targetRef.current}
-            container={null}
-            origin={false}
-            edge={false}
-            draggable={true}
-            resizable={true}
-            scalable={false}
-            rotatable={false}
-            pinchable={false}
-            onDrag={({ target, transform }) => {
-              target!.style.transform = transform;
+      {!isEditable && selectedSlide && !isLocked && isSelected && (
+        <Moveable
+          target={targetRef.current}
+          container={null}
+          origin={false}
+          edge={false}
+          draggable={true}
+          resizable={true}
+          scalable={false}
+          rotatable={false}
+          pinchable={false}
+          onDrag={({ target, transform }) => {
+            target!.style.transform = transform;
 
-              updateContent(item.id, {
-                styles: cssToJsx(targetRef.current?.style?.cssText),
-              });
-            }}
-            onResize={({ target, width, height, delta }) => {
-              if (delta[0]) target!.style.width = `${width}px`;
-              if (delta[1]) target!.style.height = `${height}px`;
-              setDimensions({ width, height });
-            }}
-            renderDirections={["e", "w"]}
-            keepRatio={false}
-            throttleResize={0}
-          />
-        )}
+            updateContent(item.id, {
+              styles: cssToJsx(targetRef.current?.style?.cssText),
+            });
+          }}
+          onResize={({ target, width, height, delta }) => {
+            if (delta[0]) target!.style.width = `${width}px`;
+            if (delta[1]) target!.style.height = `${height}px`;
+            setDimensions({ width, height });
+          }}
+          renderDirections={["e", "w"]}
+          keepRatio={false}
+          throttleResize={0}
+        />
+      )}
     </div>
   );
 };
