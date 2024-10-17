@@ -181,7 +181,7 @@ const MoveableComponent = ({
           height: `${dimensions.height}px`,
 
           // border: isEditable ? "1px solid #ccc" : "1px solid transparent",
-          position: "relative",
+          position: "absolute",
           cursor: isLocked
             ? "not-allowed"
             : isSelected
