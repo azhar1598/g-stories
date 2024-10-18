@@ -2,39 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  @font-face {
-    font-family: "mont-regular";
-    src: url("../public/fonts/Montserrat-Regular.ttf") format("truetype");
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "mont-medium";
-    src: url("../public/fonts/Montserrat-Medium.ttf") format("truetype");
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "mont-semibold";
-    src: url("../public/fonts/Montserrat-SemiBold.ttf") format("truetype");
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "mont-bold";
-    src: url("../public/fonts/Montserrat-Bold.ttf") format("truetype");
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "mont-light";
-    src: url("../public/fonts/Montserrat-Light.ttf") format("truetype");
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "mont-italic";
-    src: url("../public/fonts/Montserrat-Italic.ttf") format("truetype");
-    font-display: swap;
-  }
-}
-
 @layer utilities {
   .border-gradient {
     border-width: 2px;
@@ -88,7 +55,7 @@
 }
 
 body {
-  font-family: "Open-sans", Arial, sans-serif;
+  /* font-family: "Open-sans", Arial, sans-serif; */
   /* background-color: red !important; */
   height: 100vh;
   /* background-image: url("../../public/assets/images/image2.PNG"); */

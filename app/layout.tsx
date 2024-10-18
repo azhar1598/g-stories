@@ -1,5 +1,5 @@
 "use client";
-import { Montserrat } from "next/font/google";
+import { Heebo } from "next/font/google";
 import "./globals.css";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
@@ -17,7 +17,7 @@ import Head from "next/head";
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
 
-const inter = Montserrat({ subsets: ["latin"] });
+const heebo = Heebo({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -41,7 +41,7 @@ export default function RootLayout({
         </Head>
         <script src="//daybrush.com/moveable/release/latest/dist/moveable.min.js"></script>
       </head>
-      <body className={inter.className}>
+      <body className={heebo.className}>
         <SessionProvider>
           <QueryClientProvider client={queryClient}>
             <MantineProvider theme={theme}>

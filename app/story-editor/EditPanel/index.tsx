@@ -24,10 +24,10 @@ export const EditPanel = ({ selectedSlide, updateSlide, slides }) => {
   };
 
   return (
-    <div className="w-80 bg-gray-900 text-white p-4 overflow-y-auto">
-      <div className="flex mb-4">
+    <div className="w-64 bg-[#14141fd9]  text-white p-4 overflow-y-auto absolute right-4 top-20 rounded-lg">
+      <div className="flex mb-4 space-x-4 ">
         <button
-          className={`flex-1 py-2 ${
+          className={`py-2 ${
             activeTab === "Design" ? "text-white" : "text-gray-400"
           }`}
           onClick={() => setActiveTab("Design")}
@@ -35,7 +35,7 @@ export const EditPanel = ({ selectedSlide, updateSlide, slides }) => {
           Design
         </button>
         <button
-          className={`flex-1 py-2 ${
+          className={` py-2 ${
             activeTab === "Animation" ? "text-white" : "text-gray-400"
           }`}
           onClick={() => setActiveTab("Animation")}
@@ -44,7 +44,7 @@ export const EditPanel = ({ selectedSlide, updateSlide, slides }) => {
         </button>
       </div>
 
-      {activeTab === "Design" && (
+      {activeTab === "Design" && selectedSlide && (
         <>
           <div className="mb-4">
             <button
@@ -57,28 +57,50 @@ export const EditPanel = ({ selectedSlide, updateSlide, slides }) => {
               />
             </button>
             {layoutExpanded && (
-              <div className="mt-2 space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Move size={16} />
-                  <span className="text-sm">Position</span>
+              <div>
+                <div className="flex justify-between items-center mt-2 space-y-2 ">
+                  {/* <Move size={16} /> */}
+                  <p className="text-xs ">Position</p>
+                  <div className="space-x-4">
+                    <input
+                      type="number"
+                      className="w-16 bg-gray-800 rounded px-2 py-1 text-sm outline-none "
+                      placeholder="X"
+                      onChange={(e) =>
+                        handleSlideStyleChange("x", e.target.value)
+                      }
+                    />
+                    <input
+                      type="number"
+                      className="w-16 bg-gray-800 rounded px-2 py-1 text-sm outline-none"
+                      placeholder="Y"
+                      onChange={(e) =>
+                        handleSlideStyleChange("y", e.target.value)
+                      }
+                    />
+                  </div>
                 </div>
-                <div className="flex space-x-2">
-                  <input
-                    type="number"
-                    className="w-20 bg-gray-800 rounded px-2 py-1 text-sm"
-                    placeholder="X"
-                    onChange={(e) =>
-                      handleSlideStyleChange("x", e.target.value)
-                    }
-                  />
-                  <input
-                    type="number"
-                    className="w-20 bg-gray-800 rounded px-2 py-1 text-sm"
-                    placeholder="Y"
-                    onChange={(e) =>
-                      handleSlideStyleChange("y", e.target.value)
-                    }
-                  />
+                <div className="flex justify-between items-center mt-2 space-y-2 ">
+                  {/* <Move size={16} /> */}
+                  <p className="text-xs ">Size</p>
+                  <div className="space-x-4">
+                    <input
+                      type="number"
+                      className="w-16 bg-gray-800 rounded px-2 py-1 text-sm outline-none "
+                      placeholder="W"
+                      onChange={(e) =>
+                        handleSlideStyleChange("x", e.target.value)
+                      }
+                    />
+                    <input
+                      type="number"
+                      className="w-16 bg-gray-800 rounded px-2 py-1 text-sm outline-none"
+                      placeholder="H"
+                      onChange={(e) =>
+                        handleSlideStyleChange("y", e.target.value)
+                      }
+                    />
+                  </div>
                 </div>
               </div>
             )}

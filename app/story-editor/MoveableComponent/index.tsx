@@ -191,7 +191,7 @@ const MoveableComponent = ({
         }}
       >
         {isSelected && (
-          <div className="absolute -top-10 z-[10000] bg-gray-900 rounded-md p-1  ">
+          <div className="absolute -top-10 z-[10000]  bg-gray-900 rounded-md p-1  ">
             <div className="flex space-x-2">
               <button
                 onClick={toggleBold}

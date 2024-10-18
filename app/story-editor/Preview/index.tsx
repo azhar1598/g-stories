@@ -18,6 +18,8 @@ export const Preview = ({
       setSelectedElementId(null);
     }
   }, [selectedSlide]);
+
+  console.log("selected", selectedSlide);
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-4">
       <div className="text-gray-400 mb-4">
