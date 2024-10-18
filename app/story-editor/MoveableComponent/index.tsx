@@ -140,13 +140,6 @@ const MoveableComponent = ({
     }
   };
 
-  const handleInput = () => {
-    if (textareaRef.current && !isLocked) {
-      updateContent(item.id, { content: textareaRef.current.innerText });
-      adjustHeight();
-    }
-  };
-
   const toggleLock = () => {
     setIsLocked(!isLocked);
     setIsEditable(false);
@@ -198,7 +191,7 @@ const MoveableComponent = ({
         }}
       >
         {isSelected && (
-          <div className="absolute -top-10 z-[10000] left-0 right-0 bg-gray-800 rounded-t-md p-1 flex justify-between items-center">
+          <div className="absolute -top-10 z-[10000] bg-gray-900 rounded-md p-1  ">
             <div className="flex space-x-2">
               <button
                 onClick={toggleBold}
@@ -218,15 +211,15 @@ const MoveableComponent = ({
               >
                 <AlignCenter size={16} />
               </button>
+              <button
+                onClick={toggleLock}
+                className={`p-1 rounded ${
+                  isLocked ? "bg-orange-500" : "bg-gray-700"
+                }`}
+              >
+                <Lock size={16} />
+              </button>
             </div>
-            <button
-              onClick={toggleLock}
-              className={`p-1 rounded ${
-                isLocked ? "bg-orange-500" : "bg-gray-700"
-              }`}
-            >
-              <Lock size={16} />
-            </button>
           </div>
         )}
 
