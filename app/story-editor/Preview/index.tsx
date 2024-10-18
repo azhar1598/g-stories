@@ -7,6 +7,7 @@ export const Preview = ({
   setSelectedSlide,
   addSlide,
   updateContent,
+  setSelectedElement,
 }) => {
   const [selectedElementId, setSelectedElementId] = useState(null);
 
@@ -46,6 +47,7 @@ export const Preview = ({
                 isSelected={item.id === selectedElementId}
                 elementStyles={item.styles}
                 onSelect={() => setSelectedElementId(item.id)}
+                setSelectedElement={setSelectedElement}
               />
             ))}
         </div>

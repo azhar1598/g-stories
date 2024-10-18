@@ -13,6 +13,8 @@ export const EditorComponent = () => {
   ]);
   const [selectedSlide, setSelectedSlide] = useState(slides[0]);
 
+  const [selectedElement, setSelectedElement] = useState({});
+
   const addSlide = () => {
     const newSlide = {
       id: slides.length + 1,
@@ -87,11 +89,13 @@ export const EditorComponent = () => {
         setSelectedSlide={setSelectedSlide}
         updateSlide={updateSlide}
         updateContent={updateContent}
+        setSelectedElement={setSelectedElement}
       />
       <EditPanel
         selectedSlide={selectedSlide}
         updateSlide={updateSlide}
         slides={slides}
+        selectedElement={selectedElement}
       />
     </div>
   );

@@ -8,7 +8,7 @@ const MoveableComponent = ({
   updateContent,
   selectedSlide,
   elementStyles,
-
+  setSelectedElement,
   onSelect,
 }: any) => {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -145,6 +145,13 @@ const MoveableComponent = ({
     setIsEditable(false);
   };
 
+  console.log("item", item);
+
+  useEffect(() => {
+    if (!item) return;
+    setSelectedElement(item);
+  }, [item, isSelected]);
+
   return (
     <div className="container relative">
       <div
@@ -229,9 +236,10 @@ const MoveableComponent = ({
             value={item.content}
             rows={1}
             onChange={handleInputChange}
+            defaultValue={"Type"}
             style={{
               ...commonStyles,
-              textAlign: isCenter ? "left" : "center",
+              textAlign: isCenter ? "center" : "left",
               height: `${`${dimensions.height}px` || "auto"}`,
               color: item.styles?.color || "",
             }}
