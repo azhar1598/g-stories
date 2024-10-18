@@ -16,7 +16,7 @@ import { EditorComponent } from "./EditorComponent";
 
 const EditorPage = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-[#2e2e38] text-white">
       <main>
         <EditorComponent />
       </main>

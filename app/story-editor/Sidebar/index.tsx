@@ -1,4 +1,13 @@
-import { ImageIcon, Layout, Pen, Plus, Type, Video } from "lucide-react";
+import {
+  Folder,
+  FolderUp,
+  ImageIcon,
+  Layout,
+  Pen,
+  Plus,
+  Type,
+  Video,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export const Sidebar = ({ selectedSlide, addContent }) => {
@@ -6,12 +15,13 @@ export const Sidebar = ({ selectedSlide, addContent }) => {
   const [imageUrl, setImageUrl] = useState(""); // For the image URL
   const [activePanel, setActivePanel] = useState(null);
   const fileInputRef = useRef(null);
+  const sidebarRef = useRef(null);
 
   const buttons = [
     { icon: Layout, label: "Layout" },
     { icon: Type, label: "Text" },
+    { icon: FolderUp, label: "Upload" },
     { icon: ImageIcon, label: "Image" },
-    { icon: Video, label: "Video" },
     { icon: Pen, label: "Draw" },
   ];
 
@@ -23,6 +33,18 @@ export const Sidebar = ({ selectedSlide, addContent }) => {
     e.preventDefault();
     e.stopPropagation();
   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setActivePanel(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -73,8 +95,8 @@ export const Sidebar = ({ selectedSlide, addContent }) => {
   };
 
   return (
-    <div className="flex h-full">
-      <div className="w-16 bg-gray-900 p-4 flex flex-col items-center space-y-6">
+    <div className="flex " ref={sidebarRef}>
+      <div className="w-16 bg-[#14141fd9] p-4 flex flex-col items-center space-y-6 absolute top-20 left-4 rounded-lg">
         {buttons.map(({ icon: Icon, label }) => (
           <button
             key={label}
@@ -90,8 +112,8 @@ export const Sidebar = ({ selectedSlide, addContent }) => {
         ))}
       </div>
 
-      {activePanel === "Image" && (
-        <div className="w-72 bg-gray-800 p-4">
+      {activePanel === "Upload" && (
+        <div className="w-60 p-4 absolute left-[88px] top-56 rounded-lg bg-[#14141fd9] h-96">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-white text-lg">Image Upload</h2>
             <button className="bg-orange-500 text-white rounded-full p-1">
@@ -99,7 +121,7 @@ export const Sidebar = ({ selectedSlide, addContent }) => {
             </button>
           </div>
           <div
-            className="border-2 border-dashed border-gray-600 rounded-lg h-48 flex flex-col items-center justify-center text-gray-400 cursor-pointer"
+            className="border-2 border-dashed border-gray-600  rounded-lg h-72 flex flex-col items-center justify-center text-gray-400 cursor-pointer"
             onDragOver={handleDragOver}
             onDrop={handleDrop}
             onClick={() => fileInputRef.current.click()}
@@ -107,7 +129,7 @@ export const Sidebar = ({ selectedSlide, addContent }) => {
             {!file ? (
               <>
                 <div className="mb-2">
-                  <Video size={32} />
+                  <Folder size={32} />
                 </div>
                 <p className="text-center text-sm">
                   Drop your file here
@@ -124,10 +146,11 @@ export const Sidebar = ({ selectedSlide, addContent }) => {
             ref={fileInputRef}
             onChange={handleFileInputChange}
             className="hidden"
+            multiple={false}
             accept="image/*,video/*"
           />
 
-          <div className="mt-4">
+          {/* <div className="mt-4">
             {imageUrl && (
               <div>
                 <img
@@ -136,35 +159,34 @@ export const Sidebar = ({ selectedSlide, addContent }) => {
                   className="w-full h-auto rounded"
                 />
               </div>
-            )}
-          </div>
+            )} 
+          </div>*/}
         </div>
       )}
 
       {activePanel === "Text" && (
-        <div className="p-4 bg-gray-800 text-white w-64">
+        <div className="p-4 bg-[#14141fd9] text-white w-60 h-auto absolute left-[88px] top-40 rounded-lg">
           <h3 className="text-gray-400 mb-4">Text Styles</h3>
           <div className="space-y-2">
             {[
               { label: "Title", value: "h1" },
               { label: "Headline", value: "h2" },
-              ,
               { label: "Sub Headline", value: "h3" },
               { label: "Normal Text", value: "p" },
               { label: "Small Text", value: "small" },
             ].map((style: { label: string; value: string }) => (
               <button
                 key={style.value}
-                className="block w-full py-2 bg-gray-700 rounded text-left px-2"
+                className="block w-full py-3 bg-[#21212c] rounded text-left px-2 hover:bg-[#2e2e38]"
                 onClick={() => handleTextStyleClick(style.value)}
               >
                 {style.label}
               </button>
             ))}
           </div>
-          <button className="mt-4 w-full border border-white py-2 text-center rounded">
+          {/* <button className="mt-4 w-full border border-white py-2 text-center rounded">
             Edit text styles
-          </button>
+          </button> */}
         </div>
       )}
     </div>

@@ -19,7 +19,7 @@ export const Preview = ({
     }
   }, [selectedSlide]);
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-4 bg-gray-900">
+    <div className="flex-1 flex flex-col items-center justify-center p-4">
       <div className="text-gray-400 mb-4">
         Slide {slides.indexOf(selectedSlide) + 1}
       </div>

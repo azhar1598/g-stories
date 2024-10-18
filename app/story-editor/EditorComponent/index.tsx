@@ -77,7 +77,7 @@ export const EditorComponent = () => {
   console.log("slidess", slides, selectedSlide);
 
   return (
-    <div className="flex h-[calc(100vh-64px)]">
+    <div className="flex h-[calc(100vh-64px)] max-h-[calc(100vh-64px)] overflow-hidden">
       <Sidebar selectedSlide={selectedSlide} addContent={addContent} />
 
       <Preview
