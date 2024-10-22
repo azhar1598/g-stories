@@ -10,6 +10,7 @@ const MoveableComponent = ({
   selectedSlide,
   elementStyles,
   setSelectedElement,
+  updateSlide,
   onSelect,
 }: any) => {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -278,6 +279,15 @@ const MoveableComponent = ({
 
             <button
               className={` rounded absolute -top-5 -right-2 border rounded-full `}
+              onClick={() => {
+                const updatedSlide = selectedSlide.elements.filter(
+                  (s) => s.id != item.id
+                );
+
+                updateSlide(selectedSlide.id, {
+                  elements: updatedSlide,
+                });
+              }}
             >
               {/* <Lock size={16} color="white" /> */}
               <CloseIcon size={14} color="white" />
