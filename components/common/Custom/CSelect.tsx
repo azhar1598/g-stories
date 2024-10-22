@@ -109,99 +109,99 @@ export function CSelect({
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-between">
       {label && (
         <div
           style={{
-            color: "#1C2A4B",
-
-            width: "100%",
+            color: "#ababba",
+            fontSize: "12px",
           }}
         >
           {label}
         </div>
       )}
-
-      <Combobox
-        store={combobox}
-        offset={0}
-        onOptionSubmit={(val) => {
-          handleValueChange(val);
-        }}
-      >
-        <Combobox.Target>
-          <InputBase
-            pointer
-            component="button"
-            type="button"
-            onClick={() => combobox.toggleDropdown()}
-            rightSection={
-              combobox.dropdownOpened ? (
-                <IconChevronUp
-                  width={20}
-                  height={20}
-                  color="#868e96"
-                  stroke={1.5}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    combobox.closeDropdown();
-                  }}
-                />
-              ) : (
-                <IconChevronDown
-                  width={20}
-                  height={20}
-                  color="#868e96"
-                  stroke={1.5}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    combobox.openDropdown();
-                  }}
-                />
-              )
-            }
-            rightSectionPointerEvents="auto"
-            disabled={disabled}
-          >
-            {value?.name || (
-              <Input.Placeholder>{placeholder ?? "Select"}</Input.Placeholder>
-            )}
-          </InputBase>
-        </Combobox.Target>
-
-        <Combobox.Dropdown p={20}>
-          <Combobox.Search
-            value={search}
-            onChange={(event) => setSearch(event.currentTarget.value)}
-            placeholder="Search"
-            rightSection={<IconSearch width={16} />}
-            onKeyDown={(event: any) => handleKeyDown(event, search)}
-          />
-
-          <ScrollArea>
-            <Combobox.Options mah={200}>
-              {nonSearchable && nonSearchable.length > 0 && (
-                <div style={{ borderBottom: "1px solid var(--text-blue)" }}>
-                  {nonSearchable.map((item) => (
-                    <Combobox.Option
-                      value={item}
-                      key={item.id}
-                      data-checked={value?.id === item.id}
-                    >
-                      {item.name}
-                    </Combobox.Option>
-                  ))}
-                </div>
+      <div className="w-[150px]">
+        <Combobox
+          store={combobox}
+          offset={0}
+          onOptionSubmit={(val) => {
+            handleValueChange(val);
+          }}
+        >
+          <Combobox.Target>
+            <InputBase
+              pointer
+              component="button"
+              type="button"
+              onClick={() => combobox.toggleDropdown()}
+              rightSection={
+                combobox.dropdownOpened ? (
+                  <IconChevronUp
+                    width={20}
+                    height={15}
+                    color="#868e96"
+                    stroke={1.5}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      combobox.closeDropdown();
+                    }}
+                  />
+                ) : (
+                  <IconChevronDown
+                    width={20}
+                    height={15}
+                    color="#868e96"
+                    stroke={1.5}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      combobox.openDropdown();
+                    }}
+                  />
+                )
+              }
+              rightSectionPointerEvents="auto"
+              disabled={disabled}
+            >
+              {value?.name || (
+                <Input.Placeholder>{placeholder ?? "Select"}</Input.Placeholder>
               )}
-              {optionsJSX?.length > 0 ? (
-                optionsJSX
-              ) : (
-                <Combobox.Empty>Nothing found</Combobox.Empty>
-              )}
-            </Combobox.Options>
-          </ScrollArea>
-        </Combobox.Dropdown>
-      </Combobox>
+            </InputBase>
+          </Combobox.Target>
+
+          <Combobox.Dropdown p={20}>
+            <Combobox.Search
+              value={search}
+              onChange={(event) => setSearch(event.currentTarget.value)}
+              placeholder="Search"
+              rightSection={<IconSearch width={16} />}
+              onKeyDown={(event: any) => handleKeyDown(event, search)}
+            />
+
+            <ScrollArea>
+              <Combobox.Options mah={200}>
+                {nonSearchable && nonSearchable.length > 0 && (
+                  <div style={{ borderBottom: "1px solid var(--text-blue)" }}>
+                    {nonSearchable.map((item) => (
+                      <Combobox.Option
+                        value={item}
+                        key={item.id}
+                        data-checked={value?.id === item.id}
+                      >
+                        {item.name}
+                      </Combobox.Option>
+                    ))}
+                  </div>
+                )}
+                {optionsJSX?.length > 0 ? (
+                  optionsJSX
+                ) : (
+                  <Combobox.Empty>Nothing found</Combobox.Empty>
+                )}
+              </Combobox.Options>
+            </ScrollArea>
+          </Combobox.Dropdown>
+        </Combobox>
+      </div>
     </div>
   );
 }

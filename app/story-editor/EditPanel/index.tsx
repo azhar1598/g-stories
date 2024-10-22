@@ -8,6 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import { CSelect } from "@/components/common/Custom/CSelect";
 
 export const EditPanel = ({
   selectedSlide,
@@ -140,6 +141,9 @@ export const EditPanel = ({
                       {selectedElement?.tag.toUpperCase()}
                     </span>
                   </div>
+
+                  <CSelect label="Font" />
+
                   {/* <input
                         type="text"
                         className="w-full bg-gray-800 rounded px-2 py-1 text-sm"

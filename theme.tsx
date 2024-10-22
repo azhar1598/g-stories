@@ -3,6 +3,7 @@
 import {
   Button,
   createTheme,
+  InputBase,
   Select,
   Textarea,
   TextInput,
@@ -45,6 +46,13 @@ export const theme = createTheme({
         required: "",
       },
     }),
+    InputBase: InputBase.extend({
+      classNames: {
+        input: classes.input_base,
+        label: "",
+        required: "",
+      },
+    }),
 
     Select: Select.extend({
       classNames: {
@@ -55,7 +63,9 @@ export const theme = createTheme({
         options: classes.select_options,
       },
       defaultProps: {
-        rightSection: <IconCaretDownFilled stroke={2} width={20} height={20} />,
+        rightSection: (
+          <IconCaretDownFilled stroke={2} width={20} height={180} />
+        ),
         withCheckIcon: false,
         withScrollArea: false,
         maxDropdownHeight: 200,

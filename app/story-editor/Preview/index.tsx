@@ -13,7 +13,6 @@ export const Preview = ({
   const [selectedElementId, setSelectedElementId] = useState(null);
 
   useEffect(() => {
-    // When the slide changes, select the first element if it exists
     if (selectedSlide && selectedSlide.elements.length > 0) {
       setSelectedElementId(selectedSlide.elements[0].id);
     } else {

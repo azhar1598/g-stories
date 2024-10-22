@@ -18,10 +18,25 @@
   }
 }
 
+.input_base {
+  background-color: #1f2937;
+  outline: none;
+  border: none;
+}
+
 .button {
   height: rem(30);
 
   &[data-variant="primary"] {
     /* background: #fabc3f; */
   }
+}
+
+.select_input {
+  background: red !important;
+  height: 200px;
+}
+
+.select_input_label {
+  background-color: orange !important;
 }
