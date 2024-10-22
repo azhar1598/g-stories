@@ -1,5 +1,5 @@
 import { cssToJsx } from "@/lib/cssParser";
-import { AlignCenter, Bold, Lock } from "lucide-react";
+import { AlignCenter, AlignLeft, AlignRight, Bold, Lock } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 
@@ -18,8 +18,8 @@ const MoveableComponent = ({
   const [isEditable, setIsEditable] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 200, height: "auto" });
   const [isMoving, setIsMoving] = useState(false);
-  const [isBold, setIsBold] = useState(item.styles?.fontWeight === "bold");
-  const [isCenter, setIsCenter] = useState(item.styles?.textAlign === "center");
+  const [isBold, setIsBold] = useState(item.styles?.fontWeight || "normal");
+  const [textAlign, setTextAlign] = useState("left");
   const [isLocked, setIsLocked] = useState(false);
 
   const [isSelected, setIsSelected] = useState(false);
@@ -48,6 +48,11 @@ const MoveableComponent = ({
       adjustHeight();
     }
   };
+
+  useEffect(() => {
+    if (!item.styles) return;
+    setTextAlign(item.styles?.textAlign || "left");
+  }, [item.styles]);
 
   const handleBlur = () => {
     setIsEditable(false);
@@ -122,20 +127,22 @@ const MoveableComponent = ({
     }
   };
 
-  const toggleBold = () => {
+  const handleFontWeight = () => {
     if (!isLocked) {
-      setIsBold(!isBold);
       updateContent(item.id, {
-        styles: { ...item.styles, fontWeight: isBold ? "normal" : "bold" },
+        styles: {
+          ...item.styles,
+          fontWeight: item.styles?.fontWeight === "bold" ? "normal" : "bold",
+        },
       });
     }
   };
 
-  const toggleCenter = () => {
+  const handleTextAlign = (alignment) => {
     if (!isLocked) {
-      setIsCenter(!isCenter);
+      setTextAlign(alignment);
       updateContent(item.id, {
-        styles: { ...item.styles, textAlign: isCenter ? "left" : "center" },
+        styles: { ...item.styles, textAlign: alignment },
       });
     }
   };
@@ -211,31 +218,59 @@ const MoveableComponent = ({
           <div className="absolute -top-10 z-[10000]  bg-gray-900 rounded-md p-1  ">
             <div className="flex space-x-2">
               <button
-                onClick={toggleBold}
+                onClick={handleFontWeight}
                 className={`p-1 rounded ${
-                  isBold ? "bg-orange-500" : "bg-gray-700"
+                  item.styles?.fontWeight === "bold"
+                    ? "bg-orange-500"
+                    : "bg-gray-700"
                 } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={isLocked}
               >
                 <Bold size={16} color="white" />
               </button>
-              <button
-                onClick={toggleCenter}
-                className={`p-1 rounded ${
-                  isCenter ? "bg-orange-500" : "bg-gray-700"
-                } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
-                disabled={isLocked}
-              >
-                <AlignCenter size={16} color="white" />
-              </button>
-              <button
+              {textAlign === "center" && (
+                <button
+                  onClick={() => handleTextAlign("right")}
+                  className={`p-1 rounded bg-orange-500 ${
+                    isLocked ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  disabled={isLocked}
+                >
+                  <AlignCenter size={16} color="white" />
+                </button>
+              )}
+
+              {textAlign === "right" && (
+                <button
+                  onClick={() => handleTextAlign("left")}
+                  className={`p-1 bg-orange-500 rounded ${
+                    isLocked ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  disabled={isLocked}
+                >
+                  <AlignRight size={16} color="white" />
+                </button>
+              )}
+
+              {textAlign === "left" && (
+                <button
+                  onClick={() => handleTextAlign("center")}
+                  className={`p-1 bg-orange-500 rounded ${
+                    isLocked ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  disabled={isLocked}
+                >
+                  <AlignLeft size={16} color="white" />
+                </button>
+              )}
+              {/* <button
                 onClick={toggleLock}
                 className={`p-1 rounded ${
                   isLocked ? "bg-orange-500" : "bg-gray-700"
                 }`}
               >
                 <Lock size={16} color="white" />
-              </button>
+              </button> */}
             </div>
           </div>
         )}
@@ -249,7 +284,7 @@ const MoveableComponent = ({
             defaultValue={"Type"}
             style={{
               ...commonStyles,
-              textAlign: isCenter ? "center" : "left",
+              textAlign: textAlign,
               height: `${`${dimensions.height}px` || "auto"}`,
               color: item.styles?.color || "",
             }}
