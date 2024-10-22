@@ -65,7 +65,7 @@ export const EditPanel = ({
 
       {activeTab === "Design" && selectedSlide && (
         <>
-          <div className="px-4 py-8">
+          <div className="px-4 py-8 overflow-scroll">
             <button
               className="flex items-center justify-between w-full text-left"
               onClick={() => setLayoutExpanded(!layoutExpanded)}
@@ -134,14 +134,20 @@ export const EditPanel = ({
                 <span className="text-sm font-semibold">Text Style</span>
               </button>
 
+              <Select
+                placeholder=""
+                mt={12}
+                data={["Title", "Headline", "Subheadline", "Normal", "Small"]}
+              />
+
               <div className="mt-2 space-y-4">
                 <div key={selectedElement.id} className="space-y-2">
-                  <div className="flex items-center space-x-2">
+                  {/* <div className="flex items-center space-x-2">
                     <Type size={16} />
                     <span className="text-sm">
                       {selectedElement?.tag.toUpperCase()}
                     </span>
-                  </div>
+                  </div> */}
 
                   <CSelect
                     label="Font"
@@ -228,6 +234,30 @@ export const EditPanel = ({
                         "Bold",
                         "Extra Bold",
                         "Ultra Bold",
+                      ]}
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <label style={{ fontSize: "12px", color: "#ababba" }}>
+                      Spacing
+                    </label>
+                    <Select
+                      placeholder="Select"
+                      w={90}
+                      data={[
+                        "0.5",
+                        "1",
+                        "1.5",
+                        "2",
+                        "2.5",
+                        "3",
+                        "3.5",
+                        "4",
+                        "4.5",
+                        "5",
+                        "5.5",
+                        "6",
                       ]}
                     />
                   </div>
