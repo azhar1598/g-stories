@@ -71,15 +71,32 @@ body {
   width: 6px !important;
   height: 17px !important;
   margin-top: -8px !important;
-  margin-left: -3px !important;
+  margin-left: -2.8px !important;
   border-radius: 4px !important;
   background: white !important;
-  /* border: 1px solid #2b33f6 !important; */
+  z-index: 0 !important;
 }
 
-/* .moveable-line {
+.moveable-line {
   background: transparent !important;
-} */
+  z-index: 0 !important;
+}
+
+.moveable-direction.moveable-e,
+.moveable-direction.moveable-w {
+  width: 6px !important;
+  height: 16px !important;
+  border: 1px solid blue !important;
+}
+
+.moveable-rotation .moveable-rotation-control {
+  width: 10px !important;
+  height: 10px !important;
+  margin-top: 15px !important;
+  margin-left: -5px !important;
+  background: none !important;
+  /* border: 1px solid var(--primary) !important; */
+}
 
 /* Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-outer-spin-button,

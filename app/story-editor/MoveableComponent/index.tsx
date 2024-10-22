@@ -201,11 +201,10 @@ const MoveableComponent = ({
           border: isEditable
             ? "1px solid #ccc"
             : isSelected
-            ? "2px solid #3b82f6"
+            ? "1px solid #3b82f6"
             : isHovered
             ? "1px dashed #9ca3af"
             : "1px solid transparent",
-          zIndex: 10000,
         }}
       >
         {isSelected && (
@@ -287,7 +286,7 @@ const MoveableComponent = ({
           draggable={true}
           resizable={true}
           scalable={false}
-          rotatable={false}
+          rotatable={true}
           pinchable={false}
           onDrag={({ target, transform }) => {
             target!.style.transform = transform;
@@ -301,9 +300,17 @@ const MoveableComponent = ({
             if (delta[1]) target!.style.height = `${height}px`;
             setDimensions({ width, height });
           }}
+          onRotate={({ target, transform }) => {
+            target!.style.transform = transform;
+
+            updateContent(item.id, {
+              styles: cssToJsx(targetRef.current?.style?.cssText),
+            });
+          }}
           renderDirections={["e", "w"]}
           keepRatio={false}
           throttleResize={0}
+          rotationPosition={"bottom"}
         />
       )}
     </div>
