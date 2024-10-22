@@ -168,26 +168,37 @@ export function CSelect({
             </InputBase>
           </Combobox.Target>
 
-          <Combobox.Dropdown p={20}>
+          <Combobox.Dropdown
+            p={20}
+            mt={5}
+            bg={"#21212c"}
+            color="red"
+            style={{
+              outline: "none",
+              border: "none",
+            }}
+          >
             <Combobox.Search
               value={search}
               onChange={(event) => setSearch(event.currentTarget.value)}
               placeholder="Search"
-              rightSection={<IconSearch width={16} />}
+              leftSection={<IconSearch width={14} />}
               onKeyDown={(event: any) => handleKeyDown(event, search)}
             />
 
             <ScrollArea>
               <Combobox.Options mah={200}>
                 {nonSearchable && nonSearchable.length > 0 && (
-                  <div style={{ borderBottom: "1px solid var(--text-blue)" }}>
+                  <div>
                     {nonSearchable.map((item) => (
                       <Combobox.Option
                         value={item}
                         key={item.id}
                         data-checked={value?.id === item.id}
                       >
-                        {item.name}
+                        <div style={{ backgroundColor: "blue", color: "red" }}>
+                          {item.name}
+                        </div>
                       </Combobox.Option>
                     ))}
                   </div>

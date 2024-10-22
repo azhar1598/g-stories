@@ -142,7 +142,10 @@ export const EditPanel = ({
                     </span>
                   </div>
 
-                  <CSelect label="Font" />
+                  <CSelect
+                    label="Font"
+                    options={[{ name: "Poppins", id: "poppins" }]}
+                  />
 
                   {/* <input
                         type="text"
@@ -157,7 +160,7 @@ export const EditPanel = ({
                           )
                         }
                       /> */}
-                  <div className="flex space-x-2">
+                  {/* <div className="flex space-x-2">
                     <select
                       className="bg-gray-800 rounded px-2 py-1 text-sm"
                       value={selectedElement.styles?.fontWeight || "normal"}
@@ -242,7 +245,7 @@ export const EditPanel = ({
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

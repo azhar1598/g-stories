@@ -1,3 +1,12 @@
+.input {
+  background-color: #2e2e38;
+  font-size: 12px;
+  color: white;
+  border: none;
+  line-height: 1;
+  border-radius: 5px;
+}
+
 .text_area {
   &[data-error="true"] {
     border: 1px solid #c8102e;
@@ -8,6 +17,7 @@
   &[data-error="true"] {
     border: 1px solid #c8102e;
   }
+  background-color: red !important;
 }
 
 .text_input_root {
@@ -22,6 +32,10 @@
   background-color: #1f2937;
   outline: none;
   border: none;
+  height: 10px;
+  min-height: 35px;
+  line-height: 1px;
+  font-size: 12px;
 }
 
 .button {

@@ -3,6 +3,7 @@
 import {
   Button,
   createTheme,
+  Input,
   InputBase,
   Select,
   Textarea,
@@ -17,20 +18,26 @@ import {
 
 export const theme = createTheme({
   colors: {
-    deepBlue: [
-      "#eff3fa",
-      "#dee3ef",
-      "#b7c5df",
-      "#8fa5d1",
-      "#6d89c5",
-      "#5878be",
-      "#4d6fbd",
-      "#3e5ea6",
-      "#355495",
-      "#294884",
+    paleIndigo: [
+      "#f1f1ff",
+      "#e0dff2",
+      "#bfbdde",
+      "#9b98ca",
+      "#7d79b9",
+      "#6a66af",
+      "#605cac",
+      "#504c97",
+      "#464388",
+      "#3b3979",
     ],
   },
   components: {
+    Input: Input.extend({
+      classNames: {
+        input: classes.input,
+      },
+    }),
+
     Textarea: Textarea.extend({
       classNames: {
         input: classes.text_area,
