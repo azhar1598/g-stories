@@ -9,6 +9,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { CSelect } from "@/components/common/Custom/CSelect";
+import { Select } from "@mantine/core";
 
 export const EditPanel = ({
   selectedSlide,
@@ -188,6 +189,47 @@ export const EditPanel = ({
                         )
                       }
                     />
+                  </div> */}
+                  <div className="flex items-center justify-between">
+                    <label style={{ fontSize: "12px", color: "#ababba" }}>
+                      Weight
+                    </label>
+                    <Select
+                      placeholder="Select"
+                      w={150}
+                      data={[
+                        "Thin",
+                        "Extra light",
+                        "Light",
+                        "Regular",
+                        "Medium",
+                        "Semi Bold",
+                        "Bold",
+                        "Extra Bold",
+                        "Ultra Bold",
+                      ]}
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <label style={{ fontSize: "12px", color: "#ababba" }}>
+                      Size
+                    </label>
+                    <Select
+                      placeholder="Select"
+                      w={90}
+                      data={[
+                        "Thin",
+                        "Extra light",
+                        "Light",
+                        "Regular",
+                        "Medium",
+                        "Semi Bold",
+                        "Bold",
+                        "Extra Bold",
+                        "Ultra Bold",
+                      ]}
+                    />
                   </div>
 
                   <div className="space-y-2">
@@ -245,7 +287,7 @@ export const EditPanel = ({
                         </div>
                       </div>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
               </div>
             </div>

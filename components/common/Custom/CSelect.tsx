@@ -172,7 +172,6 @@ export function CSelect({
             p={20}
             mt={5}
             bg={"#21212c"}
-            color="red"
             style={{
               outline: "none",
               border: "none",
@@ -196,9 +195,7 @@ export function CSelect({
                         key={item.id}
                         data-checked={value?.id === item.id}
                       >
-                        <div style={{ backgroundColor: "blue", color: "red" }}>
-                          {item.name}
-                        </div>
+                        {item.name}
                       </Combobox.Option>
                     ))}
                   </div>

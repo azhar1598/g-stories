@@ -47,10 +47,24 @@
 }
 
 .select_input {
-  background: red !important;
-  height: 200px;
+  background-color: #1f2937;
+  outline: none;
+  border: none;
+  height: 10px;
+  min-height: 35px;
+  line-height: 1px;
+  font-size: 12px;
+  /* background: red !important; */
+}
+
+.select_options {
+  background-color: #21212c;
+  border: none !important;
+  outline: none !important;
+  color: #ababba;
+  font-size: 5px !important;
 }
 
 .select_input_label {
-  background-color: orange !important;
+  /* background-color: orange !important; */
 }

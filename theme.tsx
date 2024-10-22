@@ -76,6 +76,7 @@ export const theme = createTheme({
         withCheckIcon: false,
         withScrollArea: false,
         maxDropdownHeight: 200,
+
         comboboxProps: {
           position: "bottom",
           middlewares: { flip: false, shift: false },
