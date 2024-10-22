@@ -1,4 +1,5 @@
 import { cssToJsx } from "@/lib/cssParser";
+import { CloseIcon } from "@mantine/core";
 import { AlignCenter, AlignLeft, AlignRight, Bold, Lock } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
@@ -215,55 +216,56 @@ const MoveableComponent = ({
         }}
       >
         {isSelected && (
-          <div className="absolute -top-10 z-[10000]  bg-gray-900 rounded-md p-1  ">
-            <div className="flex space-x-2">
-              <button
-                onClick={handleFontWeight}
-                className={`p-1 rounded ${
-                  item.styles?.fontWeight === "bold"
-                    ? "bg-orange-500"
-                    : "bg-gray-700"
-                } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
-                disabled={isLocked}
-              >
-                <Bold size={16} color="white" />
-              </button>
-              {textAlign === "center" && (
+          <>
+            <div className="absolute -top-10 z-[10000]  bg-gray-900 rounded-md p-1  ">
+              <div className="flex space-x-2">
                 <button
-                  onClick={() => handleTextAlign("right")}
-                  className={`p-1 rounded bg-orange-500 ${
-                    isLocked ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
+                  onClick={handleFontWeight}
+                  className={`p-1 rounded ${
+                    item.styles?.fontWeight === "bold"
+                      ? "bg-orange-500"
+                      : "bg-gray-700"
+                  } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
                   disabled={isLocked}
                 >
-                  <AlignCenter size={16} color="white" />
+                  <Bold size={16} color="white" />
                 </button>
-              )}
+                {textAlign === "center" && (
+                  <button
+                    onClick={() => handleTextAlign("right")}
+                    className={`p-1 rounded bg-orange-500 ${
+                      isLocked ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    disabled={isLocked}
+                  >
+                    <AlignCenter size={16} color="white" />
+                  </button>
+                )}
 
-              {textAlign === "right" && (
-                <button
-                  onClick={() => handleTextAlign("left")}
-                  className={`p-1 bg-orange-500 rounded ${
-                    isLocked ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
-                  disabled={isLocked}
-                >
-                  <AlignRight size={16} color="white" />
-                </button>
-              )}
+                {textAlign === "right" && (
+                  <button
+                    onClick={() => handleTextAlign("left")}
+                    className={`p-1 bg-orange-500 rounded ${
+                      isLocked ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    disabled={isLocked}
+                  >
+                    <AlignRight size={16} color="white" />
+                  </button>
+                )}
 
-              {textAlign === "left" && (
-                <button
-                  onClick={() => handleTextAlign("center")}
-                  className={`p-1 bg-orange-500 rounded ${
-                    isLocked ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
-                  disabled={isLocked}
-                >
-                  <AlignLeft size={16} color="white" />
-                </button>
-              )}
-              {/* <button
+                {textAlign === "left" && (
+                  <button
+                    onClick={() => handleTextAlign("center")}
+                    className={`p-1 bg-orange-500 rounded ${
+                      isLocked ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    disabled={isLocked}
+                  >
+                    <AlignLeft size={16} color="white" />
+                  </button>
+                )}
+                {/* <button
                 onClick={toggleLock}
                 className={`p-1 rounded ${
                   isLocked ? "bg-orange-500" : "bg-gray-700"
@@ -271,8 +273,16 @@ const MoveableComponent = ({
               >
                 <Lock size={16} color="white" />
               </button> */}
+              </div>
             </div>
-          </div>
+
+            <button
+              className={` rounded absolute -top-5 -right-2 border rounded-full `}
+            >
+              {/* <Lock size={16} color="white" /> */}
+              <CloseIcon size={14} color="white" />
+            </button>
+          </>
         )}
 
         {isEditable && !isLocked ? (
