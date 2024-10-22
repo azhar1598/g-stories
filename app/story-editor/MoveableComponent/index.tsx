@@ -152,6 +152,17 @@ const MoveableComponent = ({
     setSelectedElement(item);
   }, [item, isSelected]);
 
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+      // Place cursor at the end
+      const length = textareaRef.current.value.length;
+      textareaRef.current.setSelectionRange(length, length);
+    }
+  }, []);
+
+  console.log("item---", item.content);
+
   return (
     <div className="container relative">
       <div
@@ -207,7 +218,7 @@ const MoveableComponent = ({
                 } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={isLocked}
               >
-                <Bold size={16} />
+                <Bold size={16} color="white" />
               </button>
               <button
                 onClick={toggleCenter}
@@ -216,7 +227,7 @@ const MoveableComponent = ({
                 } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={isLocked}
               >
-                <AlignCenter size={16} />
+                <AlignCenter size={16} color="white" />
               </button>
               <button
                 onClick={toggleLock}
@@ -224,7 +235,7 @@ const MoveableComponent = ({
                   isLocked ? "bg-orange-500" : "bg-gray-700"
                 }`}
               >
-                <Lock size={16} />
+                <Lock size={16} color="white" />
               </button>
             </div>
           </div>
@@ -242,6 +253,15 @@ const MoveableComponent = ({
               textAlign: isCenter ? "center" : "left",
               height: `${`${dimensions.height}px` || "auto"}`,
               color: item.styles?.color || "",
+            }}
+            onFocus={(e) => {
+              e.preventDefault();
+
+              const cursorPosition = item.content?.length || 4;
+
+              setTimeout(() => {
+                e.target.setSelectionRange(cursorPosition, cursorPosition);
+              }, 0);
             }}
             autoFocus
           />
