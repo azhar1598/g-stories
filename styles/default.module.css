@@ -64,7 +64,7 @@
   color: #ababba;
   outline: none !important;
   /* border: 10px solid pink !important; */
-  font-size: 45px !important;
+  padding: 10px !important;
 }
 
 .select_options span {

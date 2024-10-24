@@ -9,7 +9,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { CSelect } from "@/components/common/Custom/CSelect";
-import { Select } from "@mantine/core";
+import { Select, SimpleGrid, ColorPicker, Popover } from "@mantine/core";
 
 export const EditPanel = ({
   selectedSlide,
@@ -17,14 +17,13 @@ export const EditPanel = ({
   slides,
   selectedElement,
 }) => {
-  console.log("slides-new-levels", slides);
   const [activeTab, setActiveTab] = useState("Design");
   const [layoutExpanded, setLayoutExpanded] = useState(true);
   const [textExpanded, setTextExpanded] = useState(true);
+  const [colorPickerOpened, setColorPickerOpened] = useState(false);
 
   const handleElementStyleChange = (elementId, property, value) => {
     const updatedElements = selectedSlide.elements.map((element) => {
-      console.log("nnn", elementId, element.id, element.styles);
       return element.id === elementId
         ? { ...element, styles: { ...element.styles, [property]: value } }
         : element;
@@ -38,10 +37,55 @@ export const EditPanel = ({
     });
   };
 
+  const ColorPickerButton = ({ value, onChange }) => (
+    <Popover
+      opened={colorPickerOpened}
+      onChange={setColorPickerOpened}
+      position="left"
+      withArrow
+      shadow="md"
+    >
+      <Popover.Target>
+        <div
+          className="h-7 w-7 border-2 border-gray-600 cursor-pointer rounded-md"
+          style={{ backgroundColor: value || "#ffffff" }}
+          onClick={() => setColorPickerOpened(true)}
+        />
+      </Popover.Target>
+      <Popover.Dropdown className="p-0 border-0">
+        <ColorPicker
+          format="rgba"
+          value={value}
+          onChange={onChange}
+          // swatches={[
+          //   "#000000",
+          //   "#4A4A4A",
+          //   "#717171",
+          //   "#9A9A9A",
+          //   "#CECECE",
+          //   "#FFFFFF",
+          //   "#FF5252",
+          //   "#FF7676",
+          //   "#FF9C9C",
+          //   "#BA68C8",
+          //   "#7B1FA2",
+          //   "#26A69A",
+          //   "#4FC3F7",
+          //   "#2196F3",
+          //   "#64B5F6",
+          //   "#81C784",
+          //   "#4CAF50",
+          //   "#FFA726",
+          // ]}
+        />
+      </Popover.Dropdown>
+    </Popover>
+  );
+
   console.log("selectedElement", selectedElement);
 
   return (
-    <div className="w-64 bg-[#14141fd9]  text-white overflow-y-auto absolute right-4 top-20 rounded-lg  divide-y  divide-gray-800">
+    <div className="w-64 h-[85vh] bg-[#14141fd9]  text-white overflow-y-auto  rounded-lg  divide-y  divide-gray-800 absolute right-4 top-20">
       <div className="flex  space-x-4 p-4  ">
         <button
           className={`${
@@ -141,7 +185,7 @@ export const EditPanel = ({
               />
 
               <div className="mt-2 space-y-4">
-                <div key={selectedElement.id} className="space-y-2">
+                <div key={selectedElement.id} className="space-y-4">
                   {/* <div className="flex items-center space-x-2">
                     <Type size={16} />
                     <span className="text-sm">
@@ -269,6 +313,24 @@ export const EditPanel = ({
                     />
                   </div>
 
+                  <div className="flex items-center justify-between">
+                    <label style={{ fontSize: "12px", color: "#ababba" }}>
+                      Color
+                    </label>
+                    <div className="flex items-center justify-between">
+                      <ColorPickerButton
+                        value={selectedElement.styles?.color}
+                        onChange={(color) =>
+                          handleElementStyleChange(
+                            selectedElement.id,
+                            "color",
+                            color
+                          )
+                        }
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
                     <div>
                       <label className="block text-sm text-gray-400">
@@ -296,32 +358,6 @@ export const EditPanel = ({
                             )
                           }
                         />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="block text-sm text-gray-400">
-                          Color
-                        </label>
-                        <div className="flex items-center space-x-2">
-                          <Trash
-                            className="text-gray-400"
-                            size={16}
-                            onClick={() => handleSlideStyleChange("color", "")}
-                          />
-                          <input
-                            type="color"
-                            className="w-8 h-8 rounded"
-                            value={
-                              selectedSlide.styles?.backgroundColor || "#4A5568"
-                            }
-                            onChange={(e) =>
-                              handleElementStyleChange(
-                                selectedElement.id,
-                                "color",
-                                `${e.target.value}`
-                              )
-                            }
-                          />
-                        </div>
                       </div>
                     </div>
                   </div>

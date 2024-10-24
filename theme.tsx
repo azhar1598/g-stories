@@ -14,6 +14,7 @@ import {
   IconArrowDown,
   IconCaretDown,
   IconCaretDownFilled,
+  IconChevronDown,
 } from "@tabler/icons-react";
 
 export const theme = createTheme({
@@ -70,9 +71,7 @@ export const theme = createTheme({
         options: classes.select_options,
       },
       defaultProps: {
-        rightSection: (
-          <IconCaretDownFilled stroke={2} width={20} height={180} />
-        ),
+        rightSection: <IconChevronDown stroke={2} width={14} height={180} />,
         withCheckIcon: false,
         withScrollArea: true,
         maxDropdownHeight: 200,
