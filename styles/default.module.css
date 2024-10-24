@@ -62,7 +62,13 @@
   border: none !important;
   outline: none !important;
   color: #ababba;
-  font-size: 5px !important;
+  outline: none !important;
+  /* border: 10px solid pink !important; */
+  font-size: 45px !important;
+}
+
+.select_options span {
+  font-size: 12px !important;
 }
 
 .select_input_label {

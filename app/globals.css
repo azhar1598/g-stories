@@ -109,3 +109,9 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.mantine-Select-dropdown {
+  border: none !important;
+  margin-top: 5px;
+  background-color: transparent !important;
+}

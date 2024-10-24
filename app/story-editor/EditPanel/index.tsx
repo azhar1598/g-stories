@@ -214,6 +214,13 @@ export const EditPanel = ({
                         "Extra Bold",
                         "Ultra Bold",
                       ]}
+                      withScrollArea={true}
+                      styles={{
+                        dropdown: {
+                          maxHeight: 200,
+                          overflowY: "auto",
+                        },
+                      }}
                     />
                   </div>
 

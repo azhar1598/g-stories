@@ -74,8 +74,12 @@ export const theme = createTheme({
           <IconCaretDownFilled stroke={2} width={20} height={180} />
         ),
         withCheckIcon: false,
-        withScrollArea: false,
+        withScrollArea: true,
         maxDropdownHeight: 200,
+
+        // popover: {
+        // backgroundColor: "red",
+        // },
 
         comboboxProps: {
           position: "bottom",
