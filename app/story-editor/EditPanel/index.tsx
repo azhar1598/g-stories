@@ -9,7 +9,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { CSelect } from "@/components/common/Custom/CSelect";
-import { Select, SimpleGrid, ColorPicker, Popover } from "@mantine/core";
+import { Select, SimpleGrid, ColorPicker, Popover, Text } from "@mantine/core";
 
 export const EditPanel = ({
   selectedSlide,
@@ -20,7 +20,6 @@ export const EditPanel = ({
   const [activeTab, setActiveTab] = useState("Design");
   const [layoutExpanded, setLayoutExpanded] = useState(true);
   const [textExpanded, setTextExpanded] = useState(true);
-  const [colorPickerOpened, setColorPickerOpened] = useState(false);
 
   const handleElementStyleChange = (elementId, property, value) => {
     const updatedElements = selectedSlide.elements.map((element) => {
@@ -28,6 +27,7 @@ export const EditPanel = ({
         ? { ...element, styles: { ...element.styles, [property]: value } }
         : element;
     });
+
     updateSlide(selectedSlide.id, { elements: updatedElements });
   };
 
@@ -37,52 +37,67 @@ export const EditPanel = ({
     });
   };
 
-  const ColorPickerButton = ({ value, onChange }) => (
-    <Popover
-      opened={colorPickerOpened}
-      onChange={setColorPickerOpened}
-      position="left"
-      withArrow
-      shadow="md"
-    >
-      <Popover.Target>
-        <div
-          className="h-7 w-7 border-2 border-gray-600 cursor-pointer rounded-md"
-          style={{ backgroundColor: value || "#ffffff" }}
-          onClick={() => setColorPickerOpened(true)}
-        />
-      </Popover.Target>
-      <Popover.Dropdown className="p-0 border-0">
-        <ColorPicker
-          format="rgba"
-          value={value}
-          onChange={onChange}
-          // swatches={[
-          //   "#000000",
-          //   "#4A4A4A",
-          //   "#717171",
-          //   "#9A9A9A",
-          //   "#CECECE",
-          //   "#FFFFFF",
-          //   "#FF5252",
-          //   "#FF7676",
-          //   "#FF9C9C",
-          //   "#BA68C8",
-          //   "#7B1FA2",
-          //   "#26A69A",
-          //   "#4FC3F7",
-          //   "#2196F3",
-          //   "#64B5F6",
-          //   "#81C784",
-          //   "#4CAF50",
-          //   "#FFA726",
-          // ]}
-        />
-      </Popover.Dropdown>
-    </Popover>
-  );
+  const ColorPickerButton = ({ handleElementStyleChange, selectedElement }) => {
+    const [value, onChange] = useState("");
+    const [colorPickerOpened, setColorPickerOpened] = useState(false);
 
-  console.log("selectedElement", selectedElement);
+    const handleColorChange = (newColor) => {
+      // let colorHex = newColor.target ? newColor.target.value : newColor;
+      onChange(newColor);
+
+      handleElementStyleChange(selectedElement.id, "color", newColor);
+    };
+
+    return (
+      <Popover
+        opened={colorPickerOpened}
+        onChange={setColorPickerOpened}
+        position="left"
+        withArrow
+        shadow="md"
+      >
+        <Popover.Target>
+          <div
+            className="h-7 w-7 border-2 border-gray-600 cursor-pointer rounded-md"
+            style={{ backgroundColor: value || "#ffffff" }}
+            onClick={() => setColorPickerOpened(true)}
+          />
+        </Popover.Target>
+        <Popover.Dropdown className="p-0 border-0">
+          <ColorPicker
+            format="hex"
+            value={value}
+            onChange={(e) => {
+              // onChange(e);
+              handleColorChange(e);
+            }}
+            draggable={true}
+            swatches={[
+              "#000000",
+              "#4A4A4A",
+              "#717171",
+              "#9A9A9A",
+              "#CECECE",
+              "#FFFFFF",
+              "#FF5252",
+              "#FF7676",
+              "#FF9C9C",
+              "#BA68C8",
+              "#7B1FA2",
+              "#26A69A",
+              "#4FC3F7",
+              "#2196F3",
+              "#64B5F6",
+              "#81C784",
+              "#4CAF50",
+              "#FFA726",
+            ]}
+          />
+          <Text>{value}</Text>
+        </Popover.Dropdown>
+      </Popover>
+    );
+  };
 
   return (
     <div className="w-64 h-[85vh] bg-[#14141fd9]  text-white overflow-y-auto  rounded-lg  divide-y  divide-gray-800 absolute right-4 top-20">
@@ -318,13 +333,19 @@ export const EditPanel = ({
                       Color
                     </label>
                     <div className="flex items-center justify-between">
-                      <ColorPickerButton
-                        value={selectedElement.styles?.color}
-                        onChange={(color) =>
+                      {/* <ColorPickerButton
+                        selectedElement={selectedElement}
+                        handleElementStyleChange={handleElementStyleChange}
+                      /> */}
+                      <input
+                        type="color"
+                        className="w-8 h-8 rounded"
+                        value={selectedSlide.styles?.color || "#4A5568"}
+                        onChange={(e) =>
                           handleElementStyleChange(
                             selectedElement.id,
                             "color",
-                            color
+                            `${e.target.value}`
                           )
                         }
                       />
