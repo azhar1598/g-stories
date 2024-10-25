@@ -325,15 +325,15 @@ export const EditPanel = ({
                       placeholder="Select"
                       w={150}
                       data={[
-                        "Thin",
-                        "Extra light",
-                        "Light",
-                        "Regular",
-                        "Medium",
-                        "Semi Bold",
-                        "Bold",
-                        "Extra Bold",
-                        "Ultra Bold",
+                        { label: "Thin", value: "100" },
+                        { label: "Extra Light", value: "200" },
+                        { label: "Light", value: "300" },
+                        { label: "Regular", value: "400" },
+                        { label: "Medium", value: "500" },
+                        { label: "Semi Bold", value: "550" },
+                        { label: "Bold", value: "700" },
+                        { label: "Extra Bold", value: "800" },
+                        { label: "Ultra Bold", value: "900" },
                       ]}
                       withScrollArea={true}
                       styles={{
@@ -341,6 +341,15 @@ export const EditPanel = ({
                           maxHeight: 200,
                           overflowY: "auto",
                         },
+                      }}
+                      value={String(selectedElement.styles?.fontWeight)}
+                      onChange={(value) => {
+                        console.log("eee", value);
+                        handleElementStyleChange(
+                          selectedElement.id,
+                          "fontWeight",
+                          Number(value)
+                        );
                       }}
                     />
                   </div>
@@ -352,17 +361,27 @@ export const EditPanel = ({
                     <Select
                       placeholder="Select"
                       w={90}
+                      value={selectedElement.styles?.fontSize}
                       data={[
-                        "Thin",
-                        "Extra light",
-                        "Light",
-                        "Regular",
-                        "Medium",
-                        "Semi Bold",
-                        "Bold",
-                        "Extra Bold",
-                        "Ultra Bold",
+                        { label: "8", value: "8px" },
+                        { label: "24", value: "24px" },
+                        { label: "28", value: "28px" },
+                        { label: "32", value: "32px" },
+                        { label: "36", value: "36px" },
+                        { label: "48", value: "48px" },
+                        { label: "80", value: "80px" },
+                        { label: "120", value: "120px" },
+                        { label: "180", value: "180px" },
                       ]}
+                      onChange={(value) => {
+                        console.log("eee", value);
+                        handleElementStyleChange(
+                          selectedElement.id,
+                          "fontSize",
+                          value
+                        );
+                      }}
+                      searchable
                     />
                   </div>
 
