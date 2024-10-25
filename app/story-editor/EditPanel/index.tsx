@@ -254,6 +254,7 @@ export const EditPanel = ({
                   { label: "Small", value: "small" },
                 ]}
                 renderOption={renderSelectOption}
+                value={selectedElement.tag}
                 onChange={(value) => {
                   console.log("eee", value);
                   handleElementStyleChange(selectedElement.id, "tag", value);
