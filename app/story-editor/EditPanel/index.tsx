@@ -17,6 +17,8 @@ import {
   Text,
   Group,
   SelectProps,
+  Input,
+  Flex,
 } from "@mantine/core";
 import { getStyleForType } from "@/constants";
 
@@ -55,6 +57,14 @@ export const EditPanel = ({
 
           console.log("newElement", newElement);
           return newElement;
+        } else if (property === "transform") {
+          return {
+            ...element,
+            styles: {
+              ...element.styles,
+              [property]: `translate(${value}px,24px)`,
+            },
+          };
         } else {
           return {
             ...element,
@@ -189,46 +199,34 @@ export const EditPanel = ({
                 <div className="flex justify-between items-center mt-2 space-y-2 ">
                   {/* <Move size={16} /> */}
                   <p className="text-xs text-[#ababba]">Position</p>
-                  <div className="space-x-4">
-                    <input
+                  <Flex className="space-x-4">
+                    <Input
                       type="number"
-                      className="w-16 bg-gray-800 rounded px-2 py-1 text-sm outline-none "
-                      placeholder="X"
+                      size="xs"
+                      w={64}
                       onChange={(e) =>
-                        handleSlideStyleChange("x", e.target.value)
+                        handleElementStyleChange(
+                          selectedElement.id,
+                          "transform",
+                          e.target.value
+                        )
                       }
+                      rightSection={<Text size="12px">X</Text>}
                     />
-                    <input
+                    <Input
                       type="number"
-                      className="w-16 bg-gray-800 rounded px-2 py-1 text-sm outline-none"
-                      placeholder="Y"
+                      size="xs"
+                      w={64}
                       onChange={(e) =>
-                        handleSlideStyleChange("y", e.target.value)
+                        handleElementStyleChange(
+                          selectedElement.id,
+                          "transform",
+                          e.target.value
+                        )
                       }
+                      rightSection={<Text size="12px">Y</Text>}
                     />
-                  </div>
-                </div>
-                <div className="flex justify-between items-center mt-2 space-y-2 ">
-                  {/* <Move size={16} /> */}
-                  <p className="text-xs text-[#ababba]">Size</p>
-                  <div className="space-x-4">
-                    <input
-                      type="number"
-                      className="w-16 bg-gray-800 rounded px-2 py-1 text-sm outline-none "
-                      placeholder="W"
-                      onChange={(e) =>
-                        handleSlideStyleChange("x", e.target.value)
-                      }
-                    />
-                    <input
-                      type="number"
-                      className="w-16 bg-gray-800 rounded px-2 py-1 text-sm outline-none"
-                      placeholder="H"
-                      onChange={(e) =>
-                        handleSlideStyleChange("y", e.target.value)
-                      }
-                    />
-                  </div>
+                  </Flex>
                 </div>
               </div>
             )}
