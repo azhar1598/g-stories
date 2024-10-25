@@ -18,6 +18,7 @@ import {
   Group,
   SelectProps,
 } from "@mantine/core";
+import { getStyleForType } from "@/constants";
 
 export const EditPanel = ({
   selectedSlide,
@@ -29,12 +30,38 @@ export const EditPanel = ({
   const [layoutExpanded, setLayoutExpanded] = useState(true);
   const [textExpanded, setTextExpanded] = useState(true);
 
+  // const handleElementStyleChange = (elementId, property, value) => {
+  //   console.log("selecone", selectedElement, elementId, property, value);
+  //   const updatedElements = selectedSlide.elements.map((element) => {
+  //     return element.id === elementId
+  //       ? { ...element, styles: { ...element.styles, [property]: value } }
+  //       : element;
+  //   });
+
+  //   updateSlide(selectedSlide.id, { elements: updatedElements });
+  // };
+
   const handleElementStyleChange = (elementId, property, value) => {
-    console.log("selecone", selectedElement, elementId, property, value);
     const updatedElements = selectedSlide.elements.map((element) => {
-      return element.id === elementId
-        ? { ...element, styles: { ...element.styles, [property]: value } }
-        : element;
+      if (element.id === elementId) {
+        if (property === "tag") {
+          let textStyle = getStyleForType({
+            tag: value,
+          });
+          let tag = property;
+          let newElement = structuredClone(element);
+          newElement.tag = value;
+          newElement.styles.fontSize = textStyle.fontSize;
+
+          console.log("newElement", newElement);
+          return newElement;
+        } else {
+          return {
+            ...element,
+            styles: { ...element.styles, [property]: value },
+          };
+        }
+      } else return element;
     });
 
     updateSlide(selectedSlide.id, { elements: updatedElements });
