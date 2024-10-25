@@ -9,7 +9,15 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { CSelect } from "@/components/common/Custom/CSelect";
-import { Select, SimpleGrid, ColorPicker, Popover, Text } from "@mantine/core";
+import {
+  Select,
+  SimpleGrid,
+  ColorPicker,
+  Popover,
+  Text,
+  Group,
+  SelectProps,
+} from "@mantine/core";
 
 export const EditPanel = ({
   selectedSlide,
@@ -22,6 +30,7 @@ export const EditPanel = ({
   const [textExpanded, setTextExpanded] = useState(true);
 
   const handleElementStyleChange = (elementId, property, value) => {
+    console.log("selecone", selectedElement, elementId, property, value);
     const updatedElements = selectedSlide.elements.map((element) => {
       return element.id === elementId
         ? { ...element, styles: { ...element.styles, [property]: value } }
@@ -99,6 +108,20 @@ export const EditPanel = ({
     );
   };
 
+  const renderSelectOption: SelectProps["renderOption"] = ({ option }) => {
+    const { value, label } = option;
+    let size =
+      value === "h1"
+        ? "36px"
+        : value === "h2"
+        ? "28px"
+        : value === "h3"
+        ? "20px"
+        : value === "p"
+        ? "16px"
+        : "12px";
+    return <Text size={size}>{option.label}</Text>;
+  };
   return (
     <div className="w-64 h-[85vh] bg-[#14141fd9]  text-white overflow-y-auto  rounded-lg  divide-y  divide-gray-800 absolute right-4 top-20">
       <div className="flex  space-x-4 p-4  ">
@@ -196,7 +219,18 @@ export const EditPanel = ({
               <Select
                 placeholder=""
                 mt={12}
-                data={["Title", "Headline", "Subheadline", "Normal", "Small"]}
+                data={[
+                  { label: "Title", value: "h1" },
+                  { label: "Headline", value: "h2" },
+                  { label: "Subheadline", value: "h3" },
+                  { label: "Normal", value: "p" },
+                  { label: "Small", value: "small" },
+                ]}
+                renderOption={renderSelectOption}
+                onChange={(value) => {
+                  console.log("eee", value);
+                  handleElementStyleChange(selectedElement.id, "tag", value);
+                }}
               />
 
               <div className="mt-2 space-y-4">
