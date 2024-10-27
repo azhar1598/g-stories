@@ -22,7 +22,7 @@ import {
 } from "@mantine/core";
 import { getStyleForType } from "@/constants";
 
-export const EditPanel = ({
+export const EditPanelMobile = ({
   selectedSlide,
   updateSlide,
   slides,
@@ -160,7 +160,7 @@ export const EditPanel = ({
     return <Text size={size}>{option.label}</Text>;
   };
   return (
-    <div className="w-64 h-[85vh] bg-[#14141fd9]  text-white overflow-y-auto  rounded-lg  divide-y  divide-gray-800 absolute right-4 top-20 hidden md:block">
+    <div className="w-64 h-[85vh] bg-[#14141fd9]  text-white overflow-y-auto  rounded-lg  divide-y  divide-gray-800 absolute right-4 top-20">
       <div className="flex  space-x-4 p-4  ">
         <button
           className={`${
@@ -252,7 +252,6 @@ export const EditPanel = ({
                   { label: "Small", value: "small" },
                 ]}
                 renderOption={renderSelectOption}
-                allowDeselect={false}
                 value={selectedElement.tag}
                 onChange={(value) => {
                   console.log("eee", value);

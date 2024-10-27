@@ -11,14 +11,20 @@ import {
   Plus,
   Slice,
 } from "lucide-react";
-import MoveableComponent from "./MoveableComponent";
+
 import { EditorComponent } from "./EditorComponent";
+import { EditorComponentMobile } from "./EditorComponentMobile";
 
 const EditorPage = () => {
   return (
     <div className="min-h-screen bg-[#2e2e38] text-white">
       <main>
+        {/* <div className="hidden md:block"> */}
         <EditorComponent />
+        {/* </div> */}
+        {/* <div className="md:hidden">
+          <EditorComponentMobile />
+        </div> */}
       </main>
     </div>
   );

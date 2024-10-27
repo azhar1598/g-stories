@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import MoveableComponent from "../MoveableComponent";
+import MoveableComponentMobile from "../MoveableComponentMobile";
+import MoveableComponent from "../../MoveableComponent";
 
-export const Preview = ({
+export const PreviewMobile = ({
   slides,
   selectedSlide,
   setSelectedSlide,
@@ -24,7 +25,7 @@ export const Preview = ({
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-4">
       <div className="text-gray-400 mb-4">
-        {/* Slide {slides.indexOf(selectedSlide) + 1} */}
+        Slide {slides.indexOf(selectedSlide) + 1}
       </div>
 
       <div className="w-64 h-[32rem] bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">

@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { SidebarMobile } from "./SidebarMobile";
+import { PreviewMobile } from "./PreviewMobile";
+import { EditPanelMobile } from "./EditPanelMobile";
 import { Preview } from "../Preview";
-import { Sidebar } from "../Sidebar";
-import { EditPanel } from "../EditPanel";
-import SidebarMobile from "../EditorComponentMobile/SidebarMobile";
 
-export const EditorComponent = () => {
+export const EditorComponentMobile = () => {
   const [slides, setSlides] = useState([
     {
       id: 1,
@@ -81,12 +81,8 @@ export const EditorComponent = () => {
 
   return (
     <div className="flex h-[calc(100vh-64px)] max-h-[calc(100vh-64px)] overflow-hidden">
-      <div className="hidden md:block">
-        <Sidebar selectedSlide={selectedSlide} addContent={addContent} />
-      </div>
-      <div className="md:hidden">
-        <SidebarMobile selectedSlide={selectedSlide} addContent={addContent} />
-      </div>
+      <SidebarMobile selectedSlide={selectedSlide} addContent={addContent} />
+
       <Preview
         addSlide={addSlide}
         slides={slides}
@@ -96,12 +92,12 @@ export const EditorComponent = () => {
         updateContent={updateContent}
         setSelectedElement={setSelectedElement}
       />
-      <EditPanel
+      {/* <EditPanelMobile
         selectedSlide={selectedSlide}
         updateSlide={updateSlide}
         slides={slides}
         selectedElement={selectedElement}
-      />
+      /> */}
     </div>
   );
 };
