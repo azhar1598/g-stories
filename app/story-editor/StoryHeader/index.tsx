@@ -6,6 +6,7 @@ import {
   IconPlayerPlay,
   IconCheck,
 } from "@tabler/icons-react";
+import Link from "next/link";
 
 const StoryHeader = () => {
   const [isPublishing, setIsPublishing] = useState(false);
@@ -25,9 +26,12 @@ const StoryHeader = () => {
             {/* Left Section */}
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
-                <button className="hover:bg-white/10 p-2 rounded-full transition-colors duration-200 group">
+                <Link
+                  href="/"
+                  className="hover:bg-white/10 p-2 rounded-full transition-colors duration-200 group"
+                >
                   <IconChevronLeft className="w-5 h-5 stroke-2 group-hover:scale-95 transition-transform" />
-                </button>
+                </Link>
                 <button className="hover:bg-white/10 p-2 rounded-full transition-colors duration-200 group">
                   <IconMenu2 className="w-5 h-5 stroke-2 group-hover:scale-95 transition-transform" />
                 </button>
