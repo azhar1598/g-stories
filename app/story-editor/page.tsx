@@ -14,12 +14,14 @@ import {
 
 import { EditorComponent } from "./EditorComponent";
 import { EditorComponentMobile } from "./EditorComponentMobile";
+import StoryHeader from "./StoryHeader";
 
 const EditorPage = () => {
   return (
     <div className="min-h-screen bg-[#2e2e38] text-white">
       <main>
         {/* <div className="hidden md:block"> */}
+        <StoryHeader />
         <EditorComponent />
         {/* </div> */}
         {/* <div className="md:hidden">

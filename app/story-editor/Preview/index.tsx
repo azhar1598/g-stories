@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import MoveableComponent from "../MoveableComponent";
+import { Text } from "@mantine/core";
 
 export const Preview = ({
   slides,
@@ -22,12 +23,14 @@ export const Preview = ({
 
   console.log("selected", selectedSlide);
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-4">
+    <div className="flex-1 flex flex-col items-center justify-center p-4 absolute top-12 left-[35%]">
       <div className="text-gray-400 mb-4">
         {/* Slide {slides.indexOf(selectedSlide) + 1} */}
       </div>
-
-      <div className="w-64 h-[32rem] bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
+      <Text w={"100%"} c={"#ababba"} size="14px" mb={10}>
+        Slide {slides.indexOf(selectedSlide) + 1}
+      </Text>
+      <div className="w-64 h-[28rem] bg-[#14141fd9] rounded-lg overflow-hidden shadow-lg relative">
         <div
           style={{
             backgroundImage: `${selectedSlide.styles.backgroundImage}`,

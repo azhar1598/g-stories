@@ -4,7 +4,7 @@ import { Flex, Title } from "@mantine/core";
 
 function page() {
   return (
-    <Flex direction={"column"} gap={50} className="">
+    <Flex direction={"column"} px={50} gap={50} className="">
       <Title c={"white"}>My Stories</Title>
 
       <Flex gap={20}>

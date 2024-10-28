@@ -62,7 +62,7 @@ export default function RootLayout({
                   {pathname !== "/login" &&
                     pathname !== "/signup" &&
                     pathname != "/story-editor" && <Sidebar />}
-                  <Box px={50} w={"95%"}>
+                  <Box w={"100%"}>
                     {pathname != "/story-editor" && <Header />}
                     {children}
                   </Box>
