@@ -1,66 +1,102 @@
-import { FC } from "react";
-import { IconApps, IconUser, IconWandOff } from "@tabler/icons-react";
-import { sidebarItems } from "@/sidebar";
-import Link from "next/link";
-import { signOut } from "next-auth/react";
-import Logo from "@/public/assets/logo/logo.png";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
+// sidebar.tsx
+"use client";
 
-const Sidebar: FC = () => {
-  const pathname = usePathname();
-  console.log("pathname", pathname);
+import { useState } from "react";
+import { Center, Tooltip, UnstyledButton, Stack, rem } from "@mantine/core";
+import { IconSwitchHorizontal, IconLogout } from "@tabler/icons-react";
+import { useRouter, usePathname } from "next/navigation";
+import classes from "./sidebar.module.css";
+import { sidebarItems } from "./sidebar";
+
+interface NavbarLinkProps {
+  icon: any;
+  label: string;
+  active?: boolean;
+  link: string;
+  onClick?(): void;
+}
+
+function NavbarLink({
+  icon: Icon,
+  label,
+  active,
+  onClick,
+  link,
+}: NavbarLinkProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    router.push(link);
+  };
 
   return (
-    // <div className="bg-gray-800 h-screen w-20 fixed top-10 flex flex-col justify-between hidden md:block">
-    //   <div className="flex flex-col items-center">
-    //     {sidebarItems.map((item, index) => (
-    //       <Link href={item.link} key={index} className="w-full">
-    //         <div
-    //           className={`w-full flex flex-col items-center py-4 ${
-    //             index === 0 ? "bg-[#394189]" : "hover:bg-[#394189]"
-    //           } cursor-pointer`}
-    //           onClick={(e) => {
-    //             if (item.name != "Logout") return;
-    //             e.stopPropagation();
-    //             signOut({ callbackUrl: "/login" });
-    //           }}
-    //         >
-    //           <item.icon size={22} className="text-white" />
-    //           <span className="text-white text-xs pt-2">{item.name}</span>
-    //         </div>
-    //       </Link>
-    //     ))}
-    //   </div>
-    // </div>
-
-    <div className=" menu  h-screen fixed  flex flex-col justify-between hidden md:block">
-      <ul className="menu bg-gray-800 ">
-        {sidebarItems.map((item, index) => (
-          <li className=" mt-3">
-            <Link
-              href={item.link}
-              key={index}
-              className={`flex flex-col justify-center items-center tooltip tooltip-right ${
-                pathname.includes(item.link) && "active "
-              }`}
-              onClick={(e) => {
-                // if (item.name != "Logout") return;
-                e.stopPropagation();
-                console.log(item.link, pathname);
-                // signOut({ callbackUrl: "/login" });
-              }}
-            >
-              <item.icon size={22} className="text-white" />
-              <span className="text-white text-center text-xs pt-2">
-                {item.name}
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Tooltip label={label} position="right" transitionProps={{ duration: 0 }}>
+      <UnstyledButton
+        onClick={handleClick}
+        className={classes.link}
+        data-active={active || undefined}
+      >
+        <Icon style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
+      </UnstyledButton>
+    </Tooltip>
   );
-};
+}
 
-export default Sidebar;
+export function Sidebar() {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Find active index based on current pathname
+  const activeIndex = sidebarItems.findIndex((item) => item.link === pathname);
+
+  const links = sidebarItems.map((link, index) => (
+    <NavbarLink
+      {...link}
+      key={link.label}
+      active={index === activeIndex}
+      onClick={() => {
+        // Additional onClick handling if needed
+      }}
+    />
+  ));
+
+  const handleAccountSwitch = () => {
+    // Handle account switching logic
+    console.log("Switching account");
+  };
+
+  const handleLogout = () => {
+    router.push("/login");
+    // Add any additional logout logic here
+  };
+
+  return (
+    <nav className={classes.navbar}>
+      <Center>{/* Logo can go here */}</Center>
+
+      <div className={classes.navbarMain}>
+        <Stack justify="center" gap={0}>
+          {links}
+        </Stack>
+      </div>
+
+      <Stack justify="center" gap={0}>
+        <NavbarLink
+          icon={IconSwitchHorizontal}
+          label="Change account"
+          link="#"
+          onClick={handleAccountSwitch}
+        />
+        <NavbarLink
+          icon={IconLogout}
+          label="Logout"
+          link="/login"
+          onClick={handleLogout}
+        />
+      </Stack>
+    </nav>
+  );
+}
