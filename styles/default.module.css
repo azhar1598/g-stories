@@ -5,6 +5,12 @@
   border: none;
   line-height: 1;
   border-radius: 5px;
+  &[data-variant="primary"] {
+    background: #2e2e38;
+  }
+  &[data-variant="search"] {
+    background: #21212cd9;
+  }
 }
 
 .text_area {

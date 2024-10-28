@@ -59,11 +59,11 @@ export default function RootLayout({
                   pathname !== "/signup" &&
                   pathname !== "/story-editor" && <Header />} */}
                 <Flex align={"Flex-start"} justify={"Flex-start"} w={"100%"}>
-                  {pathname !== "/login" && pathname !== "/signup" && (
-                    <Sidebar />
-                  )}
+                  {pathname !== "/login" &&
+                    pathname !== "/signup" &&
+                    pathname != "/story-editor" && <Sidebar />}
                   <Box px={50} w={"95%"}>
-                    <Header />
+                    {pathname != "/story-editor" && <Header />}
                     {children}
                   </Box>
                 </Flex>

@@ -8,7 +8,7 @@ export function Story() {
         <Text className={classes.category} size="xs">
           nature
         </Text>
-        <Title order={3} className={classes.title}>
+        <Title order={6} className={classes.title}>
           Best forests to visit in North America
         </Title>
       </div>
