@@ -5,7 +5,13 @@ import { Provider } from "react-redux";
 import store from "@/redux/store";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
-import { ColorSchemeScript, Flex, MantineProvider } from "@mantine/core";
+import {
+  Box,
+  ColorSchemeScript,
+  Flex,
+  MantineProvider,
+  SimpleGrid,
+} from "@mantine/core";
 import "@mantine/core/styles.css";
 import { theme } from "@/theme";
 import { usePathname } from "next/navigation";
@@ -14,8 +20,10 @@ import "@mantine/notifications/styles.css";
 import { Notifications } from "@mantine/notifications";
 
 import Head from "next/head";
-import Header from "@/components/common/Header";
+
 import { Sidebar } from "@/components/common/Sidebar";
+import Search from "../components/common/Header/Search";
+import Header from "@/components/common/Header";
 
 const heebo = Heebo({ subsets: ["latin"] });
 
@@ -50,11 +58,14 @@ export default function RootLayout({
                 {/* {pathname !== "/login" &&
                   pathname !== "/signup" &&
                   pathname !== "/story-editor" && <Header />} */}
-                <Flex>
+                <Flex align={"Flex-start"} justify={"Flex-start"} w={"100%"}>
                   {pathname !== "/login" && pathname !== "/signup" && (
                     <Sidebar />
                   )}
-                  {children}
+                  <Box px={50} w={"95%"}>
+                    <Header />
+                    {children}
+                  </Box>
                 </Flex>
                 {/* <p className="text-gray-300 px-4 md:p-0 text-center leading-5 absolute bottom-12 w-full">
                 Roxa ai might produce inaccuracies. Please review and edit as

@@ -10,6 +10,10 @@
   }
 }
 
+body {
+  background-color: #2e2e38 !important;
+}
+
 /* For WebKit browsers (Chrome, Safari, etc.) */
 /* Customize scrollbar */
 ::-webkit-scrollbar {

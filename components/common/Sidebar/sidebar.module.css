@@ -3,6 +3,7 @@
   height: 100vh;
   padding: var(--mantine-spacing-md);
   display: flex;
+  background-color: #14141fd9 !important;
   flex-direction: column;
   /* position: absolute; */
   border-right: 1px solid
