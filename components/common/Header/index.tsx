@@ -5,9 +5,12 @@ import Search from "./Search";
 import { Avatar, Button, Flex, Menu, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { IconUser, IconLogout } from "@tabler/icons-react";
+import { useDisclosure } from "@mantine/hooks";
+import StoryGenerator from "../Modals/StoryGenerator";
 
 function Header() {
   const router = useRouter();
+  const [opened, { open, close }] = useDisclosure(false);
 
   const handleLogout = () => {
     // Add your logout logic here
@@ -32,6 +35,7 @@ function Header() {
               // },
             },
           })}
+          onClick={open}
         >
           Create Story
         </Button>
@@ -81,6 +85,7 @@ function Header() {
           </Menu.Dropdown>
         </Menu>
       </Flex>
+      <StoryGenerator opened={opened} onClose={close} />
     </Flex>
   );
 }

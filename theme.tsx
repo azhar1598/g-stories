@@ -5,6 +5,7 @@ import {
   createTheme,
   Input,
   InputBase,
+  NumberInput,
   Select,
   Textarea,
   TextInput,
@@ -50,7 +51,14 @@ export const theme = createTheme({
     TextInput: TextInput.extend({
       classNames: {
         input: classes.text_input,
-        label: "",
+        label: classes.text_input_label,
+        required: "",
+      },
+    }),
+    NumberInput: NumberInput.extend({
+      classNames: {
+        input: classes.number_input,
+        label: classes.number_input_label,
         required: "",
       },
     }),

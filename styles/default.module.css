@@ -19,11 +19,15 @@
   }
 }
 
-.text_input {
+.text_input,
+.number_input {
+  &[data-variant="primary"] {
+    background-color: #212031;
+  }
   &[data-error="true"] {
     border: 1px solid #c8102e;
   }
-  background-color: red !important;
+  /* background-color: red !important; */
 }
 
 .text_input_root {
@@ -44,14 +48,6 @@
   font-size: 12px;
 }
 
-.button {
-  height: rem(30);
-
-  &[data-variant="primary"] {
-    /* background: #fabc3f; */
-  }
-}
-
 .select_input {
   background-color: #1f2937;
   outline: none;
@@ -60,6 +56,10 @@
   min-height: 35px;
   line-height: 1px;
   font-size: 12px;
+
+  &[data-variant="primary"] {
+    background-color: #212031;
+  }
   /* background: red !important; */
 }
 
@@ -77,6 +77,24 @@
   font-size: 12px !important;
 }
 
+.text_input_label,
+.number_input_label,
 .select_input_label {
-  /* background-color: orange !important; */
+  &[data-variant="primary"] {
+    color: white;
+  }
+  /* background-color: red !important; */
+}
+
+.button {
+  height: rem(30);
+
+  &[data-variant="primary"] {
+    background-image: linear-gradient(
+      to right,
+      #ff512f 0%,
+      #dd2476 51%,
+      #ff512f 100%
+    );
+  }
 }
