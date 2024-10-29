@@ -44,19 +44,19 @@ const StoryGenerator = ({ opened, onClose }: StoryGeneratorProps) => {
       opened={opened}
       onClose={onClose}
       //   title="Convert Any Blog Post, News Article, Product Page to Web Story!"
-      size="xl"
+      size="lg"
       padding={0}
       withCloseButton={false}
       centered
     >
-      <Stack gap="md" py={50} bg={"#100f22"} align="center">
+      <Stack gap="lg" py={50} px={50} bg={"#2b2b36"}>
         <TextInput
           label="Enter URL"
           variant="primary"
           placeholder="eg.https://example.com/blog/best-street-foods"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          className="w-full"
+          //   className="w-full"
           required
         />
 
@@ -68,7 +68,9 @@ const StoryGenerator = ({ opened, onClose }: StoryGeneratorProps) => {
             onChange={(val) => setSlides(val || 1)}
             min={1}
             allowDecimal={false}
+            allowNegative={false}
             className="w-full"
+            hideControls
           />
 
           <TextInput
@@ -152,9 +154,11 @@ const StoryGenerator = ({ opened, onClose }: StoryGeneratorProps) => {
           />
         </Group>
 
-        <Button mt={4} onClick={handleSubmit} variant="primary" w={200}>
-          Start Magic
-        </Button>
+        <Group justify="center">
+          <Button mt={4} onClick={handleSubmit} variant="primary" w={200}>
+            Start Magic
+          </Button>
+        </Group>
       </Stack>
     </Modal>
   );

@@ -82,6 +82,7 @@
 .select_input_label {
   &[data-variant="primary"] {
     color: white;
+    font-size: 12px;
   }
   /* background-color: red !important; */
 }

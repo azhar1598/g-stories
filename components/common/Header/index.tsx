@@ -35,6 +35,7 @@ function Header() {
               // },
             },
           })}
+          variant="primary"
           onClick={open}
         >
           Create Story
@@ -42,16 +43,25 @@ function Header() {
 
         <Menu
           position="bottom-end"
-          offset={5}
-          withArrow
+          offset={4}
           styles={(theme) => ({
             dropdown: {
-              backgroundColor: theme.colors.dark[3],
-              // border: `1px solid ${theme.colors.dark[5]}`,
+              backgroundColor: "#2C2E33",
+              padding: "8px 8px",
+              minWidth: "140px",
+              border: "0.2px solid gray",
             },
-            arrow: {
-              // backgroundColor: theme.colors.dark[7],
-              // border: `1px solid ${theme.colors.dark[5]}`,
+            item: {
+              // backgroundColor: "transparent",
+              color: "#C1C2C5",
+              padding: "8px 16px",
+              "&:hover": {
+                backgroundColor: "red",
+              },
+            },
+            divider: {
+              borderColor: "rgba(255, 255, 255, 0.1)",
+              margin: "4px 0",
             },
           })}
         >
@@ -67,20 +77,22 @@ function Header() {
 
           <Menu.Dropdown>
             <Menu.Item
-              leftSection={<IconUser size={14} />}
+              leftSection={<IconUser className="w-4 h-4" />}
               onClick={handleProfile}
             >
-              <Text size="sm">Profile</Text>
+              <Text className="text-gray-300" size="12px">
+                Profile
+              </Text>
             </Menu.Item>
 
             <Menu.Divider />
 
             <Menu.Item
-              leftSection={<IconLogout size={14} />}
+              leftSection={<IconLogout className="w-4 h-4" />}
               onClick={handleLogout}
-              color="red"
+              className="text-red-400"
             >
-              <Text size="sm">Logout</Text>
+              <Text size="12px">Logout</Text>
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>
