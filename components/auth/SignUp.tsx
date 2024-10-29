@@ -51,7 +51,7 @@ const SignUp = ({ isMobile, signup }: PropTypes) => {
   return (
     <Stack
       w={400}
-      className={`relative items-center p-1  shadow-xl bg-white rounded-md h-[100vh] md:h-auto`}
+      className={`relative items-center p-1  shadow-xl  bg-[#1e1e1ed4] rounded-md h-[100vh] md:h-auto`}
     >
       <Stack className={`text-white p-6 rounded-lg`}>
         <Stack h={150} align="center" justify="center">
@@ -64,7 +64,7 @@ const SignUp = ({ isMobile, signup }: PropTypes) => {
               unoptimized
             /> */}
           </Group>
-          <Text>Video creation at its Best</Text>
+          {/* <Text>Video creation at its Best</Text> */}
         </Stack>
         <Button
           type="button"
@@ -122,10 +122,7 @@ const SignUp = ({ isMobile, signup }: PropTypes) => {
             >
               Sign up →
             </Button>
-            <Text
-              className="text-center font-montMedium"
-              style={{ color: "gray" }}
-            >
+            <Text className="text-center" size="14px">
               Already have an account?
               <Link href="/login" className="link-global-style">
                 Login

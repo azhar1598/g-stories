@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import Image from "next/image";
 import { useMediaQuery } from "@mantine/hooks";
-import DisplayImage from "../../../public/assets/auth/login.jpeg";
+import DisplayImage from "../../../public/assets/auth/zazu.webp";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -56,54 +56,7 @@ function signup() {
     );
   }
 
-  return (
-    <SimpleGrid cols={isMobile ? 1 : 2}>
-      <Center>
-        <SignUp isMobile={isMobile} signup={signup} />
-      </Center>
-      <Center
-        style={{
-          position: "relative",
-          height: "100vh",
-          width: "100%",
-          display: !isMobile ? "block" : "none",
-        }}
-      >
-        <Image
-          src={DisplayImage}
-          alt="Wolf Banner"
-          layout="fill"
-          objectFit="cover"
-          priority
-          unoptimized
-          className="opacity-40"
-        />
-        <Group
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            color: "white",
-            textAlign: "center",
-            textShadow: "0 2px 4px rgba(0, 0, 0, 0.6)",
-          }}
-        >
-          <Text
-            style={{ fontSize: "3rem", margin: 0 }}
-            className="font-montSemibold"
-          >
-            {" "}
-            Video Creation Has Never Been This Easy
-          </Text>
-          <Text style={{ fontSize: "1.5rem", margin: 0, textAlign: "left" }}>
-            Dozens of creative tools to ideate, generate and edit content like
-            never before.
-          </Text>
-        </Group>
-      </Center>
-    </SimpleGrid>
-  );
+  return <SignUp isMobile={isMobile} signup={signup} />;
 }
 
 export default signup;

@@ -103,7 +103,7 @@ const Login = ({ isMobile, login }: PropTypes) => {
             <Button type="submit" variant="primary" loading={login.isPending}>
               Login →
             </Button>
-            <Text className="text-center font-montMedium" size="14px">
+            <Text className="text-center " size="14px">
               Don't have an account?
               <Link href="/signup" className="link-global-style">
                 Signup

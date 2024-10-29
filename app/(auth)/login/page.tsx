@@ -54,55 +54,7 @@ function login() {
     );
   }
 
-  return (
-    <SimpleGrid cols={isMobile ? 1 : 1}>
-      <Center
-        style={{
-          position: "relative",
-          height: "100vh",
-          width: "100%",
-          backgroundColor: "black",
-          display: !isMobile ? "block" : "none",
-        }}
-      >
-        <Image
-          src={DisplayImage}
-          alt="Wolf Banner"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-40"
-          unoptimized
-          priority
-        />
-        <Group
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            color: "white",
-            textAlign: "center",
-            textShadow: "0 2px 4px rgba(0, 0, 0, 0.6)",
-          }}
-        >
-          {/* <Text
-            style={{ fontSize: "3rem", margin: 0 }}
-            className="font-montSemibold"
-          >
-            {" "}
-            Web stories Made Easier
-          </Text>
-          <Text style={{ fontSize: "1.5rem", margin: 0, textAlign: "left" }}>
-            Empower your creativity with tools that bring your vision to life
-            effortlessly.
-          </Text> */}
-          <Center>
-            <Login isMobile={isMobile} login={login} />
-          </Center>
-        </Group>
-      </Center>
-    </SimpleGrid>
-  );
+  return <Login isMobile={isMobile} login={login} />;
 }
 
 export default login;
