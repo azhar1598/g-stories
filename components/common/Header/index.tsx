@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { IconUser, IconLogout } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import StoryGenerator from "../Modals/StoryGenerator";
+import { signOut } from "next-auth/react";
 
 function Header() {
   const router = useRouter();
@@ -92,7 +93,14 @@ function Header() {
               onClick={handleLogout}
               className="text-red-400"
             >
-              <Text size="12px">Logout</Text>
+              <Text
+                size="12px"
+                onClick={() => {
+                  signOut({ callbackUrl: "/login" });
+                }}
+              >
+                Logout
+              </Text>
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>

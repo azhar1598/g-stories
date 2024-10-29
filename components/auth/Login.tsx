@@ -46,7 +46,7 @@ const Login = ({ isMobile, login }: PropTypes) => {
   return (
     <Stack
       w={400}
-      className={`relative items-center p-1 bg-white h-[100vh] md:h-auto
+      className={`relative items-center p-1 bg-[#1e1e1ed4] h-[100vh] md:h-auto
         shadow-xl rounded-md`}
     >
       <Stack className={`${!isMobile && ""} text-white p-6 rounded-lg `}>
@@ -103,10 +103,7 @@ const Login = ({ isMobile, login }: PropTypes) => {
             <Button type="submit" variant="primary" loading={login.isPending}>
               Login →
             </Button>
-            <Text
-              className="text-center font-montMedium"
-              style={{ color: "gray" }}
-            >
+            <Text className="text-center font-montMedium" size="14px">
               Don't have an account?
               <Link href="/signup" className="link-global-style">
                 Signup

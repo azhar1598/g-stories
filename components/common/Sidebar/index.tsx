@@ -78,7 +78,7 @@ export function Sidebar() {
       <Center>{/* Logo can go here */}</Center>
 
       <div className={classes.navbarMain}>
-        <Stack justify="center" gap={0}>
+        <Stack justify="center" gap={5}>
           {links}
         </Stack>
       </div>

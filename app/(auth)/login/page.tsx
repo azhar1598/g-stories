@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 import Image from "next/image";
 import { useMediaQuery } from "@mantine/hooks";
-import DisplayImage from "../../../public/assets/auth/login.jpeg";
+import DisplayImage from "../../../public/assets/auth/zazu.webp";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -55,10 +55,7 @@ function login() {
   }
 
   return (
-    <SimpleGrid cols={isMobile ? 1 : 2}>
-      <Center>
-        <Login isMobile={isMobile} login={login} />
-      </Center>
+    <SimpleGrid cols={isMobile ? 1 : 1}>
       <Center
         style={{
           position: "relative",
@@ -88,7 +85,7 @@ function login() {
             textShadow: "0 2px 4px rgba(0, 0, 0, 0.6)",
           }}
         >
-          <Text
+          {/* <Text
             style={{ fontSize: "3rem", margin: 0 }}
             className="font-montSemibold"
           >
@@ -98,7 +95,10 @@ function login() {
           <Text style={{ fontSize: "1.5rem", margin: 0, textAlign: "left" }}>
             Empower your creativity with tools that bring your vision to life
             effortlessly.
-          </Text>
+          </Text> */}
+          <Center>
+            <Login isMobile={isMobile} login={login} />
+          </Center>
         </Group>
       </Center>
     </SimpleGrid>

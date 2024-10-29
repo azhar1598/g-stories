@@ -63,7 +63,9 @@ export default function RootLayout({
                     pathname !== "/signup" &&
                     pathname != "/story-editor" && <Sidebar />}
                   <Box w={"100%"}>
-                    {pathname != "/story-editor" && <Header />}
+                    {pathname != "/story-editor" &&
+                      pathname !== "/login" &&
+                      pathname !== "/signup" && <Header />}
                     {children}
                   </Box>
                 </Flex>

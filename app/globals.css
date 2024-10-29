@@ -69,6 +69,7 @@ body {
   /* color: #fabc3f; */
   text-decoration: underline;
   margin: 0 0.5rem; /* equivalent to mx-2 in Tailwind */
+  font-size: 14px;
 }
 
 .moveable-control {
