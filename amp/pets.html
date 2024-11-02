@@ -1,58 +1,148 @@
-<!doctype html>
+function generateAMPStory(pages) {
+  // Generate the HTML header with required AMP boilerplate
+  const header = `<!DOCTYPE html>
 <html ⚡>
-  <head>
-    <meta charset="utf-8">
-    <title>Joy of Pets</title>
-    <link rel="canonical" href="pets.html">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400" rel="stylesheet">
-    <style amp-custom>
+<head>
+  <meta charset="utf-8">
+  <title>Dynamic Story</title>
+  <link rel="canonical" href="story.html">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+  <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400" rel="stylesheet">
+  <style amp-custom>
       amp-story {
-        font-family: 'Oswald',sans-serif;
-        color: #fff;
+          font-family: 'Oswald', sans-serif;
+          color: #fff;
       }
       amp-story-page {
-        background-color: #000;
+          background-color: #B24592;
       }
       h1 {
-        font-weight: bold;
-        font-size: 2.875em;
-        font-weight: normal;
-        line-height: 1.174;
+          font-size: 42px;
+          font-weight: 500;
+          text-align: center;
+          margin: 0;
+          border: 1px solid rgb(59, 130, 246);
+          padding: 10px;
       }
-      p {
-        font-weight: normal;
-        font-size: 1.3em;
-        line-height: 1.5em;
-        color: #fff;
+      .custom-text {
+          color: inherit;
       }
-      q {
-        font-weight: 300;
-        font-size: 1.1em;
-      }
-      amp-story-grid-layer.bottom {
-        align-content:end;
-      }
-      amp-story-grid-layer.noedge {
-        padding: 0px;
-      }
-      amp-story-grid-layer.center-text {
-        align-content: center;
-      }
-      .wrapper {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 50% 50%;
-      }
-      .banner-text {
-        text-align: center;
-        background-color: #000;
-        line-height: 2em;
-      }
-    </style>
-  </head>
-  <body>
-  </body>
-</html>
+  </style>
+</head>`;
+
+  // Generate story opening
+  const storyOpen = `<body>
+  <amp-story
+      standalone
+      title="Dynamic Story"
+      publisher="Your Publisher"
+      publisher-logo-src="assets/logo.png"
+      poster-portrait-src="assets/poster.jpg">`;
+
+  // Generate pages from the JSON data
+  const storyPages = pages.map((page, index) => {
+      const elements = page.elements.map(element => {
+          // Convert the transform style to grid positioning
+          const styles = { ...element.styles };
+          delete styles.transform; // Remove transform as we'll use AMP's layout system
+          
+          // Convert styles object to string
+          const styleString = Object.entries(styles)
+              .filter(([key]) => key !== 'position' && key !== 'cursor') // Remove position and cursor styles
+              .map(([key, value]) => `${key}: ${value};`)
+              .join(' ');
+
+          return `
+              <amp-story-grid-layer template="vertical" class="center-text">
+                  <${element.tag} 
+                      class="custom-text"
+                      animate-in="fade-in" 
+                      animate-in-duration="0.8s"
+                      style="${styleString}">
+                      ${element.content}
+                  </${element.tag}>
+              </amp-story-grid-layer>`;
+      }).join('\n');
+
+      // Generate background layer
+      const backgroundStyle = page.styles.backgroundColor || '#B24592';
+      const backgroundImage = page.styles.backgroundImage ? 
+          `<amp-img src="${page.styles.backgroundImage.replace('url(', '').replace(')', '')}"
+              layout="fill"
+              animate-in="fade-in"
+              animate-in-duration="1s">
+          </amp-img>` :
+          `<div style="background-color: ${backgroundStyle}; width: 100%; height: 100%;"></div>`;
+
+      return `
+      <amp-story-page id="page${index + 1}">
+          <amp-story-grid-layer template="fill">
+              ${backgroundImage}
+          </amp-story-grid-layer>
+          ${elements}
+      </amp-story-page>`;
+  }).join('\n');
+
+  // Generate story closing
+  const storyClose = `
+      <amp-story-bookend src="bookend.json" layout="nodisplay"></amp-story-bookend>
+  </amp-story>
+</body>
+</html>`;
+
+  // Combine all parts
+  return header + storyOpen + storyPages + storyClose;
+}
+
+// Example usage:
+function generateAndSaveAMPStory(pagesData) {
+  const ampHTML = generateAMPStory(pagesData);
+  
+  // If running in Node.js environment
+  const fs = require('fs');
+  fs.writeFileSync('story.html', ampHTML);
+  
+  // If running in browser environment
+  // return ampHTML; // Return the generated HTML string
+  
+  // Or create a download
+  /*
+  const blob = new Blob([ampHTML], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'story.html';
+  a.click();
+  URL.revokeObjectURL(url);
+  */
+}
+
+// Example data structure (your JSON)
+const exampleData = [
+  {
+      "id": 1,
+      "styles": {
+          "backgroundImage": "url(your-image-url.jpg)",
+          "backgroundColor": "#B24592"
+      },
+      "elements": [
+          {
+              "id": 1730548544426,
+              "tag": "h1",
+              "styles": {
+                  "fontSize": "42px",
+                  "fontWeight": "500",
+                  "width": "200px",
+                  "textAlign": "center",
+                  "color": "#ffffff"
+              },
+              "content": "orange army"
+          }
+      ]
+  }
+  // ... more pages
+];

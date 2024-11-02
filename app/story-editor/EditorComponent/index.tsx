@@ -4,14 +4,7 @@ import { Sidebar } from "../Sidebar";
 import { EditPanel } from "../EditPanel";
 import SidebarMobile from "../EditorComponentMobile/SidebarMobile";
 
-export const EditorComponent = () => {
-  const [slides, setSlides] = useState([
-    {
-      id: 1,
-      styles: { backgroundImage: "", backgroundColor: "#B24592" },
-      elements: [],
-    },
-  ]);
+export const EditorComponent = ({ slides, setSlides }) => {
   const [selectedSlide, setSelectedSlide] = useState(slides[0]);
 
   const [selectedElement, setSelectedElement] = useState({});

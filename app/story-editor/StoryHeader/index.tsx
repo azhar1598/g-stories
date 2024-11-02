@@ -7,13 +7,13 @@ import {
   IconCheck,
 } from "@tabler/icons-react";
 import Link from "next/link";
+import StoryAMPPreview from "../StoryAMPPreview";
 
-const StoryHeader = () => {
+const StoryHeader = ({ slides }) => {
   const [isPublishing, setIsPublishing] = useState(false);
 
   const handlePublish = () => {
     setIsPublishing(true);
-    // Simulate publish action
     setTimeout(() => setIsPublishing(false), 1500);
   };
 
@@ -54,8 +54,14 @@ const StoryHeader = () => {
                   Need help?
                 </span>
               </button>
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-1.5 group hover:bg-white/25 transition-colors cursor-pointer">
-                <IconPlayerPlay className="w-3 h-3 group-hover:scale-105 transition-transform" />
+              <div
+                className={`${
+                  slides.length > 1
+                    ? "bg-white/20 hover:bg-white/25 hover:bg-white/25 cursor-pointer"
+                    : "bg-white/20 cursor-no-drop"
+                } backdrop-blur-sm rounded-full p-1.5 group  transition-colors `}
+              >
+                <StoryAMPPreview slides={slides} />
               </div>
 
               <button
