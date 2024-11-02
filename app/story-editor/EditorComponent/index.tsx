@@ -23,6 +23,7 @@ export const EditorComponent = () => {
       elements: [],
     };
     setSlides([...slides, newSlide]);
+    setSelectedSlide(newSlide);
   };
 
   const updateSlide = (id, updates) => {
@@ -90,6 +91,7 @@ export const EditorComponent = () => {
       <Preview
         addSlide={addSlide}
         slides={slides}
+        setSlides={setSlides}
         selectedSlide={selectedSlide}
         setSelectedSlide={setSelectedSlide}
         updateSlide={updateSlide}
